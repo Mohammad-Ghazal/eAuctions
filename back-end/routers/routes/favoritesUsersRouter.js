@@ -1,4 +1,5 @@
 const express = require("express");
+const authentication =require("../middlewares/authentication")
 const favoritesUsersRouter = express.Router();
 const {
   addFavoriteUser,
@@ -6,8 +7,8 @@ const {
   getFavoriteUsers,
 } = require("../controllers/favoritesUsersController");
 
-favoritesUsersRouter.post("/", addFavoriteUser);
-favoritesUsersRouter.delete("/", removeFavoriteUser);
-favoritesUsersRouter.get("/", getFavoriteUsers);
+favoritesUsersRouter.post("/:favUser",authentication, addFavoriteUser);
+favoritesUsersRouter.delete("/:favUser",authentication, removeFavoriteUser);
+favoritesUsersRouter.get("/",authentication, getFavoriteUsers);
 
 module.exports = favoritesUsersRouter;

@@ -1,10 +1,14 @@
 const connection = require("../../db/db");
 const bcrypt = require("bcrypt");
-require("dotenv");
 //Add Users
 const addUser = async (req, res) => {
+  console.log(process.env.SALT);
+
   const { user_name, phone, email, password, payment_ref, role_id } = req.body;
-  const hashPassword = await bcrypt.hash(password, process.env.SALT||10);
+  const hashPassword = await bcrypt.hash(
+    password,
+    Number.parseInt(process.env.SALT)
+  );
   const data = [user_name, phone, email, hashPassword, payment_ref, role_id];
   const query =
     "INSERT INTO users(user_name, phone, email, password, payment_ref, role_id) VALUES(?,?,?,?,?,?)";
@@ -12,7 +16,21 @@ const addUser = async (req, res) => {
     if (err) {
       res.status(404).json({ massage: err });
     }
-    res.status(201).json({ result: result });
+    res.status(201).json({
+      success: true,
+      massage: "SUCSESS ADD NEW USER",
+      newUserId: result.insertId,
+    });
   });
 };
-module.exports = addUser;
+
+const getAllUsers = async (req, res) => {
+  const query = "SELECT * FROM  users";
+  connection.query(query, (err, result) => {
+    if (err) {
+      res.status(404).json({ massage: err });
+    }
+    res.status(201).json({ Users: result });
+  });
+};
+module.exports = { addUser, getAllUsers };

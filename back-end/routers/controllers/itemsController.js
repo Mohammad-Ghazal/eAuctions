@@ -1,9 +1,8 @@
 const connection = require("../../db/db");
 
-
 const getAllItems = (req, res) => {
-  const query = `SELECT * FROM items where is_deleted = 0`;
-  connection.query(query, (err, result, fields) => {
+  const query = `SELECT * FROM items where is_deleted = 0 AND owner_id=?`;
+  connection.query(query, [req.token.userId], (err, result, fields) => {
     if (err) {
       console.log(err.message);
       return res.status(500).json({
@@ -69,11 +68,11 @@ const deleteItemById = (req, res) => {
 
 const createNewItem = (req, res) => {
   const { title, details, image } = req.body;
-  //   const owner_id = req.token.userId;
-  //   const newItem = [title, details, image, owner_id];
-  //   const query = `INSERT INTO items (title, details, image,owner_id) values (?,?,?,?)`;
-  const newItem = [title, details, image];
-  const query = `INSERT INTO items (title, details, image) values (?,?,?)`;
+  const owner_id = req.token.userId;
+  const newItem = [title, details, image, owner_id];
+  const query = `INSERT INTO items (title, details, image,owner_id) values (?,?,?,?)`;
+  // const newItem = [title, details, image];
+  // const query = `INSERT INTO items (title, details, image) values (?,?,?)`;
   connection.query(query, newItem, (err, result, fields) => {
     if (err) {
       console.log(err.message);

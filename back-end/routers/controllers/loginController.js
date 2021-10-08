@@ -2,14 +2,15 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const connection = require("../../db/db");
 require("dotenv").config();
-
 //create login user
 const login = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const query = `SELECT * FROM users WHERE email =${email}`;
-  connection.query(query, async (err, result) => {
+  const query = `SELECT * FROM users WHERE email = ?`;
+  connection.query(query,[email], async (err, result) => {
     if (!result) {
+      console.log(err.message);
+      
       res
         .status(404)
         .json({ success: false, message: `The email doesn't exist ` });
