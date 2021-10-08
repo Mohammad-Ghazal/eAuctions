@@ -4,19 +4,18 @@ const connection = require("../../db/db");
 require("dotenv").config();
 
 //create login user
-const login = (res, req) => {
-  const email = req.body.email.toLowerCase();
-  console.log(email);
+const login = (req, res) => {
+  const email = req.body.email;
   const password = req.body.password;
   const data = [email];
-  const getUser = `SELECT * FROM users where email =?`;
-  connection.query(getUser, data, (err, result) => {
+  const getUser = `SELECT * FROM users WHERE email =?`;
+  connection.query(getUser, data, async (err, result) => {
     if (!result) {
       res
         .status(404)
         .json({ success: false, message: `The email doesn't exist ` });
     } else {
-      const valid = bcrypt.compare(password, result.password);
+      const valid = await bcrypt.compare(password, result[0].password);
       if (!valid) {
         res.status(404).json({
           success: false,
