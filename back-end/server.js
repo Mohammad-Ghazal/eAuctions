@@ -11,13 +11,15 @@ const paymentsRouter = require("./routers/routes/paymentRouter");
 const usersRouter = require("./routers/routes/usersRouter");
 const loginRouter = require("./routers/routes/loginRouter");
 const itemsRouter = require("./routers/routes/itemsRouter");
-
+const favoritesUsersRouter =require("./routers/routes/favoritesUsersRouter");
 //Routers
 app.use("/roles", rolesRouter);
 app.use("/payments", paymentsRouter);
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
-app.use("/items",itemsRouter)
+app.use("/items",itemsRouter);
+app.use("/favUsers",favoritesUsersRouter)
+
 //Routers
 app.listen(PORT, () => {
   console.log(`app listen at ${PORT} `);

@@ -1,4 +1,6 @@
 const express = require("express");
+const authentication =require("../middlewares/authentication")
+
 const {
   getAllItems,
   createNewItem,
@@ -7,10 +9,10 @@ const {
 } = require("../controllers/itemsController");
 const itemsRouter = express.Router();
 
-itemsRouter.get("/", getAllItems);
+itemsRouter.get("/",authentication, getAllItems);
 itemsRouter.get("/:itemId", getItemsByID);
 itemsRouter.delete("/:itemId", deleteItemById);
 
-itemsRouter.post("/", createNewItem);
+itemsRouter.post("/",authentication, createNewItem);
 
 module.exports = itemsRouter;
