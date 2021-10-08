@@ -3,9 +3,9 @@ console.log(connection);
 //Add roles
 const newRole = (req, res) => {
   const { permission } = req.body;
-  const insert = `INSERT INTO roles (permission) VALUES (?)`;
+  const query = `INSERT INTO roles (permission) VALUES (?)`;
   const data = [permission];
-  connection.query(insert, data, (err, result) => {
+  connection.query(query, data, (err, result) => {
     if (err) {
       res.status(404).json({ massage: err });
     }

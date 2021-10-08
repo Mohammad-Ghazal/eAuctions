@@ -7,9 +7,8 @@ require("dotenv").config();
 const login = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const data = [email];
-  const getUser = `SELECT * FROM users WHERE email =?`;
-  connection.query(getUser, data, async (err, result) => {
+  const query = `SELECT * FROM users WHERE email =${email}`;
+  connection.query(query, async (err, result) => {
     if (!result) {
       res
         .status(404)

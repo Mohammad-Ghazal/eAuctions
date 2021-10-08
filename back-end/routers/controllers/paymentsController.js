@@ -1,10 +1,10 @@
 const connection = require("../../db/db");
 //payment method
-const paymentMethod = (req, res) => {
+const addPaymentMethod = (req, res) => {
   const { payment_type } = req.body;
-  const insertPaymentMethod = `INSERT INTO  payments (payment_type) VALUES (?)`;
+  const query = `INSERT INTO  payments (payment_type) VALUES (?)`;
   const data = [payment_type];
-  connection.query(insertPaymentMethod, data, (err, result) => {
+  connection.query(query, data, (err, result) => {
     if (err) {
       res.status(404).json({ massage: err });
     }
@@ -14,4 +14,4 @@ const paymentMethod = (req, res) => {
   });
 };
 
-module.exports = paymentMethod;
+module.exports = addPaymentMethod;
