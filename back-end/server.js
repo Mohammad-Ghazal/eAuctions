@@ -1,18 +1,28 @@
+require("dotenv");
 const express = require("express");
 const app = express();
-const PORT = 5000;
-app.use(express.json());
+const cors = require("cors");
+const PORT = process.env.PORT || 5000;
+app.use(express.json());//built-in middleware
+app.use(cors());//third-party middleware
 require("./db/db");
-const roleRouter = require("./routers/routes/roles");
-const paymentRouter = require("./routers/routes/payment");
-const userRouter = require("./routers/routes/users");
-const loginRouter = require("./routers/routes/login");
+const rolesRouter = require("./routers/routes/rolesRouter");
+const paymentsRouter = require("./routers/routes/paymentRouter");
+const usersRouter = require("./routers/routes/usersRouter");
+const loginRouter = require("./routers/routes/loginRouter");
+const itemsRouter = require("./routers/routes/itemsRouter");
+
 //Routers
-app.use("/role", roleRouter);
-app.use("/payment", paymentRouter);
-app.use("/user", userRouter);
+app.use("/roles", rolesRouter);
+app.use("/payments", paymentsRouter);
+app.use("/users", usersRouter);
 app.use("/login", loginRouter);
+app.use("/items",itemsRouter)
 //Routers
 app.listen(PORT, () => {
   console.log(`app listen at ${PORT} `);
 });
+
+
+
+

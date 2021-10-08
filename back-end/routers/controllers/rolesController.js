@@ -1,7 +1,5 @@
 const connection = require("../../db/db");
-console.log(connection);
-//Add roles
-const newRole = (req, res) => {
+const createRole = (req, res) => {
   const { permission } = req.body;
   const query = `INSERT INTO roles (permission) VALUES (?)`;
   const data = [permission];
@@ -15,4 +13,4 @@ const newRole = (req, res) => {
   });
 };
 
-module.exports = newRole;
+module.exports = createRole;
