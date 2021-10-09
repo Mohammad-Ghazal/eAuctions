@@ -1,14 +1,21 @@
 const connection = require("../../db/db");
 
 const createAuction = (req, res) => {
-  const { starter_bid, start_date, end_date, bid_jump } = req.body;
+  const { starter_bid, start_date, end_date, bid_jump, item_id } = req.body;
+  const user_id = req.token.user_id;
 
-  const newAuction = [starter_bid, start_date, end_date, bid_jump];
-  const query = `INSERT INTO auctions (starter_bid, start_date, end_date,bid_jump) values (?,?,?,?)`;
+  const newAuction = [
+    starter_bid,
+    start_date,
+    end_date,
+    bid_jump,
+    user_id,
+    item_id,
+  ];
+  const query = `INSERT INTO auctions (starter_bid, start_date, end_date,bid_jump,user_id,item_id) values (?,?,?,?,?,?)`;
 
   connection.query(query, newAuction, (err, result, fields) => {
     if (err) {
-      console.log(err);
       return res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -19,15 +26,6 @@ const createAuction = (req, res) => {
       success: true,
       message: `new auction created`,
       result: result,
-
-      // bid: {
-      //   bid_id:result
-      // auction_id: result.insertId,
-      // date: title,
-      // user_id: details,
-      // bid_value: image,
-
-      //   },
     });
   });
 };
@@ -36,18 +34,17 @@ const getAllAuctions = (req, res) => {
   const query = `SELECT * FROM auctions where is_deleted = 0`;
   connection.query(query, (err, result, fields) => {
     if (err) {
-      console.log(err.message);
       return res.status(500).json({
         success: false,
         message: `Server Error`,
       });
     }
-    // if (result.length===0) {
-    //     return res.status(400).json({
-    //       success: false,
-    //       message: `there is no item added yet`,
-    //     });
-    //   }
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: `there is no auction added yet`,
+      });
+    }
     res.status(200).json({
       success: true,
       message: `all auctions`,
@@ -61,7 +58,6 @@ const getAuctionById = (req, res) => {
   const query = `SELECT * FROM auctions where is_deleted = 0 AND auction_id = ${auction_id}`;
   connection.query(query, (err, result, fields) => {
     if (err) {
-      console.log(err.message);
       return res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -76,6 +72,30 @@ const getAuctionById = (req, res) => {
     res.status(200).json({
       success: true,
       message: `the auction with id ${auction_id}`,
+      result: result,
+    });
+  });
+};
+
+const getAuctionsByUserId = (req, res) => {
+  const user_id = req.token.user_id;
+  const query = `SELECT * FROM auctions where is_deleted = 0 AND user_id = ${user_id}`;
+  connection.query(query, (err, result, fields) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    }
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: `no auctions for user_id ${user_id}`,
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: `all auctions for user_id ${user_id}`,
       result: result,
     });
   });
@@ -103,4 +123,5 @@ module.exports = {
   getAllAuctions,
   getAuctionById,
   deleteAuctionById,
+  getAuctionsByUserId,
 };

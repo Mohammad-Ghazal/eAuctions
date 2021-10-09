@@ -7,10 +7,13 @@ const {
   getAllAuctions,
   getAuctionById,
   deleteAuctionById,
+  getAuctionsByUserId,
 } = require("../controllers/auctionsController");
 
-auctionsRouter.post("/", createAuction);
+auctionsRouter.post("/", authentication, createAuction);
 auctionsRouter.get("/", getAllAuctions);
+auctionsRouter.get("/user_auctions", authentication, getAuctionsByUserId);
+
 auctionsRouter.put("/:auction_id", getAuctionById);
 auctionsRouter.delete("/:auction_id", deleteAuctionById);
 
