@@ -62,12 +62,17 @@ FOREIGN KEY (user_id) REFERENCES users(users_id);
 
 CREATE TABLE IF NOT EXISTS  auctions (
 auction_id INT AUTO_INCREMENT NOT NULL,
+user_id INT,
+item_id INT,
 starter_bid INT,
 start_date Date ,
 end_date Date ,
 bid_jump INT,
 closed_on INT,
 FOREIGN KEY (closed_on) REFERENCES bids(bid_id),
+FOREIGN KEY (user_id) REFERENCES users(user_id),
+FOREIGN KEY (item_id) REFERENCES items(item_id),
+
 is_deleted TINYINT DEFAULT 0,
 PRIMARY KEY (auction_id)
 );
