@@ -69,10 +69,15 @@ const deleteItemById = (req, res) => {
 const createNewItem = (req, res) => {
   const { title, details, image } = req.body;
   const owner_id = req.token.userId;
+if(!title){
+  return res.status(400).json({
+    success: false,
+    message: `title is required`,
+  });
+}
+
   const newItem = [title, details, image, owner_id];
   const query = `INSERT INTO items (title, details, image,owner_id) values (?,?,?,?)`;
-  // const newItem = [title, details, image];
-  // const query = `INSERT INTO items (title, details, image) values (?,?,?)`;
   connection.query(query, newItem, (err, result, fields) => {
     if (err) {
       console.log(err.message);
@@ -83,7 +88,7 @@ const createNewItem = (req, res) => {
     }
     res.status(201).json({
       success: true,
-      message: ` Success new Comment added`,
+      message: ` Success new item added`,
       item: {
         item: {
           item_id: result.insertId,
