@@ -1,6 +1,6 @@
 const express = require("express");
-const payrouter=express.Router();
-const stripeMethod=require("../controller/pay");
+const stripeRouter=express.Router();
+const stripeMethod=require("../controllers/stripeController");
 
-payrouter.post("/",stripeMethod);
-module.exports=payrouter
+stripeRouter.post("/",stripeMethod);
+module.exports=stripeRouter

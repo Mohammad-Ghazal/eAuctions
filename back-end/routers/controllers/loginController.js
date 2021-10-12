@@ -7,10 +7,8 @@ const login = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const query = `SELECT * FROM users WHERE email = ?`;
-  connection.query(query,[email], async (err, result) => {
-    if (!result) {
-      console.log(err.message);
-      
+  connection.query(query, [email], async (err, result) => {
+    if (!result.length) {
       res
         .status(404)
         .json({ success: false, message: `The email doesn't exist ` });
