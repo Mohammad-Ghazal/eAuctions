@@ -24,7 +24,7 @@ import { BiCog } from "react-icons/bi";
 
 //import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
-import "../SideBar/SideBar.css";
+import "./SideBar.css";
 
 const SideBar = () => {
   //create initial menuCollapse state using useState hook
