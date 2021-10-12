@@ -1,9 +1,12 @@
+.fot{
+    margin-top: 20px;
+}
 .kilimanjaro_area {
     position: relative;
     z-index: 1;
 	}
 	.foo_top_header_one {
-    background-color: #15151e;
+    background-color: #161836;
     color: #fff;
 }
 .section_padding_100_70 {
@@ -32,7 +35,7 @@ ul {
     padding: 0;
 }
 .kilimanjaro_bottom_header_one {
-    background-color: #111;
+    background-color: rgb(88, 80, 134);
 }
 .section_padding_50 {
     padding: 50px 0;
@@ -161,18 +164,7 @@ p, ul li, ol li {
         position: relative;
         z-index: 1;
     }
- .social_links_area > a:hover {
-        color: #27ae60;
-    }
-
-    .inline-style .social_links_area > a:hover {
-        background-color: transparent;
-        color: #27ae60;
-        border: 0px solid transparent;
-    }
- .single_feature:hover .feature_text h4 {
-        color: #27ae60;
-    }
+ 
 .kilimanjaro_blog_area {
     border-bottom: 1px solid #333;
     margin-bottom: 15px;
@@ -182,7 +174,7 @@ p, ul li, ol li {
 }
 .kilimanjaro_links a {
     border-bottom: 1px solid #333;
-    color: rgba(255,255,255,.5);
+    color: rgb(255, 255, 255);
     display: block;
     font-size: 13px;
     margin-bottom: 5px;

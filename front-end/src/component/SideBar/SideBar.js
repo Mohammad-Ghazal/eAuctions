@@ -37,7 +37,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="dev">
+    <div>
       <div id="header">
         {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
