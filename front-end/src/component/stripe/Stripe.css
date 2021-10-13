@@ -8,11 +8,9 @@ body {
 }
 
 body {
-  display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(#e6e6e6, #bbbbbb);
   font-family: "Raleway", sans-serif;
 }
 
