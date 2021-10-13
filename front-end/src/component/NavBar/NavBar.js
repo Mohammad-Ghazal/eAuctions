@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-
 import "./NavBar.css";
 const NavBar = () => {
+  const [boolean, setboolean] = useState(false);
   return (
     <div>
       <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#">
-          Navbar
-        </a>
         <button
           class="navbar-toggler"
           type="button"
