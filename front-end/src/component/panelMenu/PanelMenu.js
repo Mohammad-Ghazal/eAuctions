@@ -9,26 +9,27 @@ const PanelMenuDemo = () => {
       icon: "pi pi-fw pi-file",
       items: [
         {
-          label: "New Auction",
+          label: (
+            <Link style={{ textDecoration: "none", color: "white" }}>
+              Create Auction
+            </Link>
+          ),
           icon: "pi pi-fw pi-plus",
-          items: [
-            {
-              label: <Link style={{textDecoration:"none",color:"white"}}>My Auction</Link>,
-              icon: "pi pi-fw pi-bookmark",
-              
-            },
-            {
-              label: "Video",
-              icon: "pi pi-fw pi-video",
-            },
-          ],
         },
         {
-          label: "Delete",
-          icon: "pi pi-fw pi-trash",
+          label: (
+            <Link style={{ textDecoration: "none", color: "white" }}>
+              My Auction
+            </Link>
+          ),
+          icon: "pi pi-shopping-cart",
         },
         {
-          label: "Export",
+          label: (
+            <Link style={{ textDecoration: "none", color: "white" }}>
+              All Auction
+            </Link>
+          ),
           icon: "pi pi-fw pi-external-link",
         },
       ],
@@ -122,7 +123,7 @@ const PanelMenuDemo = () => {
   ];
 
   return (
-    <div >
+    <div>
       <div>
         <PanelMenu
           model={items}
