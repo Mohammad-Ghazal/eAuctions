@@ -4,11 +4,12 @@ const bcrypt = require("bcrypt");
 const addUser = async (req, res) => {
   console.log(process.env.SALT);
 
-  const { user_name, phone, email, password, payment_ref, role_id } = req.body;
+  const { user_name, phone, email, password, payment_ref } = req.body;
   const hashPassword = await bcrypt.hash(
     password,
     Number.parseInt(process.env.SALT)
   );
+  const role_id = 5;
   const data = [user_name, phone, email, hashPassword, payment_ref, role_id];
   const query =
     "INSERT INTO users(user_name, phone, email, password, payment_ref, role_id) VALUES(?,?,?,?,?,?)";

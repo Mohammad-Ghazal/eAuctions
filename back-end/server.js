@@ -15,6 +15,7 @@ const favoritesUsersRouter = require("./routers/routes/favoritesUsersRouter");
 const bidsRouter = require("./routers/routes/bidsRouter");
 const auctionsRouter = require("./routers/routes/auctionRouter");
 
+
 //Routers
 app.use("/roles", rolesRouter);
 app.use("/payments", paymentsRouter);
@@ -24,7 +25,8 @@ app.use("/items", itemsRouter);
 app.use("/favUsers", favoritesUsersRouter);
 app.use("/bids", bidsRouter);
 app.use("/auctions", auctionsRouter);
-//
+
+
 
 //Routers
 app.listen(PORT, () => {

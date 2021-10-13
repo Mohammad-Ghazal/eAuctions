@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import StripeContainer from "./component/stripe/StripeContainer";
+import { Router } from "react-router-dom";
+import SideBar from "./component/sideBar/SideBar";
+import { Footer } from "./component/footer/Footer";
+import NavBar from "./component/navBar/NavBar";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Router path="/auctions" component={()=>{return <div>hello Auctions</div>}} /> */}
+      <NavBar />
+      <SideBar />
+      <Footer />
     </div>
   );
 }

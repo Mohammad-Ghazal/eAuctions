@@ -9,7 +9,7 @@ const {
   updateBidById,
 } = require("../controllers/bidsController");
 
-bidsRouter.post("/", createBid);
+bidsRouter.post("/",authentication, createBid);
 bidsRouter.get("/", getBids);
 bidsRouter.delete("/:bid_id", deleteBidById);
 bidsRouter.put("/:bid_id", updateBidById);

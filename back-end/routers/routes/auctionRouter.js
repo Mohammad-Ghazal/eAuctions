@@ -6,6 +6,7 @@ const {
   createAuction,
   getAllAuctions,
   getAuctionById,
+  editAuctionById,
   deleteAuctionById,
   getAuctionsByUserId,
 } = require("../controllers/auctionsController");
@@ -13,8 +14,9 @@ const {
 auctionsRouter.post("/", authentication, createAuction);
 auctionsRouter.get("/", getAllAuctions);
 auctionsRouter.get("/user_auctions", authentication, getAuctionsByUserId);
+auctionsRouter.get("/:auction_id", getAuctionById);
+auctionsRouter.put("/:auction_id", editAuctionById);
 
-auctionsRouter.put("/:auction_id", getAuctionById);
 auctionsRouter.delete("/:auction_id", deleteAuctionById);
 
 module.exports = auctionsRouter;
