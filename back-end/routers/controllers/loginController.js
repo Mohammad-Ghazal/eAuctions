@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const connection = require("../../db/db");
 require("dotenv").config();
-
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(
   "787313334015-8ikgfipkm1vi5t5fq9iapgls6urtarns.apps.googleusercontent.com"
@@ -47,7 +46,7 @@ const login = async (req, res) => {
       }
     });
   } else {
-    // 2 - login by google part
+    // 2 - normal login part
     //------------------------------------------------------------------
 
     const email = req.body.email;
@@ -82,6 +81,7 @@ const login = async (req, res) => {
           success: true,
           message: `Email and Password are correct`,
           token: token,
+
         });
       }
     });
