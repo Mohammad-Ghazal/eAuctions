@@ -2,8 +2,7 @@ const connection = require("../../db/db");
 
 const createBid = (req, res) => {
   const { auction_id, date, bid_value } = req.body;
-  //   const user_id = req.token.userId;
-  const user_id = 1;
+  const user_id = req.token.userId;
 
   const newBid = [auction_id, date, user_id, bid_value];
   const query = `INSERT INTO bids (auction_id, date, user_id,bid_value) values (?,?,?,?)`;
