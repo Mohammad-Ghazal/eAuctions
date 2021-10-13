@@ -5,7 +5,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 app.use(express.json()); //built-in middleware
 app.use(cors()); //third-party middleware
-require("./db/db");
+
 const rolesRouter = require("./routers/routes/rolesRouter");
 const paymentsRouter = require("./routers/routes/paymentRouter");
 const usersRouter = require("./routers/routes/usersRouter");
@@ -14,9 +14,6 @@ const itemsRouter = require("./routers/routes/itemsRouter");
 const favoritesUsersRouter = require("./routers/routes/favoritesUsersRouter");
 const bidsRouter = require("./routers/routes/bidsRouter");
 const auctionsRouter = require("./routers/routes/auctionRouter");
-
-
-
 
 
 //Routers
