@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap");
 
-.container {
+.containers {
+    margin-top: 5rem;
+    margin-left: 35rem;
   position: relative;
   width: 350px;
-  height: 500px;
+  height:650px;
   border-radius: 20px;
   padding: 40px;
   box-sizing: border-box;
@@ -11,17 +13,17 @@
   box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
 }
 
-.brand-logo {
+.brand-logos {
   height: 100px;
   width: 100px;
-  background: url("https://img.icons8.com/color/100/000000/twitter--v2.png");
+  background: url("https://thumbs.dreamstime.com/z/global-online-auction-template-logo-design-vector-106616124.jpg");
   margin: auto;
   border-radius: 50%;
   box-sizing: border-box;
   box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
 }
 
-.brand-title {
+.brand-titles {
   margin-top: 10px;
   font-weight: 900;
   font-size: 1.8rem;
@@ -34,9 +36,10 @@
   margin-top: 30px;
 }
 
-label,
-input,
-button {
+.item_label,
+.item_input,
+.textarea,
+.item_button {
   display: block;
   width: 100%;
   padding: 0;
@@ -45,19 +48,19 @@ button {
   box-sizing: border-box;
 }
 
-label {
+.item_label {
   margin-bottom: 4px;
 }
 
-label:nth-of-type(2) {
+.item_label:nth-of-type(2) {
   margin-top: 12px;
 }
 
-input::placeholder {
+.item_input::placeholder {
   color: gray;
 }
 
-input {
+.item_input {
   background: #ecf0f3;
   padding: 10px;
   padding-left: 20px;
@@ -66,8 +69,18 @@ input {
   border-radius: 50px;
   box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
+.text_input {
+ 
+    background: #ecf0f3;
+    padding: 10px;
+    padding-left: 20px;
+    height: 150px;
+    font-size: 14px;
+    border-radius: 20px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+  }
 
-button {
+.item_button {
   margin-top: 20px;
   background: #1da1f2;
   height: 40px;
@@ -78,7 +91,7 @@ button {
   transition: 0.5s;
 }
 
-button:hover {
+.item_button:hover {
   box-shadow: none;
 }
 

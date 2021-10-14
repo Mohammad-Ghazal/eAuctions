@@ -8,12 +8,13 @@ import { AllAuctions } from "./component/allAuctions/AllAuctions";
 import { CreateAuction } from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
 import { CreateItem } from "./component/createItem/CreateItem";
+import Calendar from "./component/calendar";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <CreateItem/>
+      <CreateItem/> 
       <Switch>
         {/*Router for Auctions*/}
         <Route exact path="/AllAuctions" component={AllAuctions} />
@@ -21,7 +22,7 @@ function App() {
         <Route exact path="/MyAuction" component={MyAuction} />
         {/*Router for Auctions*/}
       </Switch>
-      
+      {/* <Calendar/> */}
       <SideBar />
       <Footer />
     </div>

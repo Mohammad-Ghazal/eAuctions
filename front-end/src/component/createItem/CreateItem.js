@@ -1,19 +1,37 @@
 import React from "react";
-import "../createItem/CreateItem.css"
+import "../createItem/CreateItem.css";
+import axios from "axios";
 export const CreateItem = () => {
+  const title = (t) => {
+    t.target.value();
+  };
+  const details = (d) => {
+    d.target.value();
+  };
+  const submit = () => {
+    axios.post("http://localhost:5000/items",{title,details},)
+  };
   return (
     <div>
-      <div class="container">
-        <div class="brand-logo"></div>
-        <div class="brand-title">TWITTER</div>
-        <div class="inputs">
-          <label>EMAIL</label>
-          <input type="email" placeholder="example@test.com" />
-          <label>PASSWORD</label>
-          <input type="password" placeholder="Min 6 charaters long" />
-          <button type="submit">LOGIN</button>
+      <div className="containers">
+        <div className="brand-logos"></div>
+        <div className="brand-titles">Create Item</div>
+        <div className="inputs">
+          <label className="item_label">Title</label>
+          <input className="item_input" type="text" onChange={title} />
+          <label>image</label>
+          <input className="item_input" type="file" />
+          <label>Details</label>
+          <textarea
+            className="text_input"
+            rows="5"
+            cols="30"
+            onChange={details}
+          />
+          <button className="item_button" type="submit" onClick={submit}>
+            Submit
+          </button>
         </div>
-        <a href="https://twitter.com/prathkum">MADE BY PRATHAM</a>
       </div>
     </div>
   );
