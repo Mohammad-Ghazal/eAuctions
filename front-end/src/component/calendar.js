@@ -13,15 +13,15 @@ function Calendar() {
       title: "All Day Event very long title",
       bgColor: "#ff7f50",
       allDay: true,
-      start: new Date(2015, 3, 0),
-      end: new Date(2015, 3, 1),
+      start: new Date(2021, 10, 0),
+      end: new Date(2021, 10, 1),
     },
 
     {
       title: "Conference",
       bgColor: "#e9967a",
-      start: new Date(2015, 3, 11),
-      end: new Date(2015, 3, 13),
+      start: new Date(2021, 10, 11),
+      end: new Date(2021, 10, 13),
       desc: "Big conference for important people",
     },
 
@@ -36,24 +36,24 @@ function Calendar() {
   return (
     <div
       style={{
-        width: "50%",
-        height: "50%",
+        width: "50vw",
+        height: "70vh",
         resize: "both",
         overflow: "hidden",
-        backgroundImage: "linear-gradient(#85FFBD,#FFFB7D)",
+        backgroundImage:
+          "linear-gradient(rgba(251,233,169,1) 0%, rgba(246,158,29,0.93) 90% )",
+
         borderRadius: "5px",
       }}
     >
       <BigCalendar
         selectable
         events={events}
-        defaultView="week"
-        scrollToTime={new Date(1970, 1, 1, 6)}
-        defaultDate={new Date(2015, 3, 12)}
+        defaultView="month"
         onSelectEvent={(event) => alert(event.title)}
         onSelectSlot={(slotInfo) =>
           alert(
-            `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
+            `selected auction: \n\nstart ${slotInfo.start.toLocaleString()} ` +
               `\nend: ${slotInfo.end.toLocaleString()}` +
               `\naction: ${slotInfo.action}`
           )
