@@ -1,0 +1,36 @@
+.p-menuitem {
+  background-color: transparent !important;
+}
+.p-panelmenu-content {
+  background-color: transparent !important;
+  border: none !important;
+}
+.p-panelmenu-header > a {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.p-panelmenu-header > a:hover {
+  background-color: transparent !important;
+  border: none !important;
+}
+.p-submenu-list {
+  background-color: transparent !important;
+}
+.p-panelmenu-content {
+  background-color: transparent !important;
+}
+.p-panelmenu {
+  background-color: transparent !important;
+}
+.p-menuitem-text {
+  /*outside text*/
+  color: rgb(41, 46, 119) !important;
+}
+.p-menuitem-icon {
+  /*outside icon*/
+  background-color: transparent !important;
+}
+.p-panelmenu-icon {
+  background-color: transparent !important;
+}

@@ -1,14 +1,24 @@
 import "./App.css";
 import StripeContainer from "./component/stripe/StripeContainer";
-import { Router } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import SideBar from "./component/sideBar/SideBar";
-import { Footer } from "./component/footer/Footer";
+import { Footer } from "./component/footer/footer";
 import NavBar from "./component/navBar/NavBar";
+import { AllAuctions } from "./component/allAuctions/AllAuctions";
+import { CreateAuction } from "./component/createAuction/CreateAuction";
+import { MyAuction } from "./component/myAuctions/MyAuction";
+
 function App() {
   return (
     <div className="App">
-      {/* <Router path="/auctions" component={()=>{return <div>hello Auctions</div>}} /> */}
       <NavBar />
+      <Switch>
+        {/*Router for Auctions*/}
+        <Route exact path="/AllAuctions" component={AllAuctions} />
+        <Route exact path="/CreateAuction" component={CreateAuction} />
+        <Route exact path="/MyAuction" component={MyAuction} />
+        {/*Router for Auctions*/}
+      </Switch>
       <SideBar />
       <Footer />
     </div>
