@@ -1,6 +1,6 @@
 import "./App.css";
 import StripeContainer from "./component/stripe/StripeContainer";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import SideBar from "./component/sideBar/SideBar";
 import { Footer } from "./component/footer/footer";
 import NavBar from "./component/navBar/NavBar";
@@ -12,9 +12,13 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Route exact path="/AllAuctions" component={AllAuctions} />
-      <Route exact path="/about" component={CreateAuction} />
-      <Route exact path="/about" component={MyAuction} />
+      <Switch>
+        {/*Router for Auctions*/}
+        <Route exact path="/AllAuctions" component={AllAuctions} />
+        <Route exact path="/CreateAuction" component={CreateAuction} />
+        <Route exact path="/MyAuction" component={MyAuction} />
+        {/*Router for Auctions*/}
+      </Switch>
       <SideBar />
       <Footer />
     </div>

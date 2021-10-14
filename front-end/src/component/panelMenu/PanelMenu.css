@@ -3,6 +3,7 @@
 }
 .p-panelmenu-content {
   background-color: transparent !important;
+  border: none !important;
 }
 .p-panelmenu-header > a {
   background-color: transparent !important;
