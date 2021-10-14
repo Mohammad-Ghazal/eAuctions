@@ -7,11 +7,13 @@ import NavBar from "./component/navBar/NavBar";
 import { AllAuctions } from "./component/allAuctions/AllAuctions";
 import { CreateAuction } from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
+import { CreateItem } from "./component/createItem/CreateItem";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+      <CreateItem/>
       <Switch>
         {/*Router for Auctions*/}
         <Route exact path="/AllAuctions" component={AllAuctions} />
@@ -19,6 +21,7 @@ function App() {
         <Route exact path="/MyAuction" component={MyAuction} />
         {/*Router for Auctions*/}
       </Switch>
+      
       <SideBar />
       <Footer />
     </div>
