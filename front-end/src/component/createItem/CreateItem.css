@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap");
 
 .containers {
-    margin-top: 5rem;
-    margin-left: 35rem;
+  margin-top: 5rem;
+  margin-left: 35rem;
   position: relative;
   width: 350px;
-  height:650px;
+  height: 650px;
   border-radius: 20px;
   padding: 40px;
   box-sizing: border-box;
@@ -16,7 +16,7 @@
 .brand-logos {
   height: 100px;
   width: 100px;
-  background: url("https://thumbs.dreamstime.com/z/global-online-auction-template-logo-design-vector-106616124.jpg");
+  background: url("https://img.icons8.com/plasticine/50/000000/auction.png");
   margin: auto;
   border-radius: 50%;
   box-sizing: border-box;
@@ -70,15 +70,14 @@
   box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
 .text_input {
- 
-    background: #ecf0f3;
-    padding: 10px;
-    padding-left: 20px;
-    height: 150px;
-    font-size: 14px;
-    border-radius: 20px;
-    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-  }
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 150px;
+  font-size: 14px;
+  border-radius: 20px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
 
 .item_button {
   margin-top: 20px;
