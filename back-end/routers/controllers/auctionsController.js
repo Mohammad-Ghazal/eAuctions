@@ -82,7 +82,7 @@ const getAuctionById = (req, res) => {
 };
 const editAuctionById = (req, res) => {
   const auction_id = parseInt(req.params.auction_id);
-  const {process}=req.body
+  const { process } = req.body;
   const query = `UPDATE auctions SET ${process.key} =${process.value} WHERE auction_id =${auction_id} AND is_deleted=0`;
   connection.query(query, (err, result, fields) => {
     if (err) {
@@ -145,6 +145,7 @@ const deleteAuctionById = (req, res) => {
     });
   });
 };
+
 
 
 module.exports = {

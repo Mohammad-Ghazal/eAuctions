@@ -26,7 +26,7 @@ const getAllItems = (req, res) => {
 
 const getItemsByID = (req, res) => {
   const { itemId } = req.params;
-  const query = `SELECT * FROM items where is_deleted = 0 AND item_id = ${itemId}`;
+  const query = `SELECT items.title, items.item_id , items.owner_id ,items.details, items.image ,users.user_name FROM items  JOIN users  ON items.owner_id=users.user_id WHERE items.is_deleted = 0 AND items.item_id = ${itemId}`;
   connection.query(query, (err, result, fields) => {
     if (err) {
       console.log(err.message);
