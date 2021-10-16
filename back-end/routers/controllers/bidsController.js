@@ -1,10 +1,14 @@
 const connection = require("../../db/db");
 
 const createBid = (req, res) => {
+
+
+  
   const { auction_id, date, bid_value } = req.body;
   const user_id = req.token.userId;
 
   const newBid = [auction_id, date, user_id, bid_value];
+  console.log(newBid);
   const query = `INSERT INTO bids (auction_id, date, user_id,bid_value) values (?,?,?,?)`;
 
   connection.query(query, newBid, (err, result, fields) => {
@@ -18,21 +22,12 @@ const createBid = (req, res) => {
     res.status(201).json({
       success: true,
       message: `success new bid added`,
-      result: result,
-
-      // bid: {
-      //   bid_id:result
-      // auction_id: result.insertId,
-      // date: title,
-      // user_id: details,
-      // bid_value: image,
-
-      //   },
+      insertId: result.insertId,
     });
   });
 };
 
-const getBids = (req, res) => {
+const getAllBids = (req, res) => {
   const query = `SELECT * FROM bids`;
   connection.query(query, (err, result, fields) => {
     if (err) {
@@ -42,12 +37,26 @@ const getBids = (req, res) => {
         message: `Server Error`,
       });
     }
-    // if (result.length===0) {
-    //     return res.status(400).json({
-    //       success: false,
-    //       message: `there is no item added yet`,
-    //     });
-    //   }
+
+    res.status(200).json({
+      success: true,
+      message: `all bids`,
+      result: result,
+    });
+  });
+};
+
+const getBidsOnActionId = (req, res) => {
+  const query = `SELECT * FROM bids WHERE auction_id =${req.params.auction_id} `;
+  connection.query(query, (err, result, fields) => {
+    if (err) {
+      console.log(err.message);
+      return res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    }
+
     res.status(200).json({
       success: true,
       message: `all bids`,
@@ -82,11 +91,10 @@ const deleteBidById = (req, res) => {
   });
 };
 
-const updateBidById = (req, res) => {
-  const { bid_value } = req.body;
-
-  const bid_id = req.params.bid_id;
-  const query = `UPDATE bids SET bid_value = ${bid_value} WHERE bid_id = ${bid_id}`;
+const getMaxBidById = (req, res) => {
+  const auction_id = req.params.auction_id;
+  const query = `SELECT MAX (bids.bid_value),bids.user_id,users.user_name FROM bids 
+                        JOIN users ON users.user_id =bids.user_id WHERE auction_id = ${auction_id} `;
 
   connection.query(query, (err, result, fields) => {
     if (err) {
@@ -96,23 +104,23 @@ const updateBidById = (req, res) => {
         message: `Server Error`,
       });
     }
-    if (!result.affectedRows) {
+    if (!result) {
       return res.status(404).json({
         success: false,
-        message: `bid with id ${bid_id} does not exist`,
-        result: result,
+        message: `action with id ${auction_id} does not exist`,
       });
     }
     res.status(202).json({
       success: true,
-      message: `Successfully updated bid with id => ${bid_id}`,
-      result: result,
+      message: `Successfully get max bid for auction with id => ${auction_id}`,
+      bid: result[0],
     });
   });
 };
 module.exports = {
   createBid,
-  getBids,
+  getAllBids,
   deleteBidById,
-  updateBidById,
+  getMaxBidById,
+  getBidsOnActionId,
 };
