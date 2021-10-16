@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import "../createItem/CreateItem.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { storage } from "../firebase";
+import setToken from "../../actions/authAction";
 export const CreateItem = () => {
+  const state = useSelector((state) => {
+    // state tree => reducer => state name
+    return {
+      token: state.tokenReducer.token,
+    };
+  });
   const [images, setImages] = useState(null); //for complete the fuction of firebase
   const [url, setIUrl] = useState("");
   const [title, setTitle] = useState("");
@@ -37,14 +45,27 @@ export const CreateItem = () => {
           .then((url) => {
             setIUrl(url);
             console.log(url);
+            axios
+              .post(
+                "http://localhost:5000/items",
+                { title, details, image:url },
+                {
+                  headers: {
+                    Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NDIwNTY4LCJleHAiOjE2MzQ0MjQxNjh9.JNUhKJ2r73bacmRwtOZO93SoMG3w_VA-CNmUBFCz4bg"}`,
+                  },
+                }
+              )
+
+              .then((result) => {
+                console.log(result.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           });
       }
     );
-    axios
-      .post("http://localhost:5000/item", { title, details, url })
-      //   { headers: { Authorization: `Bearer ${state.token}` }} use to send token to backend
-      .then((result) => {})
-      .catch((err) => {});
+
   };
   console.log("image", images);
   return (
