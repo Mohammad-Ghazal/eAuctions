@@ -9,19 +9,24 @@ import { CreateAuction } from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
 import { CreateItem } from "./component/createItem/CreateItem";
 import Calendar from "./component/calendar";
+import CountDown from "./component/countDown/CountDown";
 
 function App() {
   return (
     <div className="App">
+  
+
       <NavBar />
-      <CreateItem/> 
+   
       <Switch>
         {/*Router for Auctions*/}
         <Route exact path="/AllAuctions" component={AllAuctions} />
         <Route exact path="/CreateAuction" component={CreateAuction} />
         <Route exact path="/MyAuction" component={MyAuction} />
+        <Route exact path="/AuctionBID/" component={CountDown} />
         {/*Router for Auctions*/}
       </Switch>
+      <CreateItem />
       {/* <Calendar/> */}
       <SideBar />
       <Footer />
