@@ -10,7 +10,7 @@ import { Dialog } from "primereact/dialog";
 import { Divider } from "primereact/divider";
 import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
-// import { Captcha } from "primereact/captcha";
+import { Captcha } from "primereact/captcha";
 import "./loginForm.css";
 import "./loginBtn.css";
 
@@ -19,27 +19,27 @@ const Login = () => {
   const [formData, setFormData] = useState({});
   const [disable, setDisable] = useState(true);
 
-  // const showResponse = (res) => {
-  //   axios
-  //     .post(
-  //       "http://localhost:5000/login/captcha",
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${res.response}`,
-  //         },
-  //       }
-  //     )
-  //     .then((result) => {
-  //       console.log(result.data);
-  //       if (result.data === "pass") {
-  //         setDisable(false);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const showResponse = (res) => {
+    axios
+      .post(
+        "http://localhost:5000/login/captcha",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${res.response}`,
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result.data);
+        if (result.data === "pass") {
+          setDisable(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const validate = (data) => {
     let errors = {};
@@ -234,10 +234,10 @@ const Login = () => {
                         </div>
                       )}
                     />
-                    {/* <Captcha
+                    <Captcha
                       siteKey="6LfRDdMcAAAAADY5m3wNCj-rZSAno20ceYF4_JBh"
                       onResponse={showResponse}
-                    ></Captcha> */}
+                    ></Captcha>
                     <Button
                       disabled={disable}
                       type="submit"
