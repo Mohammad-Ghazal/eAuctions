@@ -1,29 +1,26 @@
-
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import SideBar from "./component/sideBar/SideBar";
 import { Footer } from "./component/footer/footer";
 import NavBar from "./component/navBar/NavBar";
 import { AllAuctions } from "./component/allAuctions/AllAuctions";
-// import Login from "./component/login/login";
+import Login from "./component/login";
 // import StripeContainer from "./component/stripe/StripeContainer";
 // import { CreateAuction } from "./component/createAuction/CreateAuction";
 // import { MyAuction } from "./component/myAuctions/MyAuction";
 // import { CreateItem } from "./component/createItem/CreateItem";
 // import Calendar from "./component/calendar";
 // import CountDown from "./component/countDown/CountDown";
-import { useDispatch } from "react-redux";
-import { setToken } from "./actions/authAction";
+
 function App() {
-  const dispatch = useDispatch();
-  dispatch(setToken('test token'));
+  
   return (
     <div className="App">
       <NavBar />
       <SideBar />
 
       <Switch>
-        {/* <Route exact path="/login" component={Login} /> */}
+        <Route exact path="/login" component={Login} />
         <Route exact path="/AllAuctions" component={AllAuctions} />
         {/* <Route exact path="/CreateAuction" component={CreateAuction} />
         <Route exact path="/MyAuction" component={MyAuction} />
