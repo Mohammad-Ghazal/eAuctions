@@ -1,3 +1,22 @@
 .s{
+    margin-top: 5rem;
     display: flex;
+    justify-content: space-evenly;
+}
+.Card_Auction{
+    width: 25rem;
+    height: 35rem;
+    border-radius: 0.5rem;
+    border: solid black 0.01rem;
+}
+.image{
+    border-radius:0.5rem 0.5rem 0rem 0rem;
+    height: 20rem;
+}
+.btn_Auction{
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+}
+.TITLE{
+    font-weight: 900;
 }
