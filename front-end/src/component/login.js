@@ -76,7 +76,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        dispatch(setToken(res.data.token));
+         dispatch(setToken(res.data.token));
       })
       .catch((error) => {
         console.log(error);

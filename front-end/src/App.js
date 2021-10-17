@@ -8,12 +8,11 @@ import Login from "./component/login";
 // import StripeContainer from "./component/stripe/StripeContainer";
 // import { CreateAuction } from "./component/createAuction/CreateAuction";
 // import { MyAuction } from "./component/myAuctions/MyAuction";
-// import { CreateItem } from "./component/createItem/CreateItem";
+import { CreateItem } from "./component/createItem/CreateItem";
 // import Calendar from "./component/calendar";
 // import CountDown from "./component/countDown/CountDown";
 
 function App() {
-  
   return (
     <div className="App">
       <NavBar />
@@ -26,7 +25,7 @@ function App() {
         <Route exact path="/MyAuction" component={MyAuction} />
         <Route exact path="/AuctionBID/" component={CountDown} /> */}
       </Switch>
-      {/* <CreateItem /> */}
+      {/* <CreateItem />  */}
       {/* <Calendar/> */}
       <Footer />
     </div>
