@@ -48,7 +48,7 @@ export const CreateItem = () => {
             axios
               .post(
                 "http://localhost:5000/items",
-                { title, details, image:url },
+                { title, details, image: url },
                 {
                   headers: {
                     Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NDIwNTY4LCJleHAiOjE2MzQ0MjQxNjh9.JNUhKJ2r73bacmRwtOZO93SoMG3w_VA-CNmUBFCz4bg"}`,
@@ -65,7 +65,6 @@ export const CreateItem = () => {
           });
       }
     );
-
   };
   console.log("image", images);
   return (

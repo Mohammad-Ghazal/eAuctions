@@ -13,7 +13,6 @@ import { CreateItem } from "./component/createItem/CreateItem";
 // import CountDown from "./component/countDown/CountDown";
 
 function App() {
-  
   return (
     <div className="App">
       <NavBar />

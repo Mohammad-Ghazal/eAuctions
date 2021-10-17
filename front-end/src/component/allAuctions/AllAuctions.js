@@ -13,37 +13,25 @@ export const AllAuctions = () => {
     });
   }, []);
 
-  //   const header = (
-  //     <img alt="Card" src="showcase/demo/images/usercard.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} />
-  // );
-  // const footer = (
-  //     <span>
-  //         <Button label="Show Auction" icon="pi pi-check" />
-
-  //     </span>
-  // );
-
   return (
     <div className="s">
       {allAuctions &&
         allAuctions.map((element, index) => {
           return (
             <div key={index}>
-              <Card className="Card_Auction"
+              <Card
+                className="Card_Auction"
                 title={`${element.title}`}
-                subTitle={`Starter Bid : ${element.starter_bid} $`}
-                footer={<Button className="btn_Auction" label="Show Auction" />}
-                header={ 
-                  <img
-                  className="image"
-                    alt="Card"
-                    src={`${element.image}`}
-
-                  />
+                subTitle={
+                  <div className="SubTitel">
+                    Startar Bid :{element.starter_bid}$
+                  </div>
                 }
-              >
-               
-              </Card>
+                footer={<button className="glow-on-hover">Show Auction</button>}
+                header={
+                  <img className="image" alt="Card" src={`${element.image}`} />
+                }
+              ></Card>
             </div>
           );
         })}
