@@ -35,7 +35,7 @@ const Login = () => {
       )
       .then((result) => {
         console.log(result.data);
-        if (result.data === "pass") {
+        if (result.data.success === "pass") {
           setDisable(false);
         }
       })
@@ -134,7 +134,7 @@ const Login = () => {
                 className="pi pi-check-circle"
                 style={{ fontSize: "5rem", color: "var(--green-500)" }}
               ></i>
-              <h5>Registration Successful!</h5>
+              <h5>Login Successful!</h5>
             </div>
           </Dialog>
 
@@ -146,7 +146,7 @@ const Login = () => {
                 className="p-mr-2"
                 size="large"
                 style={{
-                  backgroundColor: "#2196F3",
+                  backgroundColor: "#b297ce",
                   color: "#ffffff",
                   marginLeft: "40%",
                 }}
