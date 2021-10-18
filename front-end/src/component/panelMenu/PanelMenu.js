@@ -44,24 +44,41 @@ const PanelMenuDemo = () => {
       ],
     },
     {
-      label: "Edit",
+      label: "Item",
       icon: "pi pi-fw pi-pencil",
       items: [
         {
-          label: "Left",
-          icon: "pi pi-fw pi-align-left",
+          label: (
+            <Link
+              to="/CreateItem"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Create Item
+            </Link>
+          ),
+          icon: "pi pi-fw pi-plus",
         },
         {
-          label: "Right",
-          icon: "pi pi-fw pi-align-right",
+          label: (
+            <Link
+              to="/MyItem"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              My Item
+            </Link>
+          ),
+          icon: "pi pi-shopping-cart",
         },
         {
-          label: "Center",
-          icon: "pi pi-fw pi-align-center",
-        },
-        {
-          label: "Justify",
-          icon: "pi pi-fw pi-align-justify",
+          label: (
+            <Link
+              to="/AllItem"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              All Item
+            </Link>
+          ),
+          icon: "pi pi-fw pi-external-link",
         },
       ],
     },

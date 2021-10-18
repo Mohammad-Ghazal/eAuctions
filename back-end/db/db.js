@@ -11,9 +11,12 @@ database: process.env.DB_NAME,
 
 const connection = mysql.createConnection({
   host: "sql6.freesqldatabase.com",
-  user: "sql6442860",
-  password: "2EcMreuNYR",
-  database: "sql6442860",
+  user: "sql6444417",
+  password: "nfhkapjlqX",
+  database: "sql6444417",
+
+  multipleStatements: true,
+
 });
 
 connection.connect((err) => {
