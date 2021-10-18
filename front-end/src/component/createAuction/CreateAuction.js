@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 import "../createAuction/CreateAuction.css";
+
 export const CreateAuction = () => {
   const [starterBid, setStarterBid] = useState();
   const [startDate, setStartDate] = useState();
@@ -13,7 +14,7 @@ export const CreateAuction = () => {
     axios
       .get(`http://localhost:5000/items`, {
         headers: {
-          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NTIwODUxLCJleHAiOjE2MzQ1MjQ0NTF9.DQR8oLdZTD7rVSYROG3S-JFZIPsQ0ji83mlh4clVeRI"}`,
+          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NTc3OTcyLCJleHAiOjE2MzQ1ODE1NzJ9.vna8SiWDFeBXDW8uTVnk5rw61YQ72UUZcoShp3dnnGU"}`,
         },
       })
       .then((res) => {
@@ -52,7 +53,7 @@ export const CreateAuction = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NTIwODUxLCJleHAiOjE2MzQ1MjQ0NTF9.DQR8oLdZTD7rVSYROG3S-JFZIPsQ0ji83mlh4clVeRI"}`,
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NTc3OTcyLCJleHAiOjE2MzQ1ODE1NzJ9.vna8SiWDFeBXDW8uTVnk5rw61YQ72UUZcoShp3dnnGU"}`,
           },
         }
       )

@@ -12,13 +12,14 @@ import { CreateItem } from "./component/createItem/CreateItem";
 // import Calendar from "./component/calendar";
 import LiveAction from "./component/liveAuction/liveAction";
 import { Component404NotFound } from "./component/component404NotFound/Component404NotFound";
+import { Admin } from "./component/admin/Admin";
 function App() {
   return (
     <div className="App">
       <NavBar />
       <SideBar />
-
-      <Switch>
+<Admin/>
+      {/* <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/AllAuctions" component={AllAuctions} />
         <Route exact path="/CreateAuction" component={CreateAuction} />
@@ -26,7 +27,7 @@ function App() {
         <Route exact path="/CreateItem" component={CreateItem} />
         <Route path="/live-auction/:auctionId" component={LiveAction} />
         <Route path="*" component={Component404NotFound} />
-      </Switch>
+      </Switch> */}
 
       <Footer />
     </div>
