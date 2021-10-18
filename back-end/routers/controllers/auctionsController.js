@@ -36,7 +36,7 @@ const createAuction = (req, res) => {
 };
 
 const getAllAuctions = (req, res) => {
-  const query = `SELECT * FROM auctions where is_deleted = 0`;
+  const query = `SELECT items.title,items.details,items.image ,auctions.auction_id,auctions.user_id,auctions.item_id,auctions.starter_bid,auctions.start_date,auctions.end_date,auctions.bid_jump,auctions.closed_on,auctions.is_deleted FROM items JOIN auctions  ON items.item_id=auctions.item_id WHERE items.is_deleted = 0`;
   connection.query(query, (err, result, fields) => {
     if (err) {
       return res.status(500).json({
@@ -82,7 +82,7 @@ const getAuctionById = (req, res) => {
 };
 const editAuctionById = (req, res) => {
   const auction_id = parseInt(req.params.auction_id);
-  const {process}=req.body
+  const { process } = req.body;
   const query = `UPDATE auctions SET ${process.key} =${process.value} WHERE auction_id =${auction_id} AND is_deleted=0`;
   connection.query(query, (err, result, fields) => {
     if (err) {
@@ -145,7 +145,6 @@ const deleteAuctionById = (req, res) => {
     });
   });
 };
-
 
 module.exports = {
   createAuction,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GoogleBtn from "./googleBtn";
+import GoogleBtn from "./googleAuth";
 import axios from "axios";
 import { Form, Field } from "react-final-form";
 import { InputText } from "primereact/inputtext";
@@ -13,10 +13,13 @@ import { Avatar } from "primereact/avatar";
 import { Captcha } from "primereact/captcha";
 import "./loginForm.css";
 import "./loginBtn.css";
-
+import { useDispatch } from "react-redux";
+import { setToken } from "../actions/authAction";
+  
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
 
   const showResponse = (res) => {
@@ -73,6 +76,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
+         dispatch(setToken(res.data.token));
       })
       .catch((error) => {
         console.log(error);
