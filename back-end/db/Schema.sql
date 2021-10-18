@@ -1,12 +1,10 @@
 
 
-Use sql6442860;
-
-ALTER TABLE bids 
-ADD FOREIGN KEY (auction_id) REFERENCES auctions(aution_id);
+Use sql6444417;
 
 
-ADD FOREIGN KEY (user_id) REFERENCES users(users_id);
+
+
 
 CREATE TABLE IF NOT EXISTS  roles (
 role_id INT AUTO_INCREMENT NOT NULL,
@@ -38,12 +36,12 @@ FOREIGN KEY (payment_ref) REFERENCES payments(payment_id)
 ); 
 
 
-CREATE TABLE IF NOT EXISTS  item(
+CREATE TABLE IF NOT EXISTS  items(
 item_id INT AUTO_INCREMENT NOT NULL,
 owner_id INT,
 image VARCHAR(255),
 title VARCHAR(255),
-details VARCHAR(255),
+details VARCHAR(1200),
 FOREIGN KEY (owner_id) REFERENCES users(user_id),
 is_deleted TINYINT DEFAULT 0,
 PRIMARY KEY (item_id)
@@ -56,7 +54,8 @@ date Date,
 user_id INT,
 bid_value INT,
 PRIMARY KEY (bid_id),
-FOREIGN KEY (user_id) REFERENCES users(users_id);
+FOREIGN KEY (user_id)
+REFERENCES users(user_id)
 );
 
 
@@ -69,29 +68,33 @@ start_date Date ,
 end_date Date ,
 bid_jump INT,
 closed_on INT,
+is_deleted TINYINT DEFAULT 0,
 FOREIGN KEY (closed_on) REFERENCES bids(bid_id),
 FOREIGN KEY (user_id) REFERENCES users(user_id),
 FOREIGN KEY (item_id) REFERENCES items(item_id),
-
-is_deleted TINYINT DEFAULT 0,
 PRIMARY KEY (auction_id)
 );
 
 
 
-CREATE TABLE IF NOT EXISTS  favorites (
-favorite_id INT AUTO_INCREMENT NOT NULL,
-user_id INT,
-fav_user_id INT,
-FOREIGN KEY (fav_user_id) REFERENCES users(user_id),
+CREATE TABLE IF NOT EXISTS  favoritesUsers (
+user_id INT NOT NULL,
+fav_user_id INT NOT NULL,
 FOREIGN KEY (user_id) REFERENCES users(user_id),
-is_deleted TINYINT DEFAULT 0,
-PRIMARY KEY (favorite_id )
+FOREIGN KEY (fav_user_id) REFERENCES users(user_id),
+PRIMARY KEY (user_id,fav_user_id )
 );
+
+CREATE TABLE IF NOT EXISTS  favoritesAuctions (
+user_id INT NOT NULL,
+fav_auction_id INT NOT NULL,
+FOREIGN KEY (user_id) REFERENCES users(user_id),
+FOREIGN KEY (fav_auction_id) REFERENCES auctions(auction_id),
+PRIMARY KEY (user_id,fav_auction_id )
+);
+
 
 
 
 ALTER TABLE bids 
 ADD FOREIGN KEY (auction_id) REFERENCES auctions(aution_id);
-
-

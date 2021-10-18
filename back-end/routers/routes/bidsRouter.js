@@ -4,14 +4,16 @@ const authentication = require("../middlewares/authentication");
 
 const {
   createBid,
-  getBids,
+  getAllBids,
   deleteBidById,
-  updateBidById,
+  getBidsOnActionId,
+  getMaxBidById,
 } = require("../controllers/bidsController");
 
-bidsRouter.post("/",authentication, createBid);
-bidsRouter.get("/", getBids);
+bidsRouter.post("/", authentication, createBid);
+bidsRouter.get("/", getAllBids);
 bidsRouter.delete("/:bid_id", deleteBidById);
-bidsRouter.put("/:bid_id", updateBidById);
+bidsRouter.get("/:auction_id", getBidsOnActionId);
+bidsRouter.get("/:auction_id/max", getMaxBidById);
 
 module.exports = bidsRouter;

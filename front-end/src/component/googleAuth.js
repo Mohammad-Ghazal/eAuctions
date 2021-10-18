@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import axios from "axios";
 import GoogleButton from "react-google-button";
+import { Button } from "primereact/button";
+import "./loginBtn.css";
 
 // this client ID should put in .env file.
 //-----------------------------------------
@@ -66,17 +68,20 @@ function GoogleBtn(props) {
           clientId={clientId}
           buttonText="Sign In"
           render={(renderProps) => (
-            <GoogleButton
-              label="Google"
+            <Button
               onClick={renderProps.onClick}
               disabled={renderProps.disabled}
               style={{
-                width: "30%",
+                fontWeight: "bold",
+                width: "90%",
                 fontSize: "12px",
-                backgroundColor: "transparent",
+                backgroundColor: "red",
                 borderRadius: "5px",
               }}
-            ></GoogleButton>
+              className="google p-p-0"
+            >
+              <i className="pi pi-google p-px-2"></i>
+            </Button>
           )}
           onSuccess={onLoginSuccess}
           onFailure={onLoginFailure}
