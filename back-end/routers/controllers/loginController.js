@@ -1,11 +1,10 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const request = require("request");
 const app = express();
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-// const connection = require("../../db/db");
+const connection = require("../../db/db");
 require("dotenv").config();
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(
@@ -17,13 +16,12 @@ app.use(
     extended: true,
   })
 );
-//create login
 const login = async (req, res) => {
   // 1 - login by google part
   //---------------------------------------------------------
 
-  console.log(req.body);
   if (req.headers.authorization) {
+    console.log(req.headers.authorization);
     const tokenId = req.headers.authorization.split(" ").pop();
 
     const ticket = await client.verifyIdToken({
@@ -39,22 +37,23 @@ const login = async (req, res) => {
       first_name: payload.given_name,
       last_name: payload.family_name,
     };
+
     console.log(user);
-    const query = `SELECT * FROM users WHERE email = ?`;
-    connection.query(query, [user.email], (err, result) => {
+    const query = `INSERT INTO users (user_name,email,role_id) SELECT * FROM (SELECT '${user.first_name} ${user.last_name}' AS user_name, '${user.email}' AS email,'6' AS role_id) AS temp WHERE NOT EXISTS ( SELECT email FROM users WHERE email = '${user.email}' ) LIMIT 1; SELECT * FROM users WHERE email= '${user.email}' `;
+    connection.query(query, (err, result) => {
       if (err) {
+        console.log(err);
       }
-      if (!result.length) {
-        res
-          .status(404)
-          .json({ success: false, message: `The email doesn't exist ` });
-      } else {
-        res.status(200).json({
-          success: true,
-          message: `Email and Password are correct`,
-          tokenId: tokenId,
-        });
-      }
+
+      console.log(result);
+
+      res.status(200).json({
+        success: true,
+        message: `You Signed In Successfully`,
+        tokenId: tokenId,
+        user_name: `${user.first_name} ${user.last_name}`,
+      });
+      // }
     });
   } else {
     // 2 - normal login part
@@ -92,6 +91,7 @@ const login = async (req, res) => {
           success: true,
           message: `Email and Password are correct`,
           token: token,
+          user_name: result[0].user_name,
         });
       }
     });
@@ -110,7 +110,8 @@ const CaptchaAuth = (req, res) => {
   request(url, function (err, response, body) {
     //the body is the data that contains success message
     body = JSON.parse(body);
-    res.send("pass");
+    res.send({ success: "pass", response: response });
+    // res.send(response);
 
     // check if the validation failed
     // if (body.success !== undefined && !data.success) {
