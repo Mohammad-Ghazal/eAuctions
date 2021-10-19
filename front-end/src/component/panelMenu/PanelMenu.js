@@ -12,7 +12,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/CreateAuction"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "black" }}
             >
               Create Auction
             </Link>
@@ -23,7 +23,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/MyAuction"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "black" }}
             >
               My Auction
             </Link>
@@ -34,7 +34,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/AllAuctions"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "black" }}
             >
               All Auction
             </Link>
@@ -51,7 +51,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/CreateItem"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "black" }}
             >
               Create Item
             </Link>
@@ -62,7 +62,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/MyItem"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "black" }}
             >
               My Item
             </Link>
@@ -73,7 +73,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/AllItem"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "black" }}
             >
               All Item
             </Link>
