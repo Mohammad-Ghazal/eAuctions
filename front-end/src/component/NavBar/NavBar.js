@@ -3,7 +3,7 @@ import "./NavBar.css";
 const NavBar = () => {
   const [boolean, setboolean] = useState(false);
   return (
-    <div>
+    <div className="headar">
       <nav class="navbar navbar-expand-custom navbar-mainbg">
         <button
           class="navbar-toggler"

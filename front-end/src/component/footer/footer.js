@@ -1,5 +1,3 @@
-//import useState hook to create menu collapse state
-import React, { useState } from "react";
 
 import "./footer.css";
 
@@ -18,12 +16,12 @@ export const Footer = () => {
                   themes, and Blogspot. You can use any layout from any demo
                   anywhere
                 </p>
-                <p>
+                {/* <p>
                   Our company is a completely creative, clean & 100% responsive
                   website. Put your business to the next level with us
-                </p>
+                </p> */}
               </div>
-              <div class="kilimanjaro_part m-top-15">
+              {/* <div class="kilimanjaro_part m-top-15">
                 <h5>Social Links</h5>
                 <ul class="kilimanjaro_social_links">
                   <li>
@@ -53,7 +51,7 @@ export const Footer = () => {
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
             <div class="col-12 col-md-6 col-lg-3">
               <div class="kilimanjaro_part">
@@ -86,7 +84,7 @@ export const Footer = () => {
                 </ul>
               </div>
 
-              <div class="kilimanjaro_part m-top-15">
+              {/* <div class="kilimanjaro_part m-top-15">
                 <h5>Important Links</h5>
                 <ul class="kilimanjaro_links">
                   <li>
@@ -126,7 +124,7 @@ export const Footer = () => {
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
             <div class="col-12 col-md-6 col-lg-3">
               <div class="kilimanjaro_part">
@@ -140,8 +138,8 @@ export const Footer = () => {
                     />
                   </div>
                   <a href="#">Your Blog Title Goes Here</a>
-                  <p class="kilimanjaro_date">21 Jan 2018</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur</p>
+                  {/* <p class="kilimanjaro_date">21 Jan 2018</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur</p> */}
                 </div>
                 <div class="kilimanjaro_blog_area">
                   <div class="kilimanjaro_thumb">
@@ -152,8 +150,8 @@ export const Footer = () => {
                     />
                   </div>
                   <a href="#">Your Blog Title Goes Here</a>
-                  <p class="kilimanjaro_date">21 Jan 2018</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur</p>
+                  {/* <p class="kilimanjaro_date">21 Jan 2018</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur</p> */}
                 </div>
                 <div class="kilimanjaro_blog_area">
                   <div class="kilimanjaro_thumb">
@@ -164,8 +162,8 @@ export const Footer = () => {
                     />
                   </div>
                   <a href="#">Your Blog Title Goes Here</a>
-                  <p class="kilimanjaro_date">21 Jan 2018</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur</p>
+                  {/* <p class="kilimanjaro_date">21 Jan 2018</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur</p> */}
                 </div>
               </div>
             </div>
@@ -186,7 +184,7 @@ export const Footer = () => {
                 </div>
               </div>
               <div class="kilimanjaro_part">
-                <h5>Latest Works</h5>
+                {/* <h5>Latest Works</h5> */}
                 <div class="kilimanjaro_works">
                   <a class="kilimanjaro_works_img" href="img/gallery/1.jpg">
                     <img src="img/gallery/1.jpg" alt="" />

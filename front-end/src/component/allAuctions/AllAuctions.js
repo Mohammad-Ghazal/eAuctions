@@ -3,17 +3,23 @@ import React, { useState, useEffect } from "react";
 import "../allAuctions/AllAuctions.css";
 import axios from "axios";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuction } from "../../actions/auctionAction";
 
-export const AllAuctions = () => {
+export const AllAuctions = function () {
   const [allAuctions, setAllAuctions] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const { data } = useSelector((state) => {
+    return {
+      data: state.auctionReducer,
+    };
+  });
+
+
   useEffect(() => {
     axios.get(`http://localhost:5000/auctions`).then((res) => {
-      console.log(res.data.result);
       setAllAuctions(res.data.result);
     });
   }, []);
@@ -35,13 +41,15 @@ export const AllAuctions = () => {
                 footer={
                   <button
                     className="glow-on-hover"
-                    onClick={(e) => {
+                    onClick={async function (e) {
                       e.preventDefault();
-                      dispatch(setAuction(element));
 
-                      setTimeout(() => {
-                        history.push(`/live-auction/${element.auction_id}`);
-                      }, 2000);
+                      try {
+                        await dispatch(setAuction(element));
+                      } catch (error) {
+                        console.log(error);
+                      }
+                       history.push(`/live-auction/${element.auction_id}`);
                     }}
                   >
                     Show Auction
