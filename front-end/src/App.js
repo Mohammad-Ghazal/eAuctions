@@ -5,7 +5,7 @@ import { Footer } from "./component/footer/footer";
 import NavBar from "./component/navBar/NavBar";
 import { AllAuctions } from "./component/allAuctions/AllAuctions";
 import Login from "./component/login";
-// import StripeContainer from "./component/stripe/StripeContainer";
+ import StripeContainer from "./component/stripe/StripeContainer";
 import { CreateAuction } from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
 import { CreateItem } from "./component/createItem/CreateItem";
