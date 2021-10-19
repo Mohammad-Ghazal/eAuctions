@@ -16,20 +16,20 @@
 #clockdiv > div   {
   padding: 10px;
   border-radius: 3px;
-  background: #2c115e;
+  background: #506D84;
   display: inline-block;
   border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
   top: -100px;
   right: 10px;
   width: 120px;
   height: 120px;
-  background: radial-gradient(#7812b3, #09021d);
+  background: radial-gradient(#506D84, #F3D5C0);
   z-index: -10;
 }
 #clockdiv div > span {
   padding: 10px;
   border-radius: 3px;
-  background: #2c115e;
+  background: #506D84;
   display: inline-block;
   border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
   top: -100px;
