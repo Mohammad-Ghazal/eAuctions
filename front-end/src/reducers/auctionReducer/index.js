@@ -1,23 +1,27 @@
+
 const initialState = {
   auction: {},
-  item: {},
-  lastBid: {},
+  bid: {},
 };
 
-const auctionReducer = (state = initialState, { type, payload }) => {
+let auctionReducer = (state = initialState, { type, payload }) => {
+  let obj = {};
+
   switch (type) {
     case "SET_AUCTION":
-      return {
-        ...state,
-        auction: payload,
-      };
-    case "SET_ITEM":
-      return { ...state, item: payload };
-    case "SET_LAST_BID":
-      return { ...state, lastBid: payload };
+      state = JSON.parse(JSON.stringify(state));
+      state.auction = payload;
+      return state;
+
+ 
+    case "SET_BID":
+      obj = JSON.parse(JSON.stringify(state));
+      obj.bid = payload;
+      return obj;
     default:
       return state;
   }
 };
 
 export default auctionReducer;
+ 

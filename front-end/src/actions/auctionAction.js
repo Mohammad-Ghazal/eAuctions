@@ -4,15 +4,10 @@ export const setAuction = (auction) => {
     payload: auction,
   };
 };
-export const setItem = (item) => {
-  return {
-    type: "SET_ITEM",
-    payload: item,
-  };
-};
+
 export const setBid = (bid) => {
   return {
-    type: "SET_LAST_BID",
+    type: "SET_BID",
     payload: bid,
   };
 };
