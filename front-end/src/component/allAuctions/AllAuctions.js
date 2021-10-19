@@ -17,7 +17,6 @@ export const AllAuctions = function () {
     };
   });
 
-
   useEffect(() => {
     axios.get(`http://localhost:5000/auctions`).then((res) => {
       setAllAuctions(res.data.result);
@@ -49,7 +48,7 @@ export const AllAuctions = function () {
                       } catch (error) {
                         console.log(error);
                       }
-                       history.push(`/live-auction/${element.auction_id}`);
+                      history.push(`/live-auction/${element.auction_id}`);
                     }}
                   >
                     Show Auction
