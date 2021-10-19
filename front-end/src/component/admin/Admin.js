@@ -5,7 +5,6 @@ import { Button } from "primereact/button";
 import swal from "sweetalert";
 import axios from "axios";
 import "../admin/Admin.css";
-
 export const Admin = () => {
   const [auction, setAuction] = useState();
   const Delete = (e, index) => {
