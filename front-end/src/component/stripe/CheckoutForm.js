@@ -52,13 +52,14 @@ export const CheckoutForm = () => {
       <main id="main">
         <section id="left">
           <div id="head">
-            <h1>Life has great moments</h1>
+            {/* <h1>Life has great moments</h1> */}
             <p>Enjoy them with auctions!</p>
           </div>
           <h3>Only 9.99$</h3>
         </section>
         <section id="right">
-          <h1>Payment</h1>
+          <p>Payment</p>
+
           <form action="#">
             <div id="form-card" class="form-field">
               <label for="email">Email</label>
