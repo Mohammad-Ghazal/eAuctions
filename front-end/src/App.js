@@ -18,8 +18,9 @@ function App() {
     <div className="App">
       <NavBar />
       <SideBar />
-<Admin/>
-      {/* <Switch>
+      <Admin />
+      <Switch>
+        <Route exact path="/Admin" component={Admin} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/AllAuctions" component={AllAuctions} />
         <Route exact path="/CreateAuction" component={CreateAuction} />
@@ -27,7 +28,7 @@ function App() {
         <Route exact path="/CreateItem" component={CreateItem} />
         <Route path="/live-auction/:auctionId" component={LiveAction} />
         <Route path="*" component={Component404NotFound} />
-      </Switch> */}
+      </Switch>
 
       <Footer />
     </div>

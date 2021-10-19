@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../createAuction/CreateAuction.css";
 
@@ -75,8 +75,12 @@ export const CreateAuction = () => {
           })}
       </select>
       <input type="number" placeholder="starter_bid" onChange={starter_bid} />
-      <input type="date" placeholder="start_date" onChange={start_date} />
-      <input type="date" placeholder="end_date" onChange={end_date} />
+      <input
+        type="datetime-local"
+        placeholder="start_date"
+        onChange={start_date}
+      />
+      <input type="datetime-local" placeholder="end_date" onChange={end_date} />
       <input type="number" placeholder="bid_jump" onChange={bid_jump} />
       <button className="btn_createAuction" onClick={click}>
         Submit

@@ -1,16 +1,47 @@
 import React, { useState, useEffect } from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Button } from "primereact/button";
+import swal from "sweetalert";
 import axios from "axios";
 import "../admin/Admin.css";
+
 export const Admin = () => {
   const [auction, setAuction] = useState();
-  const [deleted, setDeleted] = useState();
-
+  const Delete = (e, index) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(`http://localhost:5000/auctions/${e}`)
+          .then((result) => {
+            if (result.data.success) {
+              let arr = [...auction];
+              arr.splice(index, 1);
+              setAuction([...arr]);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  };
   useEffect(() => {
     axios
       .get(`http://localhost:5000/auctions`)
       .then((res) => {
         setAuction(res.data.result);
-        setDeleted(res.data.result.is_deleted);
         console.log(res.data.result);
         console.log(res.data.result[0].is_deleted);
       })
@@ -19,75 +50,55 @@ export const Admin = () => {
       });
   }, []);
 
-  const Delete = (e) => {
-    //not hard delete just update is_deleted to 1
-
-    axios
-      .delete(`http://localhost:5000/auctions/${e}`)
-      .then((result) => {
-        console.log("deleted",result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const formatCurrency = (value) => {
+    return value.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
   };
-  return (
-    <div>
-      <table className="table table-hover table-fixed">
-        <thead>
-          <tr>
-            <th>auction_id</th>
-            <th>bid_jump</th>
-            <th>closed_on</th>
-            <th>details</th>
-            <th>end_date</th>
-            <th>image</th>
-            <th>is_deleted</th>
-            <th>item_id</th>
-            <th>start_date</th>
-            <th>starter_bid</th>
-            <th>title</th>
-            <th>user_id</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
 
-        {auction &&
-          auction.map((element) => {
-            return (
-              <>
-                <tr style={{ height: "50px" }}>
-                  <td>{element.auction_id}</td>
-                  <td>{element.bid_jump}</td>
-                  <td>{element.closed_on}</td>
-                  <td>
-                    <textarea rows="10" cols="50">
-                      {element.details}
-                    </textarea>
-                  </td>
-                  <td>{element.end_date}</td>
-                  <td>
-                    {" "}
-                    <img
-                      style={{ width: "200px", height: "200px" }}
-                      alt="Card"
-                      src={`${element.image}`}
-                    />
-                  </td>
-                  <td>{element.is_deleted}</td>
-                  <td>{element.item_id}</td>
-                  <td>{element.start_date}</td>
-                  <td>{element.starter_bid}</td>
-                  <td>{element.title}</td>
-                  <td>{element.user_id}</td>
-                  <td>
-                    <button onClick={Delete(element.auction_id)}>Delete</button>
-                  </td>
-                </tr>
-              </>
-            );
-          })}
-      </table>
+  const priceBodyTemplate = (auction) => {
+    return formatCurrency(auction.starter_bid);
+  };
+  const imageBodyTemplate = (auction) => {
+    return (
+      <img
+        src={`${auction.image}`}
+        alt={auction.image}
+        className="product-image"
+      />
+    );
+  };
+
+  const statusBodyTemplate = (auction) => {
+    return (
+      <Button
+        label="Delete"
+        icon="pi pi-trash"
+        onClick={() => Delete(auction.auction_id)}
+      />
+    );
+  };
+
+  const header = <div className="table-header">All Auction</div>;
+  const footer = `In total there are ${auction ? auction.length : 0} products.`;
+
+  return (
+    <div className="datatable-templating-demo">
+      <div className="card">
+        <DataTable value={auction} header={header} footer={footer}>
+          <Column field="user_id" header="AuctionId"></Column>
+          <Column header="Image" body={imageBodyTemplate}></Column>
+          <Column
+            field="price"
+            header="StarterBid"
+            body={priceBodyTemplate}
+          ></Column>
+          <Column field="title" header="Title"></Column>
+          <Column field="user_id" header="OwnerId"></Column>
+          <Column header="Delete" body={statusBodyTemplate}></Column>
+        </DataTable>
+      </div>
     </div>
   );
 };
