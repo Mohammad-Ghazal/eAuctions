@@ -1,47 +1,66 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import BigCalendar from "react-big-calendar-like-google";
 import moment from "moment";
 import "react-big-calendar-like-google/lib/css/react-big-calendar.css";
-
+import axios from "axios";
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 //use redux her to get all auctions from DB.
 
 function Calendar() {
-  const events = [
-    {
-      title: "All Day Event very long title",
-      bgColor: "#ff7f50",
+const[event,setEvent]=useState([]);
+  useEffect(()=>{
+    axios.get("http://localhost:5000/auctions").then((result)=>{
+      setEvent(result.data.result)
+      console.log(result.data.result)
+    }).catch((err)=>{
+
+    })
+  },[])
+  // const events = [
+  //   {
+  //     title: "All Day Event very long title",
+  //     bgColor: "#ff7f50",
+  //     allDay: true,
+  //     start: new Date(2021, 10, 0),
+  //     end: new Date(2021, 10, 1),
+  //   },
+
+  //   {
+  //     title: "Conference",
+  //     bgColor: "#e9967a",
+  //     start: new Date(2021, 10, 11),
+  //     end: new Date(2021, 10, 13),
+  //     desc: "Big conference for important people",
+  //   },
+
+  //   {
+  //     title: "Lunch",
+  //     bgColor: "#cd5c5c",
+  //     start: new Date(2015, 3, 12, 12, 0, 0, 0),
+  //     end: new Date(2015, 3, 12, 13, 0, 0, 0),
+  //     desc: "Power lunch",
+  //   },
+  // ];
+  const events = event.map((elem, i) => {
+    return {
       allDay: true,
-      start: new Date(2021, 10, 0),
-      end: new Date(2021, 10, 1),
-    },
+      title: elem.title,
+      bgColor: "#" + Math.floor(Math.random() * 1677219).toString(16),
+      start: moment(elem.start_date).format("YYYY-MM-DDTHH:mm:ss.SSS"),
+      end: moment(elem.end_date).format("YYYY-MM-DDTHH:mm:ss.SSS"),
+    };
+  });
 
-    {
-      title: "Conference",
-      bgColor: "#e9967a",
-      start: new Date(2021, 10, 11),
-      end: new Date(2021, 10, 13),
-      desc: "Big conference for important people",
-    },
-
-    {
-      title: "Lunch",
-      bgColor: "#cd5c5c",
-      start: new Date(2015, 3, 12, 12, 0, 0, 0),
-      end: new Date(2015, 3, 12, 13, 0, 0, 0),
-      desc: "Power lunch",
-    },
-  ];
   return (
     <div
       style={{
-        width: "50vw",
-        height: "70vh",
-        resize: "both",
+        width: "90%",
+        height: "100vh",
+        margin:"3rem 2rem 3rem 3rem",
         overflow: "hidden",
-        backgroundImage:
-          "linear-gradient(rgba(251,233,169,1) 0%, rgba(246,158,29,0.93) 90% )",
+        backgroundImage: "linear-gradient(#F3D5C0 0%, #D4B499 90% )",
+
 
         borderRadius: "5px",
       }}

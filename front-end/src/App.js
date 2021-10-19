@@ -14,6 +14,7 @@ import LiveAuction from "./component/liveAuction/liveAuction";
 import Stripe from "./component/stripe/StripeContainer";
 import { Component404NotFound } from "./component/component404NotFound/Component404NotFound";
 import { Admin } from "./component/admin/Admin";
+import Calendar from "./component/calendar";
 function App() {
   return (
     <div className="App">
@@ -29,7 +30,9 @@ function App() {
           <Route exact path="/CreateItem" component={CreateItem} />
           <Route path="/stripe" component={Stripe} />
           <Route path="/live-auction/:auctionId" component={LiveAuction} />
+          <Route path="/calender" component={Calendar} />
           <Route path="*" component={Component404NotFound} />
+          
         </Switch>
       </div>
       <Footer />

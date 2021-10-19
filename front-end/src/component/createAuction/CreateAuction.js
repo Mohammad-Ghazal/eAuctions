@@ -14,7 +14,7 @@ export const CreateAuction = () => {
     axios
       .get(`http://localhost:5000/items`, {
         headers: {
-          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NTc3OTcyLCJleHAiOjE2MzQ1ODE1NzJ9.vna8SiWDFeBXDW8uTVnk5rw61YQ72UUZcoShp3dnnGU"}`,
+          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NjcyNTA5LCJleHAiOjE2MzQ2NzYxMDl9.nuIjDKoVbOZpnlziWC0SFywxfnOxct15lM7gtPV3_uA"}`,
         },
       })
       .then((res) => {
@@ -53,7 +53,7 @@ export const CreateAuction = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NTc3OTcyLCJleHAiOjE2MzQ1ODE1NzJ9.vna8SiWDFeBXDW8uTVnk5rw61YQ72UUZcoShp3dnnGU"}`,
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NjcyNTA5LCJleHAiOjE2MzQ2NzYxMDl9.nuIjDKoVbOZpnlziWC0SFywxfnOxct15lM7gtPV3_uA"}`,
           },
         }
       )
