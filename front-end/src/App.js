@@ -33,7 +33,7 @@ function App() {
           <Route path="/stripe" component={Stripe} />
           <Route path="/live-auction/:auctionId" component={LiveAuction} />
           <Route path="/calender" component={Calendar} />
-          
+
           <Route path="*" component={Component404NotFound} />
         </Switch>
       </div>

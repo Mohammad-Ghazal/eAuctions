@@ -11,11 +11,11 @@ import { Divider } from "primereact/divider";
 import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
 import { Captcha } from "primereact/captcha";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../actions/authAction";
 import "./loginForm.css";
 import "./loginBtn.css";
-import { useDispatch } from "react-redux";
-import { setToken } from "../actions/authAction";
-  
+
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
@@ -43,6 +43,12 @@ const Login = () => {
         console.log(err);
       });
   };
+
+  const state = useSelector((state) => {
+    return {
+      token: state.tokenReducer.token,
+    };
+  });
 
   const validate = (data) => {
     let errors = {};
@@ -76,7 +82,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-         dispatch(setToken(res.data.token));
+        dispatch(setToken(res.data.token));
       })
       .catch((error) => {
         console.log(error);
@@ -84,6 +90,8 @@ const Login = () => {
 
     form.restart();
   };
+
+  // tokenReducer;
 
   const isFormFieldValid = (meta) => !!(meta.touched && meta.error);
   const getFormErrorMessage = (meta) => {
@@ -242,6 +250,7 @@ const Login = () => {
                       siteKey="6LfRDdMcAAAAADY5m3wNCj-rZSAno20ceYF4_JBh"
                       onResponse={showResponse}
                     ></Captcha>
+
                     <Button
                       disabled={disable}
                       type="submit"
