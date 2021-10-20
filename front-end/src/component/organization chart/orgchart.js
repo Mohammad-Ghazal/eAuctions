@@ -72,7 +72,7 @@ const OrgChart = () => {
                 },
                 {
                   label: "Full Stack Developer",
-                  className: "p-person",
+                  className: "p-person img_team",
                   type: "person",
                   expanded: true,
                   data: { name: "Eng. Ahmed Okasha", avatar: "" },
@@ -100,6 +100,13 @@ const OrgChart = () => {
           <div className="node-header">{node.label}</div>
           <div className="node-content">
             <img
+              className={
+                node.data.name === "Eng. Mohammed Ghazal" ||
+                node.data.name === "Eng. Muath Al Nahhas" ||
+                node.data.name === "Eng. Ahmed Okasha"
+                  ? `team`
+                  : ``
+              }
               alt={node.data.avatar}
               src={
                 node.data.name === "Eng. Mohammed Ghazal"
@@ -110,7 +117,7 @@ const OrgChart = () => {
                 (e.target.src =
                   "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")
               }
-              style={{ width: "32px" }}
+              // style={{width:node.data.className==="img_team"?"150px":"",height:node.data.className==="img_team"?"200px":""}}
             />
 
             <div>{node.data.name}</div>

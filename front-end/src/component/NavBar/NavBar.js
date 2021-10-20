@@ -42,9 +42,9 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="javascript:void(0);">
+              <Link className="nav-link" to="/OrgChart">
                 <i className="far fa-chart-bar"></i>Charts
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="javascript:void(0);">

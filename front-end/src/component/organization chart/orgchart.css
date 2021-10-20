@@ -8,7 +8,10 @@
   padding: 0;
   border: 0 none;
 }
-
+.team{
+  width: 300px !important;
+  height: 300px !important;
+}
 .organizationchart-demo .p-organizationchart .node-header,
 .organizationchart-demo .p-organizationchart .node-content {
   padding: 0.5em 0.7rem;
@@ -24,10 +27,10 @@
   border: 1px solid #495ebb;
 }
 
-.organizationchart-demo .p-organizationchart .node-content img {
-  border-radius: 50%;
+.organizationchart-demo .p-organizationchart .node-content  {
+  border-radius:5%;
+  
 }
-
 .organizationchart-demo .p-organizationchart .department-cfo {
   background-color: #7247bc;
   color: #ffffff;
