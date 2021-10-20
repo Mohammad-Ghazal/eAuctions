@@ -9,12 +9,12 @@ export const CreateAuction = () => {
   const [bidJump, setBidJump] = useState();
   const [select, setSelect] = useState();
   const [item, setItem] = useState();
-
+const token=localStorage.getItem("token");
   useEffect(() => {
     axios
       .get(`http://localhost:5000/items`, {
         headers: {
-          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NjcyNTA5LCJleHAiOjE2MzQ2NzYxMDl9.nuIjDKoVbOZpnlziWC0SFywxfnOxct15lM7gtPV3_uA"}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -53,7 +53,7 @@ export const CreateAuction = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NjcyNTA5LCJleHAiOjE2MzQ2NzYxMDl9.nuIjDKoVbOZpnlziWC0SFywxfnOxct15lM7gtPV3_uA"}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
