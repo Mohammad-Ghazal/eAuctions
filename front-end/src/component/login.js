@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GoogleBtn from "./googleBtn";
+import GoogleBtn from "./googleAuth";
 import axios from "axios";
 import { Form, Field } from "react-final-form";
 import { InputText } from "primereact/inputtext";
@@ -13,10 +13,13 @@ import { Avatar } from "primereact/avatar";
 import { Captcha } from "primereact/captcha";
 import "./loginForm.css";
 import "./loginBtn.css";
-
+import { useDispatch } from "react-redux";
+import { setToken } from "../actions/authAction";
+  
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
 
   const showResponse = (res) => {
@@ -32,7 +35,7 @@ const Login = () => {
       )
       .then((result) => {
         console.log(result.data);
-        if (result.data === "pass") {
+        if (result.data.success === "pass") {
           setDisable(false);
         }
       })
@@ -73,6 +76,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
+         dispatch(setToken(res.data.token));
       })
       .catch((error) => {
         console.log(error);
@@ -130,7 +134,7 @@ const Login = () => {
                 className="pi pi-check-circle"
                 style={{ fontSize: "5rem", color: "var(--green-500)" }}
               ></i>
-              <h5>Registration Successful!</h5>
+              <h5>Login Successful!</h5>
             </div>
           </Dialog>
 
@@ -142,7 +146,7 @@ const Login = () => {
                 className="p-mr-2"
                 size="large"
                 style={{
-                  backgroundColor: "#2196F3",
+                  backgroundColor: "#b297ce",
                   color: "#ffffff",
                   marginLeft: "40%",
                 }}

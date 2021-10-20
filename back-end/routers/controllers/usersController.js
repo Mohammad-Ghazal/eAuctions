@@ -10,18 +10,26 @@ const addUser = async (req, res) => {
     Number.parseInt(process.env.SALT)
   );
   const role_id = 5;
-  const data = [user_name, phone, email, hashPassword, payment_ref, role_id];
-  const query =
-    "INSERT INTO users(user_name, phone, email, password, payment_ref, role_id) VALUES(?,?,?,?,?,?)";
-  connection.query(query, data, (err, result) => {
+
+  const query = `INSERT INTO users (user_name, phone, email, password,role_id) SELECT * FROM (SELECT '${user_name}' AS user_name, '${phone}' AS phone,'${email}' AS email,'${hashPassword}' AS password,'${role_id}' AS role_id) AS temp WHERE NOT EXISTS ( SELECT email FROM users WHERE email = '${email}' ) LIMIT 1; SELECT * FROM users WHERE email= '${email}' `;
+
+  connection.query(query, (err, result) => {
     if (err) {
+      console.log(err);
       res.status(404).json({ massage: err });
+    } else if (result[0].affectedRows === 1) {
+      console.log(result);
+      res.status(201).json({
+        success: true,
+        massage: "SUCSESS ADD NEW USER",
+        newUserId: result[1][0].user_id,
+      });
+    } else if (result[0].affectedRows === 0) {
+      res.status(204).json({
+        success: false,
+        massage: "USER ALREADY EXISTED",
+      });
     }
-    res.status(201).json({
-      success: true,
-      massage: "SUCSESS ADD NEW USER",
-      newUserId: result.insertId,
-    });
   });
 };
 

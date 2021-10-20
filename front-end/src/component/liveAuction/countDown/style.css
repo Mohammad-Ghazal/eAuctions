@@ -1,0 +1,62 @@
+
+#clockdiv div {
+  margin: 10px;
+}
+
+
+#clockdiv {
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div   {
+  padding: 10px;
+  border-radius: 3px;
+  background: #506D84;
+  display: inline-block;
+  border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+  top: -100px;
+  right: 10px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(#506D84, #F3D5C0);
+  z-index: -10;
+}
+#clockdiv div > span {
+  padding: 10px;
+  border-radius: 3px;
+  background: #506D84;
+  display: inline-block;
+  border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+  top: -100px;
+  right: 10px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(#7812b3, #09021d);
+  z-index: -10;
+}
+#clockdiv div > span {
+  padding: 15px;
+  /* border-radius: 3px; */
+  background: #08091a;
+  /* display: inline-block; */
+}
+
+.smalltext {
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #0575e6 0%,
+    #021b79 51%,
+    #0575e6 100%
+  );
+}

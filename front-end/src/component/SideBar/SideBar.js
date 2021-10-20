@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import PanelMenuDemo from "../panelMenu/PanelMenu";
 
-//import sidebar css from react-pro-sidebar module and our custom css
+// import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
 import "./SideBar.css";
 
@@ -17,8 +17,9 @@ const SideBar = () => {
         <Sidebar
           style={{
             width: "385px",
-            background:
-              "linear-gradient(transparent,#d9a7c7,transparent,#fffcdc)",
+            background:"#F3D5C0"
+            // background:
+            //   "linear-gradient(transparent,#d9a7c7,transparent,#fffcdc)",
           }}
           visible={visibleLeft}
           onHide={() => setVisibleLeft(false)}
