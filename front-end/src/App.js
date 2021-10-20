@@ -32,7 +32,6 @@ function App() {
           <Route path="/live-auction/:auctionId" component={LiveAuction} />
           <Route path="/calender" component={Calendar} />
           <Route path="*" component={Component404NotFound} />
-          
         </Switch>
       </div>
       <Footer />
