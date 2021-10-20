@@ -1,6 +1,7 @@
 require("dotenv");
 const express = require("express");
 const app = express();
+const http = require("http");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 app.use(express.json()); //built-in middleware
@@ -15,7 +16,6 @@ const favoritesUsersRouter = require("./routers/routes/favoritesUsersRouter");
 const bidsRouter = require("./routers/routes/bidsRouter");
 const auctionsRouter = require("./routers/routes/auctionRouter");
 
-
 //Routers
 app.use("/roles", rolesRouter);
 app.use("/payments", paymentsRouter);
@@ -26,9 +26,18 @@ app.use("/favUsers", favoritesUsersRouter);
 app.use("/bids", bidsRouter);
 app.use("/auctions", auctionsRouter);
 
+const server = http.createServer(app);
+const socket = require("socket.io");
+const io = socket(server, { cors: { origin: "*" } });
 
-
-//Routers
-app.listen(PORT, () => {
+io.on("connection", (socket) => {
+  console.log(`${socket.id} is connected`);
+  socket.emit("yourId", socket.id);
+  socket.on("bid", (data) => {
+    console.log("data", data);
+    io.emit("broadcast", data);
+  });
+});
+server.listen(PORT, () => {
   console.log(`app listen at ${PORT} `);
 });

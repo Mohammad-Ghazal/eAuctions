@@ -10,13 +10,13 @@ const {
   deleteAuctionById,
   getAuctionsByUserId,
 } = require("../controllers/auctionsController");
+const { isBidExist } = require("../controllers/bidsController");
 
 auctionsRouter.post("/", authentication, createAuction);
 auctionsRouter.get("/", getAllAuctions);
 auctionsRouter.get("/user_auctions", authentication, getAuctionsByUserId);
 auctionsRouter.get("/:auction_id", getAuctionById);
-auctionsRouter.put("/:auction_id", editAuctionById);
-
+auctionsRouter.put("/:auction_id", isBidExist, editAuctionById);
 auctionsRouter.delete("/:auction_id", deleteAuctionById);
 
 module.exports = auctionsRouter;

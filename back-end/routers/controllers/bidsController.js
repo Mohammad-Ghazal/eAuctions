@@ -1,14 +1,10 @@
 const connection = require("../../db/db");
 
 const createBid = (req, res) => {
-
-
-  
   const { auction_id, date, bid_value } = req.body;
   const user_id = req.token.userId;
 
   const newBid = [auction_id, date, user_id, bid_value];
-  console.log(newBid);
   const query = `INSERT INTO bids (auction_id, date, user_id,bid_value) values (?,?,?,?)`;
 
   connection.query(query, newBid, (err, result, fields) => {
@@ -117,10 +113,40 @@ const getMaxBidById = (req, res) => {
     });
   });
 };
+
+const isBidExist = (req, res, next) => {
+  const { process } = req.body;
+  if (process.key == "closed_on") {
+    const query = `SELECT bid_value FROM bids WHERE bid_id =${process.value}`;
+    connection.query(query, (err, result, fields) => {
+      if (err) {
+        console.log(err.message);
+        return res.status(500).json({
+          success: false,
+          message: `Server Error`,
+        });
+      }
+      if (result.length) {
+
+        req.bid_value=result[0].bid_value
+        next();
+      } else
+        res.status(400).json({
+          success: false,
+          message: `the closed_on bid is not exist`,
+          result: result,
+        });
+    });
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   createBid,
   getAllBids,
   deleteBidById,
   getMaxBidById,
   getBidsOnActionId,
+  isBidExist
 };
