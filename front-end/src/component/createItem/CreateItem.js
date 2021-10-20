@@ -3,7 +3,6 @@ import "../createItem/CreateItem.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { storage } from "../firebase";
-import setToken from "../../actions/authAction";
 export const CreateItem = () => {
   const state = useSelector((state) => {
     // state tree => reducer => state name
@@ -11,6 +10,7 @@ export const CreateItem = () => {
       token: state.tokenReducer.token,
     };
   });
+
   const [images, setImages] = useState(null); //for complete the fuction of firebase
   const [url, setIUrl] = useState("");
   const [title, setTitle] = useState("");
@@ -51,7 +51,7 @@ export const CreateItem = () => {
                 { title, details, image: url },
                 {
                   headers: {
-                    Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTXVhdGggTmFoaGFzIiwiaWF0IjoxNjM0NjcyNTA5LCJleHAiOjE2MzQ2NzYxMDl9.nuIjDKoVbOZpnlziWC0SFywxfnOxct15lM7gtPV3_uA"}`,
+                    Authorization: `Bearer ${state.token}`,
                   },
                 }
               )
