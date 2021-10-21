@@ -9,9 +9,9 @@ let auctionReducer = (state = initialState, { type, payload }) => {
 
   switch (type) {
     case "SET_AUCTION":
-      state = JSON.parse(JSON.stringify(state));
-      state.auction = payload;
-      return state;
+      obj = JSON.parse(JSON.stringify(state));
+      obj.auction = payload;
+      return obj;
 
  
     case "SET_BID":
