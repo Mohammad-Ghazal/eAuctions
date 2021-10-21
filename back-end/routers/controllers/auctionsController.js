@@ -68,13 +68,12 @@ const getAuctionById = (req, res) => {
   FROM auctions
   JOIN items  ON items.item_id=auctions.item_id
   JOIN users ON auctions.user_id = users.user_id 
-  WHERE auctions.is_deleted = 0 AND auctions.auction_id = ${auction_id}` ;
+  WHERE auctions.is_deleted = 0 AND auctions.auction_id = ${auction_id}`;
 
-  
   connection.query(query, (err, result, fields) => {
     if (err) {
       console.log(err.message);
-      
+
       return res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -96,6 +95,7 @@ const getAuctionById = (req, res) => {
 const editAuctionById = (req, res) => {
   const auction_id = parseInt(req.params.auction_id);
   const { process } = req.body;
+
   const query = `UPDATE auctions SET ${process.key} =${process.value} WHERE auction_id =${auction_id} AND is_deleted=0`;
   connection.query(query, (err, result, fields) => {
     if (err) {
@@ -104,17 +104,25 @@ const editAuctionById = (req, res) => {
         message: `Server Error`,
       });
     }
-    if (result.length === 0) {
+    if (result.affectedRows == 0) {
       return res.status(400).json({
         success: false,
         message: `the auction with id ${auction_id} is not exist`,
       });
+    } else if (!req.bid_value) {
+      res.status(200).json({
+        success: true,
+        message: `success update auction with id ${auction_id}`,
+        result: result,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: `success update auction with id ${auction_id}`,
+        bidClosedOn: process.value,
+        bid_value: req.bid_value,
+      });
     }
-    res.status(200).json({
-      success: true,
-      message: `success update auction with id ${auction_id}`,
-      result: result,
-    });
   });
 };
 

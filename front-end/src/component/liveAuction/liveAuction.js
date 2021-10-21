@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import moment from "moment";
-import { MDBNotification } from "mdbreact";
-import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
-import { Button } from "primereact/button";
+import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
 import CountDown from "./countDown/CountDown";
 import "./style.css";
 import { Image } from "primereact/image";
@@ -10,6 +8,9 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setBid, setAuction } from "../../actions/auctionAction";
 import { Toast } from "primereact/toast";
+
+import io from "socket.io-client";
+
 moment.localeData();
 function LiveAuction() {
   const { data } = useSelector((state) => {
@@ -17,12 +18,18 @@ function LiveAuction() {
       data: state.auctionReducer,
     };
   });
-  console.log("asdsfff", data.auction.start_date);
+
+  const tokenHolder = useSelector((state) => {
+    return {
+      token: state.tokenReducer.token,
+      userName: state.tokenReducer.userName,
+    };
+  });
 
   const { auctionId } = useParams(); //to get url parameters
-  const [name, setName] = useState("My Name");
+  const [myLastBidId, setMyLastBidId] = useState("");
   const [myBid, setMyBid] = useState();
-  const [bidJumb, setBidJump] = useState(0);
+  const [bidJump, setBidJump] = useState(0);
   const [lastBid, setLastBid] = useState("");
   const [lastBidder, setLastBidder] = useState("");
   const [color, setColor] = useState("black");
@@ -30,30 +37,76 @@ function LiveAuction() {
   const [renderedDiv, setRenderedDiv] = useState([data]);
   const dispatch = useDispatch();
   const toast = useRef(null);
-  const showWarn = () => {
+  const socketRef = useRef();
+
+  const showWarn = (data) => {
+    console.log(data);
+
     toast.current.show({
       severity: "warn",
-      summary: "Warn Message",
-      detail: "Message Content",
-      life: 3000,
+      summary: "SomeOne bid",
+      detail: `${data.user_name} bid by
+        ${data.bid_value} for this item`,
+      life: 6000,
     });
+  };
+  const showWarn2 = (msgNumber) => {
+    switch (msgNumber) {
+      case 1:
+        toast.current.show({
+          severity: "info",
+          summary: "info Message",
+          detail: "your bid process was canceled",
+          life: 5000,
+        });
+        break;
+
+      case 2:
+        toast.current.show({
+          severity: "info",
+          summary: "info Message",
+          detail: "your bid process was canceled",
+          life: 5000,
+        });
+        break;
+
+      case 3:
+        toast.current.show({
+          severity: "warn",
+          summary: "Warn Message",
+          detail: "your bid value must be grater than last bid of the auction",
+          life: 5000,
+        });
+        break;
+      case 4:
+        toast.current.show({
+          severity: "error",
+          summary: "Error Message",
+          detail: "you have to logIn first",
+          life: 5000,
+        });
+        break;
+
+      case 5:
+        toast.current.show({
+          severity: "success",
+          summary: "Success Message",
+          detail: "you bid has bean placed",
+          life: 7000,
+        });
+        break;
+      case 6:
+        toast.current.show({
+          severity: "error",
+          summary: "Error Message",
+          detail: "your session has expired you have to logIn first",
+          life: 5000,
+        });
+        break;
+    }
   };
 
   const setReduxAuction = function () {
-    console.log(renderedDiv[0].auction.image);
-    console.log(data.auction.bid_jump);
-    console.log(data.auction.starter_bid);
-    console.log(renderedDiv[0].auction);
-    console.log(data.auction.bid_jump);
-    console.log(data.auction);
-
-    console.log(!!typeof renderedDiv[0].auction.image);
-    console.log(!!typeof data.auction.bid_jump);
-    console.log(!!typeof data.auction.starter_bid);
-    console.log(renderedDiv[0].auction !== undefined);
-    console.log(data.auction.bid_jump !== undefined);
-    console.log(data.auction !== undefined);
-
     if (
       !!typeof renderedDiv[0].auction.image &&
       !!typeof data.auction.bid_jump &&
@@ -61,16 +114,20 @@ function LiveAuction() {
       renderedDiv[0].auction !== undefined &&
       data.auction !== undefined
     ) {
-      console.log(" render");
       setRenderedDiv([data]);
-      console.log("bidJUMP", data.auction.bid_jump);
-      console.log("starter_bid", data.auction.starter_bid);
-
       setBidJump(data.auction.bid_jump);
-      console.log("data.auction.starter_bid", data.auction.starter_bid);
-      if (data.auction.starter_bid) setMyBid(data.auction.starter_bid);
 
-      setLastBid(data.bid["MAX (bids.bid_value)"]);
+      if (data.bid["MAX (bids.bid_value)"]) {
+        setMyBid(data.bid["MAX (bids.bid_value)"] + data.auction.bid_jump);
+        setLastBid(data.bid["MAX (bids.bid_value)"]);
+      } else {
+        setLastBid(0);
+        if (data.auction.starter_bid) {
+          setMyBid(data.auction.starter_bid);
+        } else {
+          setMyBid(0);
+        }
+      }
     }
   };
 
@@ -90,50 +147,58 @@ function LiveAuction() {
             console.log(error);
           });
       })
-      // .then(setRenderedDiv(data))
 
-      // .then(setReduxAuction())
       .catch((error) => {
         console.log(error);
       });
-
-    return () => {};
   }, []);
-  const confirm = () => {
-    console.log("myBid", myBid, "lastBid", lastBid);
 
-    if (myBid > lastBid) {
-      confirmDialog({
-        message: `Are you sure you want to bid by ${myBid}$ ?`,
-        header: "Confirmation",
-        icon: "pi pi-exclamation-triangle",
-        accept: () => {
-          bidNow();
-        },
-        reject: () => {
-          toast.current.show({
-            severity: "info",
-            summary: "info Message",
-            detail: "your bid process was canceled",
-            life: 5000,
-          });
-        },
-      });
+  useEffect(() => {
+    console.log('euseEffict');
+    socketRef.current = io.connect("http://localhost:5000");
+    socketRef.current.on("yourId", (id) => {});
+    socketRef.current.on("broadcast", (data) => {
+      console.log('broadcast');
+      
+      received(data);
+    });
+  }, [socketRef]);
+
+  const received = (data) => {
+    if (data.bidId !== myLastBidId) {
+      console.log("data.bidId ", data.bidId, "myLastBidId", myLastBidId);
+      showWarn(data);
+    }
+    setLastBidder(data.user_name);
+    setLastBid(data.bid_value);
+  };
+
+  const confirm = (e) => {
+    e.preventDefault();
+    if (tokenHolder.token.length) {
+      if (myBid > lastBid) {
+        confirmDialog({
+          message: `Are you sure you want to bid by ${myBid}$ ?`,
+          header: "Confirmation",
+          icon: "pi pi-exclamation-triangle",
+          accept: () => {
+            bidNow();
+          },
+          reject: () => {
+            showWarn2(2);
+          },
+        });
+      } else {
+        showWarn2(3);
+      }
     } else {
-      toast.current.show({
-        severity: "warn",
-        summary: "Warn Message",
-        detail: "your bid value must be grater than last bid of the auction",
-        life: 5000,
-      });
+      showWarn2(4);
     }
   };
 
   const bidNow = () => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInBheW1lbnRSZWYiOm51bGwsInVzZXJOYW1lIjoiTW9oYW1tYWQgR2hhemFsIiwiaWF0IjoxNjM0NjEwNDM0LCJleHAiOjE2MzQ2MTQwMzR9.iCaPi_WSYC_vQo54iU6Y_zf5jtj28npXxFrGCkROqEw";
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${tokenHolder.token}` },
     };
 
     const bodyParameters = {
@@ -146,27 +211,30 @@ function LiveAuction() {
       .post(`http://localhost:5000/bids`, bodyParameters, config)
       .then((res) => {
         if (res.data.success) {
-          setLastBidder(name);
+          setLastBidder(tokenHolder.userName);
           setLastBid(myBid);
-          setMyBid(myBid + bidJumb);
-          //later :: socket.emit
-          toast.current.show({
-            severity: "success",
-            summary: "Success Message",
-            detail: "you bid has bean placed",
-            life: 7000,
-          });
+          console.log("res.data.insertId", res.data.insertId);
+
+          setMyLastBidId(res.data.insertId);
         }
       })
+      .then(() => {
+        const data = {
+          user_name: tokenHolder.userName,
+          bid_value: myBid,
+          bidId: myLastBidId,
+        };
+        console.log("data", data);
+
+        socketRef.current.emit("bid", data);
+
+        showWarn2(5);
+      })
       .catch((error) => {
-        console.log(error.message == "Request failed with status code 403");
-        //  toast.current.show({severity: 'success', summary: 'Success Message', detail: 'Order submitted'});
-        toast.current.show({
-          severity: "error",
-          summary: "Error Message",
-          detail: "you have to sginIn for bid",
-          life: 5000,
-        });
+        if (error.message == "Request failed with status code 403");
+
+        showWarn2(6);
+
         console.log(error);
       });
   };
@@ -174,11 +242,11 @@ function LiveAuction() {
   const decrease = (e) => {
     e.preventDefault();
 
-    if (!bidJumb) setBidJump(data.auction.bid_jump);
+    if (!bidJump) setBidJump(data.auction.bid_jump);
     if (!myBid) setBidJump(data.auction.lastBid);
 
     if (myBid > lastBid) {
-      if (myBid - bidJumb > lastBid) setMyBid(myBid - bidJumb);
+      if (myBid - bidJump > lastBid) setMyBid(myBid - bidJump);
     }
     if (myBid / 2 <= lastBid) {
       setColor("black");
@@ -186,16 +254,14 @@ function LiveAuction() {
   };
   const increase = (e) => {
     e.preventDefault();
-    if (!bidJumb) setBidJump(data.auction.bid_jump);
+    if (!bidJump) setBidJump(data.auction.bid_jump);
     if (!myBid) setBidJump(data.auction.lastBid);
-    console.log("myBid", myBid, "lastBid", lastBid, "bidJumb", bidJumb);
-
     if (((myBid || 0) + lastBid) / 2 >= lastBid) {
       setColor("green");
     }
 
-    if (myBid < lastBid) setMyBid(lastBid + bidJumb);
-    else setMyBid((myBid || 0) + bidJumb);
+    if (myBid < lastBid) setMyBid(lastBid + bidJump);
+    else setMyBid((myBid || 0) + bidJump);
   };
 
   return (
@@ -254,7 +320,7 @@ function LiveAuction() {
               <h5>price till now </h5>
             </div>
             <div>
-              <h5>{data.bid["MAX (bids.bid_value)"]} $</h5>
+              <h5>{lastBid} $</h5>
             </div>
             <div>
               <h5>from Bidder</h5>
@@ -277,8 +343,8 @@ function LiveAuction() {
                   className="bidValue"
                   required
                   style={{ color: `${color}`, fontSize: "35px" }}
-                  placeholder={lastBid + bidJumb}
-                  defaultValue={myBid}
+                  // placeholder={lastBid + bidJumb}
+                  defaultValue={lastBid + bidJump}
                   value={myBid}
                   className="font-weight-bold"
                   onChange={(e) => {
@@ -294,7 +360,7 @@ function LiveAuction() {
               </div>
             </div>
             <h5 style={{ fontSize: "20px" }} className="font-weight-bold">
-              {bidJumb}$ ber jumb as minimum
+              {bidJump}$ ber jumb as minimum
             </h5>
             <div></div>
 
