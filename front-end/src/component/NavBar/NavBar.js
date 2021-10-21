@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+
 import "./NavBar.css";
 const NavBar = () => {
-  const [boolean, setboolean] = useState(false);
   return (
     <div className="headar">
       <nav class="navbar navbar-expand-custom navbar-mainbg">
@@ -38,7 +38,7 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/OrgChart">
-                <i className="far fa-chart-bar"></i>Charts
+                <i className="far fa-chart-bar"></i>Our Team
               </Link>
             </li>
             <li className="nav-item">

@@ -19,14 +19,14 @@ import { MyItem } from "./component/myItem/MyItem";
 import Home from "./component/home/Home";
 import ghazal from "./component/ghazal/ghazal";
 import ContactUs from "./component/contactUs/ContactUs";
-import orgchart from "./component/organization chart/orgchart"
+import orgchart from "./component/organization chart/orgchart";
 function App() {
   return (
     <div>
       <NavBar />
       {/* <StripeContainer/> */}
       <div className="Perent">
-         <SideBar /> 
+        <SideBar />
         <Switch>
           <Route exact path="/Admin" component={Admin} />
           <Route exact path="/login" component={Login} />
@@ -45,7 +45,7 @@ function App() {
           <Route path="*" component={Component404NotFound} />
         </Switch>
       </div>
-       <Footer />  
+      <Footer />
     </div>
   );
 }

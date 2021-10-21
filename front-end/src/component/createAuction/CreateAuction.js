@@ -3,6 +3,7 @@ import axios from "axios";
 import "../createAuction/CreateAuction.css";
 import moment from "moment";
 import "../createItem/CreateItem.css";
+import swal from "sweetalert";
 function CreateAuction() {
   const [starterBid, setStarterBid] = useState();
   const [startDate, setStartDate] = useState();
@@ -20,7 +21,7 @@ function CreateAuction() {
         },
       })
       .then((res) => {
-        console.log(res.data.items)
+        console.log(res.data.items);
         setItem(res.data.items);
       })
       .catch((err) => {
@@ -62,10 +63,10 @@ function CreateAuction() {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        swal("Good job!", "Auction Created Successfuly", "success");
       })
       .catch((err) => {
-        console.log(err);
+        swal("Try Again!");
       });
   };
   return (
@@ -73,13 +74,13 @@ function CreateAuction() {
       <div className="Body-FORM">
         <div class="container">
           <div class="form">
-            <img src="./images/a-1.png" />
+            <img src="./images/a-1.png" alt="#" />
             <h1>Create Auction</h1>
             <div class="container-form">
               <select onChange={handleChange}>
                 <option>Please Select Item</option>
                 {item &&
-                  item.map((element, index) => {
+                  item.map((element) => {
                     return (
                       <option value={element.item_id}>{element.title}</option>
                     );

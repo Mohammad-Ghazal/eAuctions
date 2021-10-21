@@ -16,7 +16,7 @@ i {
   color: rgb(253, 255, 248);
 }
 .navbar-mainbg {
-  background: #f3f3f3;
+  background: #f3f1f1;
 
   /* padding: 0px; */
 }
@@ -46,7 +46,7 @@ i {
   position: relative;
 }
 #navbarSupportedContent > ul > li.active > a {
-  color: #FFA949;
+  color: #ffa949;
   background-color: transparent;
   transition: all 0.7s;
 }
