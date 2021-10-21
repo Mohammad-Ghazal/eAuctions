@@ -4,3 +4,10 @@ export const setToken = (token) => {
     payload: token,
   };
 };
+
+export const setUserName = (userNmae) => {
+  return {
+    type: "SET_USER_NAME",
+    payload: userNmae,
+  };
+};

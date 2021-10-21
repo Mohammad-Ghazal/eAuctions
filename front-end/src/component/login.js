@@ -12,7 +12,7 @@ import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
 import { Captcha } from "primereact/captcha";
 import { useDispatch, useSelector } from "react-redux";
-import { setToken } from "../actions/authAction";
+import { setToken,setUserName } from "../actions/authAction";
 import "./loginForm.css";
 import "./loginBtn.css";
 
@@ -82,7 +82,10 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userName", res.data.user_name);
+
         dispatch(setToken(res.data.token));
+        dispatch(setUserName(res.data.user_name))
       })
       .catch((error) => {
         console.log(error);
