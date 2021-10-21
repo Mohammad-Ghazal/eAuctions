@@ -20,7 +20,7 @@ function CreateItem() {
               placeholder="description"
             ></textarea>
             <div class="clearfix">
-              <button type="submit" class="signupbtn">
+              <button type="submit" className="signupbtn">
                 Submit
               </button>
             </div>

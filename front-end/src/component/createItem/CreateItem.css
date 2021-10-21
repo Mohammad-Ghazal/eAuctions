@@ -44,7 +44,7 @@ input[type="text"]:focus {
   background-color: #ddd;
   outline: none;
 }
-button {
+.signupbtn {
   background-color: #574B8A;
   color: white;
   padding: 14px 20px;
@@ -53,7 +53,7 @@ button {
   cursor: pointer;
   width: 100%;
 }
-button:hover {
+.signupbtn:hover {
   opacity: 1;
 }
 @media (max-width: 1040px) {
