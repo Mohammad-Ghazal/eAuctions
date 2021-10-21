@@ -22,7 +22,7 @@ export const CheckoutForm = () => {
     });
 
     if (!error) {
-      console.log("token created", paymentMethod);
+      console.log("token created", paymentMethod.card.brand);
       try {
         const { id } = paymentMethod;
         await axios
@@ -32,7 +32,9 @@ export const CheckoutForm = () => {
           })
           .then((result) => {
             console.log(result.data.data_payment);
-            console.log(result.data);
+            axios.post("http://localhost:5000/payments", {
+              payment_type: paymentMethod.card.brand,
+            });
             swal("Payment Success");
           })
           .catch((error) => {

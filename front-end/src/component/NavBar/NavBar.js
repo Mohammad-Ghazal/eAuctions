@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link} from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+
 import "./NavBar.css";
 const NavBar = () => {
-  const [boolean, setboolean] = useState(false);
   return (
     <div className="headar">
       <nav class="navbar navbar-expand-custom navbar-mainbg">
@@ -22,19 +22,14 @@ const NavBar = () => {
               <div className="right"></div>
             </div>
             <li className="nav-item">
-              <a className="nav-link" href="javascript:void(0);">
-                <i className="fas fa-tachometer-alt"></i>Dashboard
-              </a>
+              <Link className="nav-link" to="/Home">
+                <i className="fas fa-tachometer-alt"></i>Home
+              </Link>
             </li>
             <li className="nav-item active">
-              <a className="nav-link" href="javascript:void(0);">
-                <i className="far fa-address-book"></i>Address Book
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="javascript:void(0);">
-                <i className="far fa-clone"></i>Components
-              </a>
+              <Link className="nav-link" to="/ContactUs">
+                <i className="far fa-address-book"></i>ContactUs
+              </Link>
             </li>
             <li class="nav-item">
               <Link className="nav-link" to="/calender">
@@ -43,13 +38,13 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/OrgChart">
-                <i className="far fa-chart-bar"></i>Charts
+                <i className="far fa-chart-bar"></i>Our Team
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="javascript:void(0);">
-                <i className="far fa-copy"></i>Documents
-              </a>
+              <Link className="nav-link" to="/login">
+                <i className="far fa-copy"></i>Login
+              </Link>
             </li>
           </ul>
         </div>
