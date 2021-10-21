@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "../allAuctions/AllAuctions.css";
 import "../allAuctions/AllAuctions.css";
 import { setAuction } from "../../actions/auctionAction";
@@ -34,7 +33,6 @@ function AllAuction() {
                   <div className="content">
                     <h6 className="name">{element.title}</h6>
                     <div className="des">
-                      <p>{element.details}</p>
                       <h3>start Bid: {element.starter_bid} $</h3>
                     </div>
                     <div className="button-container">

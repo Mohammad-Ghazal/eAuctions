@@ -39,7 +39,7 @@ function ghazal() {
                 At voluptas! At
               </p>
               <h5> Price Till Now: 2200$</h5>
-              <h5>From Bidder: batool maali</h5>
+              <h5>ddddddddd</h5>
               <br />
             </div>
             <button class="btn-bid">Bid Now</button>
