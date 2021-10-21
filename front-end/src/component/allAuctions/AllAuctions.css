@@ -1,104 +1,67 @@
-.s {
-  margin-top: 5rem;
+.container-card{
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 2rem;
+  justify-content: space-between;
+  margin: 50px auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto
 }
-.Card_Auction {
-  width: 25rem;
-  height: 35rem;
-  border-radius: 0.5rem;
-  border: solid black 0.01rem;
+.title-page span{
+  font-size:30px;
+border-bottom: 2px solid #FFA949;
 }
-.image {
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
-  height: 20rem;
+.cards{
+  width: 300px;
+  margin:50px auto;
+  box-shadow: 0 10px 20px rgba(0,0, 0, .05);
+  border-radius: .5em;
+   background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #E3E3E3;
+  border-radius: 20px;
+  /* padding:10px;*/
 }
-
-.glow-on-hover {
-  width: 220px;
-  height: 50px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #111;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
+.cards .content{
+  background:#fff;
+  margin:10px;
+  padding: 5px;
 }
-
-.glow-on-hover:before {
-  content: "";
-  background: linear-gradient(
-    45deg,
-    #e97373,
-    #d39563,
-    #dad88a,
-    #ade099,
-    #91ecdd,
-    #6e80da,
-    #b692dd,
-    #d48cc5,
-    #cc7171
-  );
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
-}
-
-.glow-on-hover:active {
-  color: #000;
-}
-
-.glow-on-hover:active:after {
-  background: transparent;
-}
-
-.glow-on-hover:hover:before {
-  opacity: 1;
-}
-
-.glow-on-hover:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
+.cards .img{
+  background: url("https://cdn.pixabay.com/photo/2014/12/08/14/23/pocket-watch-560937__340.jpg")center/cover;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(#506d84, #f3d5c0);
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-  opacity: 0.5;
+  height: 200px;
+  border-radius: .5em .5em 0 0;
 }
-
-@keyframes glowing {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
+.cards .des p{
+  margin:15px 0;
+  color: #151515;
+  font-size: 18px;
 }
-
-.TITLE {
-  font-weight: 800;
+.cards .button-container{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #fff;
+  margin-top: 15px;
 }
-.SubTitel {
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
+.cards h3{
+  color:#151515;
+}
+.cards h6{
+  color: #999999;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.cards a{
+  text-decoration: none;
+  color: #574B8A;
+  font-size: 18px;
+  font-weight: bolder;
+}
+.cards a:hover{
+  color: #807F7F;
 }

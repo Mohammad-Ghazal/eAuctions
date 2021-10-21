@@ -1,101 +1,63 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap");
-
-.containers {
-  margin-top: 5rem;
-  margin-left: 35rem;
-  position: relative;
-  width: 350px;
-  height: 650px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-}
-
-.brand-logos {
-  height: 100px;
-  width: 100px;
-  background: url("https://img.icons8.com/plasticine/50/000000/auction.png");
-  margin: auto;
-  border-radius: 50%;
-  box-sizing: border-box;
-  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
-}
-
-.brand-titles {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: #1da1f2;
-  letter-spacing: 1px;
-}
-
-.inputs {
-  text-align: left;
-  margin-top: 30px;
-}
-
-.item_label,
-.item_input,
-.textarea,
-.item_button {
-  display: block;
-  width: 100%;
+* {
+  margin: 0;
   padding: 0;
-  border: none;
-  outline: none;
   box-sizing: border-box;
 }
-
-.item_label {
-  margin-bottom: 4px;
-}
-
-.item_label:nth-of-type(2) {
-  margin-top: 12px;
-}
-
-.item_input::placeholder {
-  color: gray;
-}
-
-.item_input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-}
-.text_input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 150px;
-  font-size: 14px;
+ /* Body{
+   
+  background-color: #F3F3F7;
+}  */
+.container {
+  width: 40%;
+  margin: 20px auto;
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #E3E3E3;
   border-radius: 20px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+  text-align: center;
 }
-
-.item_button {
-  margin-top: 20px;
-  background: #1da1f2;
-  height: 40px;
-  border-radius: 20px;
+.form {
+  margin: 20px auto;
+  width: 80%;
+}
+.container-form {
+  padding: 10px;
+}
+input[type="text"],input[type="number"],input[type="datetime-local"],select{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #F3F3F7;
+}
+.textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #F3F3F7;
+}
+input[type="text"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+button {
+  background-color: #574B8A;
+  color: white;
+  padding: 14px 20px;
+  margin: 30px 0;
+  border: none;
   cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
+  width: 100%;
 }
-
-.item_button:hover {
-  box-shadow: none;
+button:hover {
+  opacity: 1;
 }
-
-h1 {
-  position: absolute;
-  top: 0;
-  left: 0;
+@media (max-width: 1040px) {
+  .container {
+    width: 100%;
+  }
 }

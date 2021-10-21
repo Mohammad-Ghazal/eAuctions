@@ -3,12 +3,12 @@ import { Route, Switch } from "react-router-dom";
 import SideBar from "./component/sideBar/SideBar";
 import { Footer } from "./component/footer/footer";
 import NavBar from "./component/navBar/NavBar";
-import { AllAuctions } from "./component/allAuctions/AllAuctions";
+import AllAuctions from "./component/allAuctions/AllAuctions";
 import Login from "./component/login";
 import StripeContainer from "./component/stripe/StripeContainer";
-import { CreateAuction } from "./component/createAuction/CreateAuction";
+import CreateAuction from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
-import { CreateItem } from "./component/createItem/CreateItem";
+import CreateItem from "./component/createItem/CreateItem";
 // import Calendar from "./component/calendar";
 import LiveAuction from "./component/liveAuction/liveAuction";
 import Stripe from "./component/stripe/StripeContainer";
@@ -16,12 +16,17 @@ import { Component404NotFound } from "./component/component404NotFound/Component
 import { Admin } from "./component/admin/Admin";
 import Calendar from "./component/calendar";
 import { MyItem } from "./component/myItem/MyItem";
+import Home from "./component/home/Home";
+import ghazal from "./component/ghazal/ghazal";
+import ContactUs from "./component/contactUs/ContactUs";
+import orgchart from "./component/organization chart/orgchart"
 function App() {
   return (
-    <div className="App">
+    <div>
       <NavBar />
+      {/* <StripeContainer/> */}
       <div className="Perent">
-        <SideBar />
+         <SideBar /> 
         <Switch>
           <Route exact path="/Admin" component={Admin} />
           <Route exact path="/login" component={Login} />
@@ -33,11 +38,14 @@ function App() {
           <Route path="/stripe" component={Stripe} />
           <Route path="/live-auction/:auctionId" component={LiveAuction} />
           <Route path="/calender" component={Calendar} />
-
+          <Route path="/Home" component={Home} />
+          <Route path="/g" component={ghazal} />
+          <Route path="/ContactUs" component={ContactUs} />
+          <Route path="/OrgChart" component={orgchart} />
           <Route path="*" component={Component404NotFound} />
         </Switch>
       </div>
-      <Footer />
+       <Footer />  
     </div>
   );
 }

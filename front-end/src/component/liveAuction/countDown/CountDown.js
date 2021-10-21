@@ -1,28 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import moment from "moment";
+import { useSelector, useDispatch } from "react-redux";
 moment.locale("jo");
 let isEnd = false;
-function CountDown(data) {
+function CountDown() {
   const [days, setDays] = useState("");
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
   let timeinterval;
-
+  const { data } = useSelector((state) => {
+    return {
+      data: state.auctionReducer,
+    };
+  });
   useEffect(() => {
     setTimeout(() => {
       const auction = {
-        start_date: "2021-11-13T22:00:00.000Z",
-        end_date: "2022-01-13T22:00:00.000Z",
+        start_date: moment(data.auction.start_date).utcOffset(5.9, true),
+        end_date: moment(data.auction.end_date).utcOffset(5.9, true),
       };
 
       let date;
       if (Date.parse(auction.start_date) > new Date()) {
         date = Date.parse(auction.start_date);
+        
       } else {
         if (Date.parse(auction.end_date) < new Date()) {
           date = Date.parse(auction.end_date);
+       
         } else {
           isEnd = true;
         }
@@ -68,7 +75,11 @@ function CountDown(data) {
       setSeconds(("0" + t.seconds).slice(-2));
 
       if (t.total <= 0) {
+        console.log("hello");
+        console.log(t.total)
         clearInterval(timeinterval);
+         console.log(timeinterval);
+        
       }
     }
 

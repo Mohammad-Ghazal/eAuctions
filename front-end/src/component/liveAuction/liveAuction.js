@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setBid, setAuction } from "../../actions/auctionAction";
 import { Toast } from "primereact/toast";
-
 moment.localeData();
 function LiveAuction() {
   const { data } = useSelector((state) => {
@@ -18,6 +17,7 @@ function LiveAuction() {
       data: state.auctionReducer,
     };
   });
+  console.log("asdsfff", data.auction.start_date);
 
   const { auctionId } = useParams(); //to get url parameters
   const [name, setName] = useState("My Name");
@@ -233,13 +233,21 @@ function LiveAuction() {
               <h5>auction start date</h5>{" "}
             </div>
             <div>
-              <h5>{moment(data.start_date).format("YYYY-MM-DD HH:mm")}</h5>{" "}
+              <h5>
+                {moment(data.auction.start_date)
+                  .utcOffset(0, false)
+                  .format("YYYY-MM-DD HH:mm a")}
+              </h5>{" "}
             </div>
             <div>
               <h5>auction end date</h5>{" "}
             </div>
             <div>
-              <h5>{moment(data.end_date).format("YYYY-MM-DD HH:mm")}</h5>{" "}
+              <h5>
+                {moment(data.auction.end_date)
+                  .utcOffset(0, false)
+                  .format("YYYY-MM-DD HH:mm a")}
+              </h5>{" "}
             </div>
 
             <div>

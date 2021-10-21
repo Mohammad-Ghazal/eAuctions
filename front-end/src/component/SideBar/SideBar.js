@@ -17,9 +17,8 @@ const SideBar = () => {
         <Sidebar
           style={{
             width: "385px",
-            background:"#F3D5C0"
-            // background:
-            //   "linear-gradient(transparent,#d9a7c7,transparent,#fffcdc)",
+            
+             background: "linear-gradient(90deg, #efd5ff 0%, #515ada 100%)",
           }}
           visible={visibleLeft}
           onHide={() => setVisibleLeft(false)}
