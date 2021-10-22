@@ -3,40 +3,49 @@ import "./style.css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 moment.locale("jo");
-let isEnd = false;
+let isTimerEnd = false; //by defult auction not start and not end
+
 function CountDown() {
   const [days, setDays] = useState("");
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
+  const [startAgain, setStartAgain] = useState("");
   let timeinterval;
   const { data } = useSelector((state) => {
     return {
       data: state.auctionReducer,
     };
   });
+
   useEffect(() => {
     setTimeout(() => {
       const auction = {
-        start_date: moment(data.auction.start_date).utcOffset(5.9, true),
-        end_date: moment(data.auction.end_date).utcOffset(5.9, true),
+        start_date: moment(data.auction.start_date)
+          .utcOffset(0, false)
+          .format("YYYY-MM-DD HH:mm a"),
+        end_date: moment(data.auction.end_date)
+          .utcOffset(0, false)
+          .format("YYYY-MM-DD HH:mm a"),
       };
-
       let date;
-      if (Date.parse(auction.start_date) > new Date()) {
+      if (new Date(auction.start_date) > new Date()) {
+        //is the auction start ??
         date = Date.parse(auction.start_date);
-        
+        console.log("the auction in progress");
       } else {
-        if (Date.parse(auction.end_date) < new Date()) {
+        //is the auction not end ??
+        if (new Date(auction.end_date) > new Date()) {
           date = Date.parse(auction.end_date);
-       
         } else {
-          isEnd = true;
+          //the auction is end
+          isTimerEnd = true;
+          console.log("the Auction has been closed");
         }
       }
-
-      if (!isEnd) {
-        const restDate = new Date(date - new Date());
+      if (!isTimerEnd) {
+        //the timer will start
+        const restDate = new Date(date - Date.parse(new Date()));
         const deadline = new Date(
           Date.parse(new Date()) + Date.parse(restDate) //26 * 1 * 60 * 60 * 1000
         );
@@ -47,7 +56,7 @@ function CountDown() {
     return () => {
       clearInterval(timeinterval);
     };
-  }, []);
+  }, [startAgain]);
 
   //  const {setDays,setHours,setMinutes,setSeconds}=data.children
 
@@ -76,13 +85,16 @@ function CountDown() {
 
       if (t.total <= 0) {
         console.log("hello");
-        console.log(t.total)
+        console.log(t.total);
         clearInterval(timeinterval);
-         console.log(timeinterval);
-        
+
+        if (!isTimerEnd) {
+          setStartAgain(true);
+          // clearInterval(timeinterval);   slove the problem here
+          // timeinterval = setInterval(updateClock, 0);
+        }
       }
     }
-
     updateClock();
     timeinterval = setInterval(updateClock, 0);
   }
