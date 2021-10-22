@@ -7,11 +7,21 @@ import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 function AllAuction() {
   const [allAuctions, setAllAuctions] = useState();
+  const [allAuctions2, setAllAuctions2] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
+  const search = (e) => {
+    e.preventDefault();
+    setAllAuctions(
+      allAuctions2.filter((item) => {
+        return item.title.toLowerCase().includes(e.target.value.toLowerCase());
+      })
+    );
+  };
   useEffect(() => {
     axios.get(`http://localhost:5000/auctions`).then((res) => {
       setAllAuctions(res.data.result);
+      setAllAuctions2(res.data.result);
     });
   }, []);
   return (
@@ -20,7 +30,8 @@ function AllAuction() {
         <div className="sec title-page">
           <h2>
             <span>All Auctions</span>
-          </h2>
+          </h2>{" "}
+          <input placeholder="search" onChange={search}></input>
         </div>
       </div>
       <div className="container-card">
