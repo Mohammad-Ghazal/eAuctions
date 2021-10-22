@@ -103,9 +103,10 @@ function LiveAuction() {
           life: 5000,
         });
         break;
+      default:
+        break;
     }
   };
-
   const setReduxAuction = function () {
     if (
       !!typeof renderedDiv[0].auction.image &&
@@ -154,12 +155,12 @@ function LiveAuction() {
   }, []);
 
   useEffect(() => {
-    console.log('euseEffict');
+    console.log("euseEffict");
     socketRef.current = io.connect("http://localhost:5000");
     socketRef.current.on("yourId", (id) => {});
     socketRef.current.on("broadcast", (data) => {
-      console.log('broadcast');
-      
+      console.log("broadcast");
+
       received(data);
     });
   }, [socketRef]);

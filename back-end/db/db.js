@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
   user: "sql6444417",
   password: "nfhkapjlqX",
   database: "sql6444417",
-
+  timezone: "+00:00",
   multipleStatements: true,
 
 });

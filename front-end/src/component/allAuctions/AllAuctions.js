@@ -11,6 +11,7 @@ function AllAuction() {
   const dispatch = useDispatch();
   useEffect(() => {
     axios.get(`http://localhost:5000/auctions`).then((res) => {
+      console.log(res.data.result)
       setAllAuctions(res.data.result);
     });
   }, []);
