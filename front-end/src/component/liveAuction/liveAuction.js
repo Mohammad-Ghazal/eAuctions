@@ -137,6 +137,7 @@ function LiveAuction() {
       if (data.bid["MAX (bids.bid_value)"]) {
         setMyBid(data.bid["MAX (bids.bid_value)"] + data.auction.bid_jump);
         setLastBid(data.bid["MAX (bids.bid_value)"]);
+        setLastBidder(data.bid["user_name"]);
       } else {
         setLastBid(0);
         if (data.auction.starter_bid) {
@@ -179,9 +180,10 @@ function LiveAuction() {
   }, [socketRef]);
 
   const received = (data) => {
-    if (data.bidId !== myLastBidId) {
-      showWarn(data);
-    }
+    if (data.auctionId === auctionId)
+      if (data.bidId !== myLastBidId) {
+        showWarn(data);
+      }
     setLastBidder(data.user_name);
     setLastBid(data.bid_value);
   };
@@ -222,7 +224,6 @@ function LiveAuction() {
         if (res.data.success) {
           setLastBidder(tokenHolder.userName);
           setLastBid(myBid);
-
           setMyLastBidId(res.data.insertId);
         }
       })
@@ -231,17 +232,14 @@ function LiveAuction() {
           user_name: tokenHolder.userName,
           bid_value: myBid,
           bidId: myLastBidId,
+          auctionId,
         };
-
         socketRef.current.emit("bid", data);
-
         showMsg(5);
       })
       .catch((error) => {
-        if (error.message == "Request failed with status code 403");
-
+        if (error.message === "Request failed with status code 403");
         showMsg(6);
-
         console.log(error);
       });
   };
@@ -272,39 +270,29 @@ function LiveAuction() {
             })
             .catch((error) => {
               console.log(error);
-              if (error.message == "Request failed with status code 403");
+              if (error.message === "Request failed with status code 403");
               showMsg(6);
             });
         }
       })
       .catch((error) => {
-        if (error.message == "Request failed with status code 403");
+        if (error.message === "Request failed with status code 403");
         showMsg(6);
         console.log(error);
       });
   };
   const decrease = (e) => {
     e.preventDefault();
-
     if (!bidJump) setBidJump(data.auction.bid_jump);
     if (!myBid) setBidJump(data.auction.lastBid);
-
     if (myBid > lastBid) {
       if (myBid - bidJump > lastBid) setMyBid(myBid - bidJump);
     }
-    // if (myBid / 2 <= lastBid) {
-    //   setColor("black");
-    // }
   };
   const increase = (e) => {
     e.preventDefault();
     if (!bidJump) setBidJump(data.auction.bid_jump);
     if (!myBid) setBidJump(data.auction.lastBid);
-
-    // if (((myBid || 0) + lastBid) / 2 >= lastBid) {
-    //   setColor("green");
-    // }
-
     if (myBid < lastBid) setMyBid(lastBid + bidJump);
     else setMyBid((myBid || 0) + bidJump);
   };
@@ -317,7 +305,6 @@ function LiveAuction() {
             <CountDown></CountDown>
             <h2 className="title">{data.auction.title}</h2>
           </div>
-
           <div className="left">
             <h5>{data.auction.details}</h5>
           </div>
@@ -369,7 +356,6 @@ function LiveAuction() {
                   .format("YYYY-MM-DD HH:mm a")}
               </h5>{" "}
             </div>
-
             <div>
               <h5>price till now </h5>
             </div>
@@ -380,7 +366,7 @@ function LiveAuction() {
               <h5>from Bidder</h5>
             </div>
             <div>
-              <h5>{data.bid["user_name"]}</h5>{" "}
+              <h5>{lastBidder}</h5>{" "}
             </div>
           </div>
           <div className="footer">
@@ -397,7 +383,6 @@ function LiveAuction() {
                   className="bidValue"
                   required
                   style={{ fontSize: "35px" }}
-                  // placeholder={lastBid + bidJumb}
                   defaultValue={lastBid + bidJump}
                   value={myBid}
                   className="font-weight-bold"
