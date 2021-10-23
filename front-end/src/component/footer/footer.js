@@ -1,14 +1,16 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import "./footer.css";
+import { GrFacebookOption,GrTwitter,GrLinkedin } from 'react-icons/gr'
+import { FaInstagram } from 'react-icons/fa'
 
 export const Footer = () => {
   return (
     <div>
-    <div class="footer">
-    <div class="cont">
-      <div class="row-footer">
-        <div class="col-footer">
+    <div className="footer">
+    <div className="cont">
+      <div className="row-footer">
+        <div className="col-footer">
           <h4>Company</h4>
           <ul>
             <li><a href="">About us</a></li>
@@ -17,7 +19,7 @@ export const Footer = () => {
             <li><a href="">affiliate program</a></li>
           </ul>
         </div>
-        <div class="col-footer">
+        <div className="col-footer">
           <h4>get help</h4>
           <ul>
             <li><a href="">FAQ</a></li>
@@ -29,19 +31,19 @@ export const Footer = () => {
         <div class="col-footer">
           <h4>online shop</h4>
           <ul>
-            <li><a href="">product</a></li>
-            <li><a href="">product</a></li>
-            <li><a href="">product</a></li>
-            <li><a href="">product</a></li>
+            <li><Link to="">product</Link></li>
+            <li><Link to="">product</Link></li>
+            <li><Link to="">product</Link></li>
+            <li><Link to="">product</Link></li>
           </ul>
         </div>
-        <div class="col-footer">
+        <div className="col-footer">
           <h4>Follow us</h4>
-          <div class="social">
-            <a href=""><i class="fab fa-facebook-f"></i></a>
-            <a href=""><i class="fab fa-instagram"></i></a>
-            <a href=""><i class="fab fa-twitter"></i></a>
-            <a href=""><i class="fab fa-linkedin-in"></i></a>
+          <div className="social">
+            <a href="https://www.facebook.com/"><GrFacebookOption/></a>
+            <a href=""><FaInstagram/></a>
+            <a href=""><GrTwitter/></a>
+            <a href=""><GrLinkedin/></a>
           </div>
         </div>
       </div>

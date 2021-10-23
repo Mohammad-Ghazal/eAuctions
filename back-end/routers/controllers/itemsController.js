@@ -48,20 +48,68 @@ const getItemsByID = (req, res) => {
     });
   });
 };
+const getItemsUserByID = (req, res) => {
+  const userId = req.token.userId;
+  const data = [userId];
+  const query = `SELECT * FROM users INNER JOIN items ON users.user_id=items.owner_id WHERE users.user_id =?`;
+  connection.query(query, data, (err, result, fields) => {
+    if (err) {
+      console.log(err.message);
+      return res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    }
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: `the user with id ${userId} is not exist`,
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: `the user with id ${userId}`,
+      item: result,
+    });
+  });
+};
 
 const deleteItemById = (req, res) => {
   const { itemId } = req.params;
-  const query = `UPDATE items SET is_deleted =1 WHERE item_id =${itemId} AND is_deleted=0`;
+  const query = `UPDATE items left join auctions ON items.item_id=auctions.item_id SET items.is_deleted =1 WHERE auctions.auction_id is NULL and items.item_id=${itemId}`;
   connection.query(query, (err, result, fields) => {
+    console.log(result);
+    console.log(err);
     if (!result.affectedRows) {
-      return res.status(404).json({
+      return res.status(200).json({
         success: false,
-        message: `the item with id ${itemId} is not exist`,
+        message: `sorry,the item has Auction`,
       });
     }
     res.status(202).json({
       success: true,
-      message: `Success Delete item with id => ${itemId}`,
+      message: `Success update item with id => ${itemId}`,
+    });
+  });
+};
+const updateItemById = (req, res) => {
+  const { title, details } = req.body;
+  const { itemId } = req.params;
+  const query = `UPDATE items  SET title=if(${
+    title !== ""
+  },'${title}',title),details=if(${
+    details !== ""
+  },'${details}',details) WHERE item_id=${itemId}`;
+  connection.query(query, (err, result, fields) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: `sorry,please contact with customer care`,
+      });
+    }
+    res.status(202).json({
+      success: true,
+      message: `Successfully Updated`,
     });
   });
 };
@@ -69,12 +117,12 @@ const deleteItemById = (req, res) => {
 const createNewItem = (req, res) => {
   const { title, details, image } = req.body;
   const owner_id = req.token.userId;
-if(!title){
-  return res.status(400).json({
-    success: false,
-    message: `title is required`,
-  });
-}
+  if (!title) {
+    return res.status(400).json({
+      success: false,
+      message: `title is required`,
+    });
+  }
 
   const newItem = [title, details, image, owner_id];
   const query = `INSERT INTO items (title, details, image,owner_id) values (?,?,?,?)`;
@@ -106,4 +154,6 @@ module.exports = {
   createNewItem,
   getItemsByID,
   deleteItemById,
+  getItemsUserByID,
+  updateItemById,
 };

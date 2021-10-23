@@ -9,11 +9,13 @@ const {
   editAuctionById,
   deleteAuctionById,
   getAuctionsByUserId,
+  getLimitAuction,
 } = require("../controllers/auctionsController");
 const { isBidExist } = require("../controllers/bidsController");
 
 auctionsRouter.post("/", authentication, createAuction);
 auctionsRouter.get("/", getAllAuctions);
+auctionsRouter.get("/limit", getLimitAuction);
 auctionsRouter.get("/user_auctions", authentication, getAuctionsByUserId);
 auctionsRouter.get("/:auction_id", getAuctionById);
 auctionsRouter.put("/:auction_id", isBidExist, editAuctionById);

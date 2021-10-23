@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../landing/landing.css";
 function Landing() {
   return (
     <>
-      <div class="landing">
-        <div class="landText">
+      <div className="landing">
+        <div className="landText">
           <h3>
             {" "}
             Online auction- <br />
@@ -14,8 +15,8 @@ function Landing() {
             Increase demand and create excitement for your products using our
             fully hosted online auction software.
           </p>
-          <button class="button">SHOP NOW</button>
-          <button class="button1">Read Now</button>
+          <Link to="/CreateItem"><button className="button">Create Item</button></Link>
+          <Link to="/CreateAuction"><button className="button1">Create Auction</button></Link>
         </div>
       </div>
     </>

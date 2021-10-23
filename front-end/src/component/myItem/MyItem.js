@@ -5,7 +5,15 @@ import swal from "sweetalert";
 
 export const MyItem = () => {
   const [item, setItem] = useState();
-  const token=localStorage.getItem("token");
+  const [title, setTitlem] = useState();
+  const [details, setDetails] = useState();
+  const token = localStorage.getItem("token");
+  const updateTitle = (u) => {
+    setTitlem(u.target.value);
+  };
+  const updateDetail = (u) => {
+    setDetails(u.target.value);
+  };
   useEffect(() => {
     axios
       .get(`http://localhost:5000/items`, {
@@ -25,7 +33,7 @@ export const MyItem = () => {
   const click = (e, index) => {
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text: "Once deleted, you will not be able to recover this item!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -38,31 +46,79 @@ export const MyItem = () => {
               let arr = [...item];
               arr.splice(index, 1);
               setItem([...arr]);
+              swal("successfully Deleted", {
+                icon: "success",
+              });
+            } else {
+              swal(`${result.data.message}`);
             }
           })
           .catch((err) => {
             console.log(err);
           });
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
       } else {
-        swal("Your imaginary file is safe!");
+        swal("Your item is safe!");
+      }
+    });
+  };
+  const toUpdate = (e, index) => {
+    swal({
+      title: "Are you sure?",
+      text: "Do You Want To Update Item Title And Detail",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willUpdate) => {
+      if (willUpdate) {
+        axios
+          .put(`http://localhost:5000/items/${e}`, { title, details })
+          .then((result) => {
+            if (result.data.success) {
+              swal(`${result.data.message}`);
+            }
+          })
+          .catch((err) => {
+            swal(`${err}`);
+          });
+      } else {
+        swal("Your information of item was safe!");
       }
     });
   };
   return (
-    <div className="create_Auction">
+    <div class="container_item">
       {item &&
         item.map((element, index) => {
           return (
-            <div key={index}>
-              <textarea>{element.details}</textarea>
-              <input defaultValue={element.title}></input>
-              <img alt="Card" src={`${element.image}`} />
-              <hr></hr>
-              <button onClick={() => click(element.item_id)}>Delete</button>
-              <button onClick={click}>Update</button>
+            <div className="cardd">
+              <div className="image">
+                <img alt="Card" src={`${element.image}`} />
+              </div>
+              <div className="info">
+                <h3>Update Title</h3>
+                <input
+                  defaultValue={element.title}
+                  onChange={updateTitle}
+                ></input>
+                <h3>Update Detail</h3>
+                <textarea rows="6" onChange={updateDetail}>
+                  {element.details}
+                </textarea>
+                <div className="btn">
+                  <button
+                    className="btn-2"
+                    onClick={() => toUpdate(element.item_id)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="btn-1"
+                    onClick={() => click(element.item_id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           );
         })}
