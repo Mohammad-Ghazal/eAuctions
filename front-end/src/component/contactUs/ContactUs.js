@@ -3,22 +3,22 @@ import "../contactUs/contactUs.css";
 function Contact() {
   return (
     <>
-      <div class="word">
-        <div class="sec title-page">
+      <div className="word">
+        <div className="sec title-page">
           <h2>
             <span>Contact us</span>
           </h2>
         </div>
       </div>
-      <div class="container-contact">
-        <div class="form">
+      <div className="container-contact">
+        <div className="form">
           <img src="./images/a-1.png" alt="" />
           <h1>Contact us</h1>
-          <div class="contact-form">
+          <div className="contact-form">
             <input type="text" placeholder="YOUR NAME" required />
             <input type="email" placeholder="EMAIL ADDRESS" required />
             <textarea
-              class="textarea"
+              className="textarea"
               name=""
               id=""
               cols="30"
@@ -26,7 +26,7 @@ function Contact() {
               placeholder="MESSAGE"
             ></textarea>
             <div class="clear">
-              <button type="submit" class="btn-contact">
+              <button type="submit" className="btn-contact">
                 Submit MESSAGE
               </button>
             </div>

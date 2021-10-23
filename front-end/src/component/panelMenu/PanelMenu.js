@@ -80,17 +80,6 @@ const PanelMenuDemo = () => {
           ),
           icon: "pi pi-shopping-cart",
         },
-        {
-          label: (
-            <Link
-              to="/AllItem"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              All Item
-            </Link>
-          ),
-          icon: "pi pi-fw pi-external-link",
-        },
       ],
     },
     {

@@ -20,7 +20,7 @@ import Home from "./component/home/Home";
 import ghazal from "./component/ghazal/ghazal";
 import ContactUs from "./component/contactUs/ContactUs";
 import orgchart from "./component/organization chart/orgchart";
-import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions"
+import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions";
 import Profile from "./component/profile/Profile";
 function App() {
   return (
