@@ -29,6 +29,16 @@ const PanelMenuDemo = () => {
             </Link>
           ),
           icon: "pi pi-shopping-cart",
+        }, {
+          label: (
+            <Link
+              to="/MyFavorites"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              My Favorites
+            </Link>
+          ),
+          icon: "pi pi-shopping-cart",
         },
         {
           label: (

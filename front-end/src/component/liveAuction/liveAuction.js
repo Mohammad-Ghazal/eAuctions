@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setBid, setAuction } from "../../actions/auctionAction";
 import { Toast } from "primereact/toast";
-
 import io from "socket.io-client";
 
 moment.localeData();
@@ -38,10 +37,10 @@ function LiveAuction() {
   const dispatch = useDispatch();
   const toast = useRef(null);
   const socketRef = useRef();
-
+  const config = {
+    headers: { Authorization: `Bearer ${tokenHolder.token}` },
+  };
   const showWarn = (data) => {
-    console.log(data);
-
     toast.current.show({
       severity: "warn",
       summary: "SomeOne bid",
@@ -50,7 +49,7 @@ function LiveAuction() {
       life: 6000,
     });
   };
-  const showWarn2 = (msgNumber) => {
+  const showMsg = (msgNumber) => {
     switch (msgNumber) {
       case 1:
         toast.current.show({
@@ -103,6 +102,23 @@ function LiveAuction() {
           life: 5000,
         });
         break;
+      case 7:
+        toast.current.show({
+          severity: "success",
+          summary: "Success Message",
+          detail: "the user has bean on your favorites list",
+          life: 5000,
+        });
+        break;
+      case 8:
+        toast.current.show({
+          severity: "info",
+          summary: "info Message",
+          detail: "the user already on your favorites list",
+          life: 5000,
+        });
+        break;
+
       default:
         break;
     }
@@ -155,19 +171,15 @@ function LiveAuction() {
   }, []);
 
   useEffect(() => {
-    console.log("euseEffict");
     socketRef.current = io.connect("http://localhost:5000");
     socketRef.current.on("yourId", (id) => {});
     socketRef.current.on("broadcast", (data) => {
-      console.log("broadcast");
-
       received(data);
     });
   }, [socketRef]);
 
   const received = (data) => {
     if (data.bidId !== myLastBidId) {
-      console.log("data.bidId ", data.bidId, "myLastBidId", myLastBidId);
       showWarn(data);
     }
     setLastBidder(data.user_name);
@@ -186,22 +198,18 @@ function LiveAuction() {
             bidNow();
           },
           reject: () => {
-            showWarn2(2);
+            showMsg(2);
           },
         });
       } else {
-        showWarn2(3);
+        showMsg(3);
       }
     } else {
-      showWarn2(4);
+      showMsg(4);
     }
   };
 
   const bidNow = () => {
-    const config = {
-      headers: { Authorization: `Bearer ${tokenHolder.token}` },
-    };
-
     const bodyParameters = {
       auction_id: data.auction.auction_id,
       date: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
@@ -214,7 +222,6 @@ function LiveAuction() {
         if (res.data.success) {
           setLastBidder(tokenHolder.userName);
           setLastBid(myBid);
-          console.log("res.data.insertId", res.data.insertId);
 
           setMyLastBidId(res.data.insertId);
         }
@@ -225,21 +232,57 @@ function LiveAuction() {
           bid_value: myBid,
           bidId: myLastBidId,
         };
-        console.log("data", data);
 
         socketRef.current.emit("bid", data);
 
-        showWarn2(5);
+        showMsg(5);
       })
       .catch((error) => {
         if (error.message == "Request failed with status code 403");
 
-        showWarn2(6);
+        showMsg(6);
 
         console.log(error);
       });
   };
-
+  const addUserToFavorite = (e) => {
+    e.preventDefault();
+    axios
+      .get(`http://localhost:5000/favUsers`, config)
+      .then((res) => {
+        if (
+          res.data.users.filter((fav) => {
+            return fav.fav_user_id == data.auction.user_id;
+          }).length
+        ) {
+          showMsg(8);
+          setColor("blue");
+        } else {
+          axios
+            .post(
+              `http://localhost:5000/favUsers/${data.auction.user_id}`,
+              {},
+              config
+            )
+            .then((res) => {
+              if (res.data.success) {
+                showMsg(7);
+                setColor("blue");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+              if (error.message == "Request failed with status code 403");
+              showMsg(6);
+            });
+        }
+      })
+      .catch((error) => {
+        if (error.message == "Request failed with status code 403");
+        showMsg(6);
+        console.log(error);
+      });
+  };
   const decrease = (e) => {
     e.preventDefault();
 
@@ -249,17 +292,18 @@ function LiveAuction() {
     if (myBid > lastBid) {
       if (myBid - bidJump > lastBid) setMyBid(myBid - bidJump);
     }
-    if (myBid / 2 <= lastBid) {
-      setColor("black");
-    }
+    // if (myBid / 2 <= lastBid) {
+    //   setColor("black");
+    // }
   };
   const increase = (e) => {
     e.preventDefault();
     if (!bidJump) setBidJump(data.auction.bid_jump);
     if (!myBid) setBidJump(data.auction.lastBid);
-    if (((myBid || 0) + lastBid) / 2 >= lastBid) {
-      setColor("green");
-    }
+
+    // if (((myBid || 0) + lastBid) / 2 >= lastBid) {
+    //   setColor("green");
+    // }
 
     if (myBid < lastBid) setMyBid(lastBid + bidJump);
     else setMyBid((myBid || 0) + bidJump);
@@ -284,6 +328,15 @@ function LiveAuction() {
           <div className="right">
             <div>
               {" "}
+              <i
+                className="pi pi-user-plus"
+                style={{ color: color }}
+                onClick={addUserToFavorite}
+              >
+                {" "}
+                favorite user{" "}
+              </i>
+              <label></label>
               <h5> item owner</h5>{" "}
             </div>
             <div>
@@ -343,7 +396,7 @@ function LiveAuction() {
                   id="bidValue"
                   className="bidValue"
                   required
-                  style={{ color: `${color}`, fontSize: "35px" }}
+                  style={{ fontSize: "35px" }}
                   // placeholder={lastBid + bidJumb}
                   defaultValue={lastBid + bidJump}
                   value={myBid}

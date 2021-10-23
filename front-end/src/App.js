@@ -20,6 +20,7 @@ import Home from "./component/home/Home";
 import ghazal from "./component/ghazal/ghazal";
 import ContactUs from "./component/contactUs/ContactUs";
 import orgchart from "./component/organization chart/orgchart";
+import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions"
 function App() {
   return (
     <div>
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/Admin" component={Admin} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/AllAuctions" component={AllAuctions} />
+          <Route exact path="/MyFavorites" component={FavUsersAuctions} />
           <Route exact path="/CreateAuction" component={CreateAuction} />
           <Route exact path="/MyItem" component={MyItem} />
           <Route exact path="/MyAuction" component={MyAuction} />
