@@ -150,6 +150,28 @@ const getAuctionsByUserId = (req, res) => {
     });
   });
 };
+const getLimitAuction = (req, res) => {
+  const query = `SELECT items.title,items.image,auctions.starter_bid,auctions.start_date,auctions.end_date,auctions.bid_jump,auctions.closed_on,auctions.is_deleted FROM items JOIN auctions  ON items.item_id=auctions.item_id WHERE auctions.is_deleted = 0 LIMIT 3`;
+  connection.query(query, (err, result, fields) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    }
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: `no auctions for user_id`,
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: `all auctions for user_id`,
+      result: result,
+    });
+  });
+};
 
 const deleteAuctionById = (req, res) => {
   const { auction_id } = req.params;
@@ -175,4 +197,5 @@ module.exports = {
   editAuctionById,
   deleteAuctionById,
   getAuctionsByUserId,
+  getLimitAuction,
 };
