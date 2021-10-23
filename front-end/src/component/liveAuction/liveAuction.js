@@ -174,7 +174,6 @@ function LiveAuction() {
     socketRef.current = io.connect("http://localhost:5000");
     socketRef.current.on("yourId", (id) => {});
     socketRef.current.on("broadcast", (data) => {
-
       received(data);
     });
   }, [socketRef]);
@@ -251,16 +250,13 @@ function LiveAuction() {
     axios
       .get(`http://localhost:5000/favUsers`, config)
       .then((res) => {
-        if (res.data.users.length) {
-
-          if (
-            res.data.users.filter((fav) => {
-              return fav.fav_user_id == data.auction.user_id;
-            }).length
-          ) {
-            showMsg(8);
-            setColor("blue");
-          }
+        if (
+          res.data.users.filter((fav) => {
+            return fav.fav_user_id == data.auction.user_id;
+          }).length
+        ) {
+          showMsg(8);
+          setColor("blue");
         } else {
           axios
             .post(
