@@ -4,47 +4,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* .input-field {
-  position: relative;
-  width: 250px;
-  height: 44px;
-  line-height: 44px;
-}
-
-.input-field label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: #ff0000;
-  transition: 0.2s all;
-  cursor: text;
-}
-.input-field input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid #7e1d1d;
-  box-shadow: none;
-}
-.input-field input:invalid {
-  outline: 0;
-  color: #ff2300;
-  border-color: #ffffff;
-}
-.input-field input:focus,
-.input-field input:valid {
-  border-color: #171f19;
-}
-.input-field input:focus ~ label,
-.input-field input:valid ~ label {
-  font-size: 14px;
-  top: -24px;
-  color: #2600ff;
-} */
-
 .bid {
   text-align: center;
   color: rgb(0, 0, 0);
@@ -62,56 +21,19 @@ input::-webkit-inner-spin-button {
   display: inline-block;
   font-size: 35px !important;
   text-size-adjust: 25px;
-  width: 50px ;
+  width: 50px;
   justify-self: stretch;
-
 }
-.bwidth{
+.bwidth {
   width: 150px !important;
 }
 
 .input-container {
   display: flex;
 }
-/*
-.button-glow {
-  font-size: 35px !important;
-  text-size-adjust: 25px;
-  width: 100px;
-  justify-self: stretch;
-  
-  width: 50px;
-} */
-/* 
-.bwidth {
-  background-color: #f3d5c0;
-  width: 50px;
-  
-} */
-
-/* .title {
-  background-color: #f3d5c073;
-  margin-top: 30px;
-  width: 100%;
-  justify-content: stretch;
-  text-align: justify center;
-  text-justify: auto;
-  font-weight: bold;
-} */
-
 h5 {
   font-weight: bold;
 }
-
-/* .bid {
-  height: 100px;
-  background-color: transparent;
-  border: 3px solid #050404;
-  border-radius: 5%;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-  color: #050404;
-} */
 .glow:hover {
   box-shadow: 0 0 10px 0 #050404 inset, 0 0 10px 1px #050404;
   border: 2px solid #050404;
@@ -131,7 +53,6 @@ h5 {
   background-color: #889eaf;
   padding: 40px;
   text-align: center;
-  font-size: 35px;
   font-style: bold;
 }
 

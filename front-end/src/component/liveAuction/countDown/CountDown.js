@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
+
 moment.locale("jo");
 let isTimerEnd = false; //by defult auction not start and not end
 
 function CountDown() {
+  const history = useHistory();
+
   const [days, setDays] = useState("");
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -101,6 +105,19 @@ function CountDown() {
 
   return (
     <>
+      <div
+        className="close_div"
+        style={{ visibility: isTimerEnd ? "visible" : "hidden" }}
+      >
+        <h1>this auction has been closed</h1>
+        <button
+          onClick={() => {
+            history.push(`/Home`);
+          }}
+        >
+          back to home
+        </button>
+      </div>
       <div id="clockdiv">
         <div>
           <div className="smalltext">Days</div>
