@@ -71,3 +71,20 @@
 .business .business-content .card-b .info a:hover {
   color: #333;
 }
+.business_button3 .btn_button3 {
+  border-radius: 10px;
+  background-color: #ffa949;
+  border: none;
+  color: #ffffff;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 180px;
+  font-weight: 800;
+  margin-right: 10px;
+}
+.business_button3 {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}

@@ -42,7 +42,21 @@ function ghazal() {
               <h5>ddddddddd</h5>
               <br />
             </div>
-            <button class="btn-bid">Bid Now</button>
+            <div>
+              <div className="liveAuctions">
+                <button className="btn1">-</button>
+                <input
+                  type="number"
+                  id="bidValue"
+                  className="liveAuction_input"
+                  required
+
+                  // placeholder={lastBid + bidJumb}
+                />
+                <button className="btn1">+</button><br/>
+                <button class="button">Bid Now</button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

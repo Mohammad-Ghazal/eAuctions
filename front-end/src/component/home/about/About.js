@@ -1,11 +1,12 @@
 import React from "react";
 import "../about/about.css";
+import { Link } from "react-router-dom";
 function About() {
   return (
     <>
       <section class="about" id="about">
         <div class="title ">
-          <h2 class="section-title">Auction</h2>
+          <h2 class="section-title">About</h2>
         </div>
         <div class="content">
           <div class="column col-left ">
@@ -25,7 +26,7 @@ function About() {
               excitement as the timer counts down on your auction, has never
               been simpler.
             </p>
-            <button class="button">Read More</button>
+            <Link to=""><button className="button">Read More</button></Link>
           </div>
         </div>
       </section>

@@ -21,6 +21,7 @@ import ghazal from "./component/ghazal/ghazal";
 import ContactUs from "./component/contactUs/ContactUs";
 import orgchart from "./component/organization chart/orgchart";
 import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions"
+import Profile from "./component/profile/Profile";
 function App() {
   return (
     <div>
@@ -41,6 +42,7 @@ function App() {
           <Route path="/live-auction/:auctionId" component={LiveAuction} />
           <Route path="/calender" component={Calendar} />
           <Route path="/Home" component={Home} />
+          <Route path="/MyProfile" component={Profile} />
           <Route path="/g" component={ghazal} />
           <Route path="/ContactUs" component={ContactUs} />
           <Route path="/OrgChart" component={orgchart} />
