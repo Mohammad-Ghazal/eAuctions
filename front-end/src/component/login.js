@@ -12,15 +12,16 @@ import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
 import { Captcha } from "primereact/captcha";
 import { useDispatch, useSelector } from "react-redux";
-import { setToken,setUserName } from "../actions/authAction";
+import { setToken, setUserName } from "../actions/authAction";
+import { useHistory } from "react-router";
 import "./loginForm.css";
 import "./loginBtn.css";
-
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
+  const history = useHistory();
 
   const showResponse = (res) => {
     axios
@@ -73,7 +74,6 @@ const Login = () => {
   const onSubmit = (data, form) => {
     setFormData(data);
     setShowMessage(true);
-    console.log(data);
     axios
       .post("http://localhost:5000/login", {
         email: data.email,
@@ -83,9 +83,9 @@ const Login = () => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userName", res.data.user_name);
-
         dispatch(setToken(res.data.token));
-        dispatch(setUserName(res.data.user_name))
+        dispatch(setUserName(res.data.user_name));
+        history.push(`/Home`);
       })
       .catch((error) => {
         console.log(error);
