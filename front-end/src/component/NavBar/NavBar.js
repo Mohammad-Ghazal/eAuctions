@@ -1,8 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setToken, setUserName } from "../../actions/authAction";
 import "./NavBar.css";
+
 const NavBar = () => {
+  const dispatch = useDispatch();
+
+  const tokenHolder = useSelector((state) => {
+    return {
+      token: state.tokenReducer.token,
+    };
+  });
+  const [LogedIn, setLogedIn] = useState(
+    <li className="nav-item">
+      <Link className="nav-link" to="/login">
+        <i className="far fa-copy"></i>Logout
+      </Link>
+    </li>
+  );
+  const IsLogedIn = () => {
+    if (!tokenHolder.token.length) {
+      setLogedIn(
+        <li className="nav-item">
+          <Link className="nav-link" to="/login">
+            <i className="far fa-copy"></i>Login
+          </Link>
+        </li>
+      );
+    } else {
+      setLogedIn(
+        <li className="nav-item">
+          <Link
+            className="nav-link"
+            onClick={() => {
+              localStorage.setItem("token", "");
+              localStorage.setItem("userName", "");
+              dispatch(setToken(""));
+              dispatch(setUserName(""));
+              return false;
+            }}
+            to="/login"
+          >
+            <i className="far fa-copy"></i>Logout
+          </Link>
+        </li>
+      );
+    }
+  };
+  useEffect(() => {
+    IsLogedIn();
+    return () => {
+      setLogedIn(
+        <li className="nav-item">
+          <Link className="nav-link" to="/login">
+            <i className="far fa-copy"></i>Login
+          </Link>
+        </li>
+      );
+    };
+  }, [tokenHolder.token]);
+
   return (
     <div className="headar">
       <nav class="navbar navbar-expand-custom navbar-mainbg">
@@ -41,11 +99,7 @@ const NavBar = () => {
                 <i className="far fa-chart-bar"></i>Our Team
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                <i className="far fa-copy"></i>Login
-              </Link>
-            </li>
+            {LogedIn}
           </ul>
         </div>
       </nav>
