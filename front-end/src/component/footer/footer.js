@@ -31,19 +31,19 @@ export const Footer = () => {
         <div class="col-footer">
           <h4>online shop</h4>
           <ul>
-            <li><Link to="">product</Link></li>
-            <li><Link to="">product</Link></li>
-            <li><Link to="">product</Link></li>
-            <li><Link to="">product</Link></li>
+            <li><a href="https://www.amazon.com">Amazon</a></li>
+            <li><a href="https://www.alibaba.com">AliBaba</a></li>
+            <li><a href="https://www.modanisa.com">Modanisa</a></li>
+            <li><a href="https://www.adidas.com">Adidas</a></li>
           </ul>
         </div>
         <div className="col-footer">
           <h4>Follow us</h4>
           <div className="social">
             <a href="https://www.facebook.com/"><GrFacebookOption/></a>
-            <a href=""><FaInstagram/></a>
-            <a href=""><GrTwitter/></a>
-            <a href=""><GrLinkedin/></a>
+            <a href="https://www.instagram.com/"><FaInstagram/></a>
+            <a href="https://twitter.com/"><GrTwitter/></a>
+            <a href="https://www.linkedin.com/"><GrLinkedin/></a>
           </div>
         </div>
       </div>

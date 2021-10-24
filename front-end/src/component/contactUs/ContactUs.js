@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "../contactUs/contactUs.css";
+import axios from "axios";
+import swal from "sweetalert";
 function Contact() {
+  const [yourName, setYourName] = useState();
+  const [email, setEmail] = useState();
+  const [message, setMessage] = useState();
+  const submit = () => {
+    setYourName("");
+    setMessage("");
+    setEmail("");
+    axios
+      .post("http://localhost:5000/contact", { yourName, email, message })
+
+      .then((result) => {
+        swal(`${result.data.message}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const Email = (e) => {
+    setEmail(e.target.value);
+  };
+  const MESSAGES = (e) => {
+    setMessage(e.target.value);
+  };
+  const yourNAME = (e) => {
+    setYourName(e.target.value);
+  };
   return (
     <>
       <div className="word">
@@ -15,9 +43,23 @@ function Contact() {
           <img src="./images/a-1.png" alt="" />
           <h1>Contact us</h1>
           <div className="contact-form">
-            <input type="text" placeholder="YOUR NAME" required />
-            <input type="email" placeholder="EMAIL ADDRESS" required />
+            <input
+              Value={yourName}
+              type="text"
+              placeholder="YOUR NAME"
+              required
+              onChange={yourNAME}
+            />
+            <input
+              type="email"
+              Value={email}
+              placeholder="EMAIL ADDRESS"
+              required
+              onChange={Email}
+            />
             <textarea
+              onChange={MESSAGES}
+              Value={message}
               className="textarea"
               name=""
               id=""
@@ -26,7 +68,7 @@ function Contact() {
               placeholder="MESSAGE"
             ></textarea>
             <div class="clear">
-              <button type="submit" className="btn-contact">
+              <button type="submit" className="btn-contact" onClick={submit}>
                 Submit MESSAGE
               </button>
             </div>
