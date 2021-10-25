@@ -9,7 +9,6 @@ import StripeContainer from "./component/stripe/StripeContainer";
 import CreateAuction from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
 import CreateItem from "./component/createItem/CreateItem";
-// import Calendar from "./component/calendar";
 import LiveAuction from "./component/liveAuction/liveAuction";
 import Stripe from "./component/stripe/StripeContainer";
 import { Component404NotFound } from "./component/component404NotFound/Component404NotFound";
@@ -30,8 +29,8 @@ function App() {
       {/* <StripeContainer/> */}
       <div className="Perent">
         <SideBar />
-        <StripeContainer/>
-        {/* <Switch>
+
+        <Switch>
           <Route exact path="/Admin" component={Admin} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/SignUp" component={SignUp} />
@@ -50,7 +49,7 @@ function App() {
           <Route path="/ContactUs" component={ContactUs} />
           <Route path="/OrgChart" component={orgchart} />
           <Route path="*" component={Component404NotFound} />
-        </Switch> */}
+        </Switch>
       </div>
       <Footer />
     </div>

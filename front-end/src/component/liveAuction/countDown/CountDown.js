@@ -33,14 +33,10 @@ function CountDown() {
           .format("YYYY-MM-DD HH:mm:ss"),
       };
       let date;
-      console.log(auction.start_date,"auction.start_date");
-      console.log(new Date(),"new Date()",new Date(auction.start_date) );
-      console.log(new Date(auction.start_date) > new Date());
-      
+
       if (new Date(auction.start_date) > new Date()) {
         //is the auction start ??
         date = Date.parse(auction.start_date);
-        console.log("the auction in progress");
       } else {
         //is the auction not end ??
         if (new Date(auction.end_date) > new Date()) {
@@ -48,7 +44,6 @@ function CountDown() {
         } else {
           //the auction is end
           isTimerEnd = true;
-          console.log("the Auction has been closedsss");
         }
       }
       if (!isTimerEnd) {
@@ -92,8 +87,6 @@ function CountDown() {
       setSeconds(("0" + t.seconds).slice(-2));
 
       if (t.total <= 0) {
-        console.log("hello");
-        console.log(t.total);
         clearInterval(timeinterval);
 
         if (!isTimerEnd) {

@@ -7,17 +7,17 @@ function Contact() {
   const [email, setEmail] = useState();
   const [message, setMessage] = useState();
   const submit = () => {
-    setYourName("");
-    setMessage("");
-    setEmail("");
     axios
       .post("http://localhost:5000/contact", { yourName, email, message })
 
       .then((result) => {
+        setMessage("");
+        setEmail("");
+        setYourName("");
         swal(`${result.data.message}`);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        swal(`Please fill in all fields`);
       });
   };
   const Email = (e) => {
@@ -42,9 +42,10 @@ function Contact() {
         <div className="form">
           <img src="./images/a-1.png" alt="" />
           <h1>Contact us</h1>
+
           <div className="contact-form">
             <input
-              Value={yourName}
+              value={yourName}
               type="text"
               placeholder="YOUR NAME"
               required
@@ -52,17 +53,15 @@ function Contact() {
             />
             <input
               type="email"
-              Value={email}
+              value={email}
               placeholder="EMAIL ADDRESS"
               required
               onChange={Email}
             />
             <textarea
               onChange={MESSAGES}
-              Value={message}
               className="textarea"
-              name=""
-              id=""
+              value={message}
               cols="30"
               rows="10"
               placeholder="MESSAGE"
