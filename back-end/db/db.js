@@ -16,7 +16,6 @@ const connection = mysql.createConnection({
   database: "sql6444417",
   timezone: "+00:00",
   multipleStatements: true,
-
 });
 
 connection.connect((err) => {

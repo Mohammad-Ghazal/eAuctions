@@ -51,7 +51,7 @@ const getItemsByID = (req, res) => {
 const getItemsUserByID = (req, res) => {
   const userId = req.token.userId;
   const data = [userId];
-  const query = `SELECT * FROM users INNER JOIN items ON users.user_id=items.owner_id WHERE users.user_id =?`;
+  const query = `SELECT * FROM users WHERE users.user_id =?`;
   connection.query(query, data, (err, result, fields) => {
     if (err) {
       console.log(err.message);
@@ -69,7 +69,7 @@ const getItemsUserByID = (req, res) => {
     res.status(200).json({
       success: true,
       message: `the user with id ${userId}`,
-      item: result,
+      userData: result,
     });
   });
 };
