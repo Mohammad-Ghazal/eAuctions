@@ -301,11 +301,58 @@ function LiveAuction() {
     <div>
       <div key="onlyOne" className="live-body">
         <div className="grid-container">
-          <div className="header">
+          {/* <div className="header">
             <CountDown></CountDown>
             <h2 className="title">{data.auction.title}</h2>
+          </div> */}
+           <section class="about" id="about">
+        <div class="content">
+          <div class="column col-left reveal">
+            <div class="img-card">
+              <img
+                src={data.auction.image}
+                alt=""
+              />
+            </div>
           </div>
-          <div className="left">
+          <div class="column col-right reveal">
+            <h2 class="content-title">{data.auction["user_name"]}</h2>
+            <div className="Aucation">
+              <h5> START Bid:{data.auction.starter_bid}$</h5>
+              <h5>Auction start:{moment(data.auction.start_date)
+                  .utcOffset(0, false)
+                  .format("YYYY-MM-DD HH:mm a")}</h5>
+              <h5>Auction end: {moment(data.auction.end_date)
+                  .utcOffset(0, false)
+                  .format("YYYY-MM-DD HH:mm a")}</h5>
+              <br />
+              <p className="pr">
+               {data.auction.details}
+              </p>
+              <h5> Price Till Now: {lastBid}$</h5>
+              <h5>{lastBidder}</h5>
+              <br />
+            </div>
+            <div>
+            <h5>Bid jump:{bidJump}$</h5>
+              <div className="liveAuctions">
+                <button className="btn1" onClick={decrease}>-</button>
+                <input
+                  type="number"
+                  id="bidValue"
+                  className="liveAuction_input"
+                  required
+
+                  // placeholder={lastBid + bidJumb}
+                />
+                <button className="btn1" onClick={increase}>+</button><br/>
+                <button class="button" onClick={confirm}>Bid Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> 
+          {/* <div className="left">
             <h5>{data.auction.details}</h5>
           </div>
           <div className="middle">
@@ -410,7 +457,7 @@ function LiveAuction() {
             >
               Bid Now
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <Toast ref={toast} />

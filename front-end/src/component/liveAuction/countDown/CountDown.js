@@ -44,7 +44,7 @@ function CountDown() {
         } else {
           //the auction is end
           isTimerEnd = true;
-          console.log("the Auction has been closed");
+          console.log("the Auction has been closedsss");
         }
       }
       if (!isTimerEnd) {

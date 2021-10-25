@@ -22,6 +22,7 @@ import ContactUs from "./component/contactUs/ContactUs";
 import orgchart from "./component/organization chart/orgchart";
 import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions";
 import Profile from "./component/profile/Profile";
+import SignUp from "./component/register";
 function App() {
   return (
     <div>
@@ -29,9 +30,11 @@ function App() {
       {/* <StripeContainer/> */}
       <div className="Perent">
         <SideBar />
-        <Switch>
+        <StripeContainer/>
+        {/* <Switch>
           <Route exact path="/Admin" component={Admin} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/SignUp" component={SignUp} />
           <Route exact path="/AllAuctions" component={AllAuctions} />
           <Route exact path="/MyFavorites" component={FavUsersAuctions} />
           <Route exact path="/CreateAuction" component={CreateAuction} />
@@ -47,7 +50,7 @@ function App() {
           <Route path="/ContactUs" component={ContactUs} />
           <Route path="/OrgChart" component={orgchart} />
           <Route path="*" component={Component404NotFound} />
-        </Switch>
+        </Switch> */}
       </div>
       <Footer />
     </div>
