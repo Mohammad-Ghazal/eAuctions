@@ -50,8 +50,8 @@ h5 {
 /* Style the header */
 .live-body .header {
   grid-area: header;
-  background-color: #889eaf;
-  padding: 40px;
+  /* background-color: #889eaf; */
+  padding-top: 60px;
   text-align: center;
   font-style: bold;
 }

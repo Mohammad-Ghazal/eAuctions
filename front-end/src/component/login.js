@@ -78,7 +78,6 @@ const Login = () => {
         localStorage.setItem("userName", res.data.user_name);
         dispatch(setToken(res.data.token));
         dispatch(setUserName(res.data.user_name));
-        history.push(`/Home`);
       })
       .catch((error) => {
         console.log(error);
@@ -102,7 +101,7 @@ const Login = () => {
         label="OK"
         className="p-button-text"
         autoFocus
-        onClick={() => setShowMessage(false)}
+        onClick={() => setShowMessage(false, history.push(`/Home`))}
       />
     </div>
   );

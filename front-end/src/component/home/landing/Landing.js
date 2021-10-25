@@ -11,12 +11,17 @@ function Landing() {
             Online auction- <br />
             for business and fundraising
           </h3>
-          <p>
-            Increase demand and create excitement for your products using our
-            fully hosted online auction software.
-          </p>
-          <Link to="/CreateItem"><button className="button">Create Item</button></Link>
-          <Link to="/CreateAuction"><button className="button1">Create Auction</button></Link>
+          <h4>
+            Online Auction- For business and fundraising Increase demand and
+            create excitement for your products with our fully hosted online
+            auction software. Follow these steps to participate in the auction.
+          </h4>
+          <Link to="/CreateItem">
+            <button className="button">Create Item</button>
+          </Link>
+          <Link to="/CreateAuction">
+            <button className="button1">Create Auction</button>
+          </Link>
         </div>
       </div>
     </>
