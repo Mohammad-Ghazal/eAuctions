@@ -59,7 +59,7 @@ const NavBar = () => {
         </li>
       );
     };
-  }, [tokenHolder.token]);
+  }, [tokenHolder.token.length]);
 
   return (
     <div className="headar">

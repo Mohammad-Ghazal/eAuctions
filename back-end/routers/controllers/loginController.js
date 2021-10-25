@@ -21,6 +21,7 @@ app.use(
 const login = async (req, res) => {
   // 1 - login by google part
   //---------------------------------------------------------
+console.log("headers",req.headers);
 
   if (req.headers.authorization) {
     console.log(req.headers.authorization);
@@ -47,7 +48,10 @@ const login = async (req, res) => {
         console.log(err);
       }
 
-      console.log(result);
+      console.log({    success: true,
+        message: `You Signed In Successfully`,
+        tokenId: tokenId,
+        user_name: `${user.first_name} ${user.last_name}`,});
 
       res.status(200).json({
         success: true,
