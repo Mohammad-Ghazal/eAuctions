@@ -27,12 +27,16 @@ function CountDown() {
       const auction = {
         start_date: moment(data.auction.start_date)
           .utcOffset(0, false)
-          .format("YYYY-MM-DD HH:mm a"),
+          .format("YYYY-MM-DD HH:mm:ss"),
         end_date: moment(data.auction.end_date)
           .utcOffset(0, false)
-          .format("YYYY-MM-DD HH:mm a"),
+          .format("YYYY-MM-DD HH:mm:ss"),
       };
       let date;
+      console.log(auction.start_date,"auction.start_date");
+      console.log(new Date(),"new Date()",new Date(auction.start_date) );
+      console.log(new Date(auction.start_date) > new Date());
+      
       if (new Date(auction.start_date) > new Date()) {
         //is the auction start ??
         date = Date.parse(auction.start_date);
