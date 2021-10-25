@@ -94,7 +94,15 @@ PRIMARY KEY (user_id,fav_auction_id )
 );
 
 
+CREATE TABLE IF NOT EXISTS contacts(
+    user_id INT AUTO_INCREMENT NOT NULL,
+    user_name VARCHAR(255),
+    email VARCHAR(255),
+    message VARCHAR(255),
+    PRIMARY KEY (user_id)
+)
+
 
 
 ALTER TABLE bids 
-ADD FOREIGN KEY (auction_id) REFERENCES auctions(aution_id);
+ ADD FOREIGN KEY (auction_id) REFERENCES auctions(aution_id);

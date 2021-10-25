@@ -15,6 +15,7 @@ const itemsRouter = require("./routers/routes/itemsRouter");
 const favoritesUsersRouter = require("./routers/routes/favoritesUsersRouter");
 const bidsRouter = require("./routers/routes/bidsRouter");
 const auctionsRouter = require("./routers/routes/auctionRouter");
+const contactRouter = require("./routers/routes/contactRouter");
 
 //Routers
 app.use("/roles", rolesRouter);
@@ -25,6 +26,7 @@ app.use("/items", itemsRouter);
 app.use("/favUsers", favoritesUsersRouter);
 app.use("/bids", bidsRouter);
 app.use("/auctions", auctionsRouter);
+app.use("/contact", contactRouter);
 
 const server = http.createServer(app);
 const socket = require("socket.io");

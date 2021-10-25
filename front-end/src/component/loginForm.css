@@ -10,14 +10,14 @@
 .form-demo .card {
   height: 100%;
   width: 30vw;
-  padding: 3%;
-  background-image: linear-gradient(white 0%, rgba(232, 220, 240, 0.93) 90%);
+  padding: 5%;
+  /* background-image: linear-gradient(white 0%, rgba(232, 220, 240, 0.93) 90%); */
 
   border-radius: 1rem;
   opacity: 0.9;
 }
 .p-button {
-  background-color: rgb(149, 109, 187) !important;
+  background-color: #574b8a !important;
   border: none !important;
 }
 .form-demo .card form {
@@ -148,4 +148,20 @@
 }
 .dark-tooltip .p-tooltip .p-tooltip-text {
   background-color: var(--surface-900);
+}
+.p-d-flex {
+  width: 100%;
+  padding: 5px;
+}
+.Spans {
+  font-size: 20px;
+}
+.register_div{
+  display: flex;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 }
