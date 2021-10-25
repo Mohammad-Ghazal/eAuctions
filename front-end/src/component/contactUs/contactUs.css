@@ -3,9 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
+/* body {
   background-color: #f3f3f7;
-}
+} */
 .container-contact {
   width: 60%;
   margin: 50px auto;

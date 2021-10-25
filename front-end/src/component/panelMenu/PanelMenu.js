@@ -12,7 +12,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/CreateAuction"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
             >
               Create Auction
             </Link>
@@ -23,7 +23,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/MyAuction"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
             >
               My Auction
             </Link>
@@ -34,7 +34,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/MyFavorites"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
             >
               My Favorites
             </Link>
@@ -45,7 +45,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/AllAuctions"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
             >
               All Auction
             </Link>
@@ -62,7 +62,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/CreateItem"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
             >
               Create Item
             </Link>
@@ -73,7 +73,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/MyItem"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
             >
               My Item
             </Link>
@@ -90,7 +90,7 @@ const PanelMenuDemo = () => {
           label: (
             <Link
               to="/MyProfile"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
             >
               My Profile
             </Link>

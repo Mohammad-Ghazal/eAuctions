@@ -18,7 +18,7 @@ const SideBar = () => {
           style={{
             width: "385px",
             
-             background: "linear-gradient(90deg, #efd5ff 0%, #515ada 100%)",
+            backgroundColor: "#574B8A",
           }}
           visible={visibleLeft}
           onHide={() => setVisibleLeft(false)}

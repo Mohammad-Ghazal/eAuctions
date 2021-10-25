@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GoogleBtn from "./googleBtn";
+// import GoogleBtn from "./googleBtn";
 import axios from "axios";
 import { Form, Field } from "react-final-form";
 import { InputText } from "primereact/inputtext";
@@ -109,7 +109,7 @@ const SignUp = () => {
       <img
         className="register_image"
         style={{
-          width: "40%",
+          width: "50%",
         }}
         src="https://www.fedpipeline.com/Content/Landing/images/log01.jpg"
       ></img>
@@ -309,7 +309,7 @@ const SignUp = () => {
                         gap: "1%",
                       }}
                     >
-                      <span>Sign up with</span> <GoogleBtn></GoogleBtn>{" "}
+                      {/* <span>Sign up with</span> <GoogleBtn></GoogleBtn>{" "} */}
                       <span>
                         <span style={{ color: "rgb(227,64,51)" }}>o</span>
                         <span style={{ color: "rgb(243,183,6)" }}>o</span>
