@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 import axios from "axios";
+import GoogleButton from "react-google-button";
 import { Button } from "primereact/button";
 import "./loginBtn.css";
-import { useDispatch } from "react-redux";
-import { setToken, setUserName } from "../actions/authAction";
-import { useHistory } from "react-router";
+
 // this client ID should put in .env file.
 //-----------------------------------------
 const clientId =
@@ -15,15 +14,20 @@ const clientId =
 //-------------------------------------------------------------------
 
 function GoogleBtn(props) {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [token, setReqToken] = useState("");
+  const [showloginButton, setShowloginButton] = useState(true);
+  const [showlogoutButton, setShowlogoutButton] = useState(false);
+  const [token, setToken] = useState("");
+
   const [image, setImage] = useState("");
   const [icon, setIcon] = useState("pi pi-user");
+
   const onLoginSuccess = (res) => {
+    console.log("Login Success:", res.tokenId);
     setIcon("");
-    setReqToken(res.tokenId);
+    setToken(res.tokenId);
     setImage(res.profileObj.imageUrl);
+    setShowloginButton(false);
+    setShowlogoutButton(true);
     axios
       .post(
         "http://localhost:5000/login",
@@ -35,11 +39,7 @@ function GoogleBtn(props) {
         }
       )
       .then((res) => {
-        localStorage.setItem("token", res.data.tokenId);
-        localStorage.setItem("userName", res.data.user_name);
-        dispatch(setToken(res.data.tokenId));
-        dispatch(setUserName(res.data.user_name));
-        history.push(`/Home`);
+        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -50,33 +50,69 @@ function GoogleBtn(props) {
     console.log("Login Failed:", res);
   };
 
+  const onSignoutSuccess = () => {
+    setImage("");
+    setIcon("pi pi-user");
+
+    alert("You have been logged out successfully");
+    console.clear();
+    setShowloginButton(true);
+    setShowlogoutButton(false);
+  };
+
   return (
     <div>
-      <GoogleLogin
-        icon={false}
-        clientId={clientId}
-        buttonText="Sign In"
-        render={(renderProps) => (
-          <Button
-            onClick={renderProps.onClick}
-            disabled={renderProps.disabled}
-            style={{
-              fontWeight: "bold",
-              width: "90%",
-              fontSize: "12px",
-              backgroundColor: "red",
-              borderRadius: "5px",
-            }}
-            className="google p-p-0"
-          >
-            <i className="pi pi-google p-px-2"></i>
-          </Button>
-        )}
-        onSuccess={onLoginSuccess}
-        onFailure={onLoginFailure}
-        cookiePolicy={"single_host_origin"}
-        isSignedIn={true}
-      />
+      {showloginButton ? (
+        <GoogleLogin
+          icon={false}
+          clientId={clientId}
+          buttonText="Sign In"
+          render={(renderProps) => (
+            <Button
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              style={{
+                fontWeight: "bold",
+                width: "90%",
+                fontSize: "12px",
+                backgroundColor: "red",
+                borderRadius: "5px",
+              }}
+              className="google p-p-0"
+            >
+              <i className="pi pi-google p-px-2"></i>
+            </Button>
+          )}
+          onSuccess={onLoginSuccess}
+          onFailure={onLoginFailure}
+          cookiePolicy={"single_host_origin"}
+          isSignedIn={true}
+        />
+      ) : null}
+
+      {showlogoutButton ? (
+        <GoogleLogout
+          icon={false}
+          clientId={clientId}
+          buttonText="Sign Out"
+          render={(renderProps) => (
+            <GoogleButton
+              label="Google"
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              style={{
+                width: "30%",
+                fontSize: "12px",
+                backgroundColor: "transparent",
+                borderRadius: "5px",
+              }}
+            >
+              Google
+            </GoogleButton>
+          )}
+          onLogoutSuccess={onSignoutSuccess}
+        ></GoogleLogout>
+      ) : null}
     </div>
   );
 }

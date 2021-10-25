@@ -5,27 +5,20 @@ import PanelMenuDemo from "../panelMenu/PanelMenu";
 // import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
 import "./SideBar.css";
+
 import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
-import { useSelector } from "react-redux";
-
 const SideBar = () => {
-  
-  const tokenHolder = useSelector((state) => {
-    return {
-      token: state.tokenReducer.token,
-    };
-  });
   const [visibleLeft, setVisibleLeft] = useState(false);
+
   return (
-    tokenHolder.token.length&&<div
-      // style={{visibility:( tokenHolder.token.length !=0) ? "visable" : "hidden"}}
-    >
+    <div>
       <div className="card1">
         <Sidebar
           style={{
             width: "385px",
-            background: "linear-gradient(90deg, #efd5ff 0%, #515ada 100%)",
+            
+             background: "linear-gradient(90deg, #efd5ff 0%, #515ada 100%)",
           }}
           visible={visibleLeft}
           onHide={() => setVisibleLeft(false)}

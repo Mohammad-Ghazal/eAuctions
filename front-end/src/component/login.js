@@ -11,14 +11,14 @@ import { Divider } from "primereact/divider";
 import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
 import { Captcha } from "primereact/captcha";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToken, setUserName } from "../actions/authAction";
 import { useHistory } from "react-router";
 import "./loginForm.css";
 import "./loginBtn.css";
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
-  // const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
   const history = useHistory();
@@ -45,6 +45,12 @@ const Login = () => {
       });
   };
 
+  const state = useSelector((state) => {
+    return {
+      token: state.tokenReducer.token,
+    };
+  });
+
   const validate = (data) => {
     let errors = {};
 
@@ -66,7 +72,7 @@ const Login = () => {
   };
 
   const onSubmit = (data, form) => {
-    // setFormData(data);
+    setFormData(data);
     setShowMessage(true);
     axios
       .post("http://localhost:5000/login", {
@@ -74,6 +80,7 @@ const Login = () => {
         password: data.password,
       })
       .then((res) => {
+        console.log(res);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userName", res.data.user_name);
         dispatch(setToken(res.data.token));
