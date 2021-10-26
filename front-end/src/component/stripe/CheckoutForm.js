@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import swal from "sweetalert";
@@ -9,7 +9,7 @@ import "./Stripe.css";
 export const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-
+  const [valueinput, setValueInput] = useState();
   const { amount } = useSelector((state) => {
     return {
       amount: state.stripeReducer,
@@ -37,6 +37,7 @@ export const CheckoutForm = () => {
             axios.post("http://localhost:5000/payments", {
               payment_type: paymentMethod.card.brand,
             });
+            setValueInput("");
             swal("Payment Success");
           })
           .catch((error) => {
@@ -52,36 +53,28 @@ export const CheckoutForm = () => {
   };
 
   return (
-    <>
-      <main id="main">
-        <section id="left">
-          <div id="head">
-            {/* <h1>Life has great moments</h1> */}
-            <p>Enjoy them with auctions!</p>
-          </div>
-          <h3>Only {amount}$</h3>
-        </section>
-        <section id="right">
-          <p>Payment</p>
-
-          <form action="#">
-            <div id="form-card" class="form-field">
-              <label for="email">Email</label>
-              <input id="email" required />
-            </div>
-            <div id="form-sec-code" class="form-field">
-              <label for="sec-code">Your Name</label>
-              <input type="text" maxlength="20" required />
-            </div>
-          </form>
+    <div className="containerpayment">
+      <div className="cardpayment">
+        <div className="Image">
+          <img
+            className="imgs"
+            src="https://cdn.neamb.com/-/media/images/seiumb/products/finance/seiu_platinum_edition_visa_card_500x350.png?h=350&w=500&hash=1A5C762A6274777AD3BB1A08BCC1A32F"
+            alt=""
+          />
+        </div>
+        <div style={{ height: "100px", width: "100%" }}></div>
+        <div style={{ padding: "10%" }}>
           <form onSubmit={handleSubmit}>
             <CardElement />
-
-            {/*using use state to add the value of amount fron axios bids*/}
-            <button id="submit">Pay</button>
+            <input type="text" placeholder="Your Name" value={valueinput} />
+            <input type="text" placeholder="Your Email" value={valueinput} />
+            <h2 className="select">Only amount {amount}$</h2>
+            <div className="mybtn">
+              <button>submit</button>
+            </div>
           </form>
-        </section>
-      </main>
-    </>
+        </div>
+      </div>
+    </div>
   );
 };

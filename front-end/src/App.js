@@ -10,7 +10,6 @@ import CreateAuction from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
 import CreateItem from "./component/createItem/CreateItem";
 import LiveAuction from "./component/liveAuction/liveAuction";
-import Stripe from "./component/stripe/StripeContainer";
 import { Component404NotFound } from "./component/component404NotFound/Component404NotFound";
 import { Admin } from "./component/admin/Admin";
 import Calendar from "./component/calendar";
@@ -21,13 +20,13 @@ import orgchart from "./component/organization chart/orgchart";
 import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions";
 import Profile from "./component/profile/Profile";
 import SignUp from "./component/register";
+
 function App() {
   return (
     <div>
       <NavBar />
       <div className="Perent">
         <SideBar />
-
         <Switch>
           <Route exact path="/payment" component={StripeContainer} />
           <Route exact path="/Admin" component={Admin} />
@@ -39,7 +38,6 @@ function App() {
           <Route exact path="/MyItem" component={MyItem} />
           <Route exact path="/MyAuction" component={MyAuction} />
           <Route exact path="/CreateItem" component={CreateItem} />
-          <Route path="/stripe" component={Stripe} />
           <Route path="/live-auction/:auctionId" component={LiveAuction} />
           <Route path="/calender" component={Calendar} />
           <Route path="/Home" component={Home} />

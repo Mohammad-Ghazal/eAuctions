@@ -1,117 +1,77 @@
-
-
-.stipeBody {
-  width: 100%;
-  height: 100%;
-  margin-top: 20px;
-  margin-left: 20;
-  padding: 50px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.stipeBody {
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  font-family: "Raleway", sans-serif;
-}
-
-#main {
-  position: relative;
-  width: 550px;
-  height: 330px;
-  left: 30px;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  background-color: white;
+.containerpayment {
+  padding: 60px 0;
+  height: 100vh;
+  width: 80vw;
   margin: auto;
+  margin-bottom: 50px;
 }
-
-#left {
+.cardpayment {
+  width: 50%;
+  border-radius: 8px;
+  margin: auto;
+  box-shadow: 0 0 10px 1px rgb(0, 0, 0, 0.2);
+  background-color: #fff;
   position: relative;
-  background: linear-gradient(
-      135deg,
-      rgba(91, 36, 122, 0.45) 0%,
-      rgba(27, 206, 223, 0.55) 100%
-    ),
-    url("https://images.pexels.com/photos/556663/pexels-photo-556663.jpeg?auto=compress&cs=tinysrgb&h=650&w=940");
-  background-size: cover;
-  background-position: center;
-  height: calc(100% + 50px);
-  width: 40%;
-  top: -35px;
-  left: -50px;
-  padding: 10px 25px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  color: white;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
+  margin-top: 10%;
 }
-
-#left #head {
-  opacity: 0.95;
-}
-
-#right {
+.cardpayment .Image {
+  width: 50%;
   position: absolute;
-  width: calc(60% - 40px);
-  height: 100%;
-  top: 0;
-  left: 40%;
-  display: flex;
-  flex-flow: column nowrap;
-  padding-left: 20px;
+  left: 25%;
+  top: -20%;
+  margin-bottom: 20%;
 }
-
-#right form {
-  display: flex;
-  flex-flow: column nowrap;
+.imgs {
   width: 100%;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
 }
-
-#right form input,
-#right form select {
-  -moz-appearance: none;
-  /* Firefox */
-  -webkit-appearance: none;
-  /* Safari and Chrome */
-  appearance: none;
+.cardpayment input[type="text"] {
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  color: #666;
+  padding-left: 20px;
+  border: 1px solid #e1e1e1;
+  margin-bottom: 20px;
+  background-color: white;
+}
+.cardpayment .select {
+  height: 50px;
+  width: 49%;
+  font-size: 14px;
+  color: #666;
+  padding-left: 20px;
+  border: 1px solid #e1e1e1;
+  margin-bottom: 20px;
+  background-color: white;
+  margin-right: 2px;
+  padding: 20px;
+}
+.mybtn {
+  width: 150px;
+  margin: auto;
+  border-radius: 5px;
+}
+.cardpayment button {
+  width: 100%;
+  background-color: #574b8a;
+  padding: 7px;
+  color: #fff;
   border: none;
-  border-bottom: 1.5px solid #ccc;
-  padding: 5px;
-  margin-top: 2.5px;
-  position: relative;
+  border-radius: 5px;
 }
-
-#right form .form-field {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  margin-bottom: 12.5px;
-}
-
-#right form #date-val {
-  display: flex;
-  justify-content: space-between;
-}
-
-#right form #date-val select {
-  width: 45%;
-}
-
-#right #submit {
-  background: linear-gradient(135deg, #4183d7 0%, #66cc99 100%);
-  padding: 5px;
-  border: none;
-  border-radius: 50px;
-  color: white;
-  font-weight: 400;
-  font-size: 12pt;
-  margin-top: 50px;
-}
-
-#right #submit:hover {
-  background: transparent;
-  box-shadow: 0 0 0 3px #4183d7;
-  color: #4183d7;
+@media only screen and (max-width: 992px) {
+  .cardpayment {
+    width: 100%;
+  }
+  .cardpayment .select {
+    width: 100%;
+  }
 }

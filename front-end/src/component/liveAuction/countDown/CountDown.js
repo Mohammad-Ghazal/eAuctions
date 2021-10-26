@@ -135,7 +135,7 @@ function CountDown(props) {
         style={{ visibility: isTimerEnd ? "visible" : "hidden" }}
       >
         <h1>this auction has been closed</h1>
-        <button
+        <button className="buttonpayment"
           onClick={() => {
             history.push(`/Home`);
           }}
@@ -143,7 +143,7 @@ function CountDown(props) {
           back to home
         </button>
         {jwtDecode(props.token).userId === userID && (
-          <button
+          <button className="buttonpayment"
             onClick={() => {
               history.push(`/payment`);
             }}
