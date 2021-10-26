@@ -5,9 +5,10 @@ const createBid = (req, res) => {
   const user_id = req.token.userId;
 
   const newBid = [auction_id, date, user_id, bid_value];
-  const query = `INSERT INTO bids (auction_id, date, user_id,bid_value) values (?,?,?,?)`;
+  const query = `INSERT INTO bids (auction_id, date, user_id,bid_value) values (?,?,?,?) `;
 
   connection.query(query, newBid, (err, result, fields) => {
+    console.log(result);
     if (err) {
       console.log(err.message);
       return res.status(500).json({
@@ -15,6 +16,10 @@ const createBid = (req, res) => {
         message: `Server Error`,
       });
     }
+    const query1 = `UPDATE auctions SET closed_on= ${result.insertId} WHERE auction_id=${auction_id} `;
+
+    connection.query(query1);
+
     res.status(201).json({
       success: true,
       message: `success new bid added`,
@@ -127,8 +132,7 @@ const isBidExist = (req, res, next) => {
         });
       }
       if (result.length) {
-
-        req.bid_value=result[0].bid_value
+        req.bid_value = result[0].bid_value;
         next();
       } else
         res.status(400).json({
@@ -148,5 +152,5 @@ module.exports = {
   deleteBidById,
   getMaxBidById,
   getBidsOnActionId,
-  isBidExist
+  isBidExist,
 };
