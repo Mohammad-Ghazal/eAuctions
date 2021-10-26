@@ -91,7 +91,6 @@ function FavUsersAuctions() {
               return favorietesIds.includes(auction.user_id);
             })
           );
-
         });
       })
 
@@ -111,20 +110,21 @@ function FavUsersAuctions() {
           <input placeholder="search" onChange={search}></input>
         </div>
         <form>
-          {favorietesIds&&favorietesIds.map((element, index) => {
-            return (
-              <>
-                {" "}
-                <input
-                  type="radio"
-                  value={element}
-                  onChange={filter}
-                  name="fav"
-                ></input>{" "}
-                <label for="choice">{element}</label>
-              </>
-            );
-          })}
+          {favorietesIds &&
+            favorietesIds.map((element, index) => {
+              return (
+                <>
+                  {" "}
+                  <input
+                    type="radio"
+                    value={element}
+                    onChange={filter}
+                    name="fav"
+                  ></input>{" "}
+                  <label for="choice">{element}</label>
+                </>
+              );
+            })}
         </form>
       </div>
       <div className="container-card">

@@ -86,42 +86,51 @@ export const MyItem = () => {
     });
   };
   return (
-    <div class="container_item">
-      {item &&
-        item.map((element, index) => {
-          return (
-            <div className="cardd">
-              <div className="image">
-                <img alt="Card" src={`${element.image}`} />
-              </div>
-              <div className="info">
-                <h3>Update Title</h3>
-                <input
-                  defaultValue={element.title}
-                  onChange={updateTitle}
-                ></input>
-                <h3>Update Detail</h3>
-                <textarea rows="6" onChange={updateDetail}>
-                  {element.details}
-                </textarea>
-                <div className="btn">
-                  <button
-                    className="btn-2"
-                    onClick={() => toUpdate(element.item_id)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="btn-1"
-                    onClick={() => click(element.item_id)}
-                  >
-                    Delete
-                  </button>
+    <>
+      <div className="word">
+        <div className="sec title-page">
+          <h2>
+            <span>My Items</span>
+          </h2>
+        </div>
+      </div>
+      <div class="container_item">
+        {item &&
+          item.map((element, index) => {
+            return (
+              <div className="cardd">
+                <div className="image">
+                  <img alt="Card" src={`${element.image}`} />
+                </div>
+                <div className="info">
+                  <h3>Update Title</h3>
+                  <input
+                    defaultValue={element.title}
+                    onChange={updateTitle}
+                  ></input>
+                  <h3>Update Detail</h3>
+                  <textarea rows="6" onChange={updateDetail}>
+                    {element.details}
+                  </textarea>
+                  <div className="btn">
+                    <button
+                      className="btn-2"
+                      onClick={() => toUpdate(element.item_id)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="btn-1"
+                      onClick={() => click(element.item_id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-    </div>
+            );
+          })}
+      </div>
+    </>
   );
 };

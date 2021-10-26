@@ -29,15 +29,18 @@ function Business() {
                   <div key={index} className="card-b">
                     <img src={`${element.image}`} alt="" />
                     <div className="info">
-                      <h4>{element.title}</h4>
+                      <p>{element.title}</p>
                       <h5>Starter Bid: {element.starter_bid} $</h5>
                     </div>
                   </div>
                 );
               })}
-             
           </div>
-          <div className="business_button3"><Link to="/AllAuctions"><button className="btn_button3">All Auction</button></Link></div>
+          <div className="business_button3">
+            <Link to="/AllAuctions">
+              <button className="btn_button3">All Auction</button>
+            </Link>
+          </div>
         </div>
       </div>
     </>

@@ -15,7 +15,6 @@ function Profile() {
         },
       })
       .then((res) => {
-        console.log(res.data.items);
         setprofile(res.data.items);
       });
   }, []);
@@ -27,33 +26,34 @@ function Profile() {
         },
       })
       .then((res) => {
-        console.log(res.data.userData);
         setUser(res.data.userData);
       });
   }, []);
   return (
     <>
+      <div className="word">
+        <div className="sec title-page">
+          <h2>
+            <span>My Profile</span>
+          </h2>
+        </div>
+      </div>
       <div className="business" id="port">
         <div className="containerr">
-          <div className="title">
-            <h2 className="section-title">My Profile</h2>
-          </div>
-
           {user &&
             user.map((element, index) => {
               return (
-                <div className="container mt-5 d-flex justify-content-center">
-                  <div className="card3 p-3">
+                <div className="mt-5 d-flex justify-content-center">
+                  <div className="card3">
                     <div className="d-flex align-items-center">
-                      <div class="image">
+                      <div className="image">
                         <img
                           src="https://cdn.pixabay.com/photo/2012/04/01/18/22/user-23874_640.png"
                           alt=""
                           className="rounded"
-                          width="155"
                         />
                       </div>
-                      <div className="ml-3 w-100">
+                      <div className="ml-3 w-100 ">
                         <h4 className="mb-0 mt-0">{element.user_name}</h4>
                         <br />
                         <span>Email: {element.email}</span>
