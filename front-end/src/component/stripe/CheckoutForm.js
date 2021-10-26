@@ -2,17 +2,19 @@ import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import swal from "sweetalert";
+import { useSelector } from "react-redux";
+
 import "./Stripe.css";
 
 export const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  //   useEffect(() => {                                       using to get last value from bids table
-  //     axios.get(`http://localhost:5000/bids`).then((result) => {
-  //       //   setAmount(result.data);
-  //       setAmount(5000);
-  //     });
-  //   }, []);
+
+  const { amount } = useSelector((state) => {
+    return {
+      amount: state.stripeReducer,
+    };
+  });
 
   const handleSubmit = async (data) => {
     data.preventDefault();
@@ -27,7 +29,7 @@ export const CheckoutForm = () => {
         const { id } = paymentMethod;
         await axios
           .post("http://localhost:5000/pay", {
-            amount: 200, //value of amount take from setAmount in axios bids
+            amount: amount, //value of amount take from setAmount in axios bids
             id: id,
           })
           .then((result) => {
@@ -57,7 +59,7 @@ export const CheckoutForm = () => {
             {/* <h1>Life has great moments</h1> */}
             <p>Enjoy them with auctions!</p>
           </div>
-          <h3>Only 9.99$</h3>
+          <h3>Only {amount}$</h3>
         </section>
         <section id="right">
           <p>Payment</p>
