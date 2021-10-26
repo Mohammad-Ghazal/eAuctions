@@ -150,6 +150,30 @@ const getAuctionsByUserId = (req, res) => {
     });
   });
 };
+//----------------------------------------------------
+
+const getClosedOnUser = (req, res) => {
+  console.log(req);
+  const user_id = req.token.userId;
+  const { auction_id } = req.body;
+
+  const query = `select * from auctions inner join bids on auctions.closed_on=bids.bid_id where auctions.auction_id=${auction_id} and auctions.user_id=${user_id}`;
+  connection.query(query, (err, result, fields) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: `closed on `,
+      result: result,
+    });
+  });
+};
+
 const getLimitAuction = (req, res) => {
   const query = `SELECT items.title,items.image,auctions.starter_bid,auctions.start_date,auctions.end_date,auctions.bid_jump,auctions.closed_on,auctions.is_deleted FROM items JOIN auctions  ON items.item_id=auctions.item_id WHERE auctions.is_deleted = 0 LIMIT 3`;
   connection.query(query, (err, result, fields) => {
@@ -198,4 +222,5 @@ module.exports = {
   deleteAuctionById,
   getAuctionsByUserId,
   getLimitAuction,
+  getClosedOnUser,
 };
