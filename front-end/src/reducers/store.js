@@ -4,13 +4,18 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import tokenReducer from "./tokenReducer";
 import auctionReducer from "./auctionReducer";
+import stripeReducer from "./stripeReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["tokenReducer","auctionReducer"]
+  whitelist: ["tokenReducer", "auctionReducer", "stripeReducer"],
 };
 
-const reducers = combineReducers({ tokenReducer, auctionReducer });
+const reducers = combineReducers({
+  tokenReducer,
+  auctionReducer,
+  stripeReducer,
+});
 
 export const store = createStore(persistReducer(persistConfig, reducers));
 export const persistor = persistStore(store);
