@@ -35,6 +35,8 @@ function LiveAuction() {
   const [color, setColor] = useState("black");
   const axios = require("axios");
   const [renderedDiv, setRenderedDiv] = useState([data]);
+  const [disableBtn, setDisableBtn] = useState(true);
+
   const dispatch = useDispatch();
   const toast = useRef(null);
   const socketRef = useRef();
@@ -297,13 +299,20 @@ function LiveAuction() {
     if (myBid < lastBid) setMyBid(lastBid + bidJump);
     else setMyBid((myBid || 0) + bidJump);
   };
+  const btnDisableHandler = (disable) => {
+    setDisableBtn(disable);
+  };
 
   return (
     <div>
       <div key="onlyOne" className="live-body">
         <div className="grid-container">
           <div className="header">
-            <CountDown></CountDown>
+            <CountDown
+              btnDisableHandler={btnDisableHandler}
+              auctionId={auctionId}
+              token={tokenHolder.token}
+            ></CountDown>
           </div>
           <section className="about" id="about">
             <div className="content">
@@ -365,9 +374,11 @@ function LiveAuction() {
                       +
                     </button>
                     <br />
-                    <button className="button" onClick={confirm}>
-                      Bid Now
-                    </button>
+                    {disableBtn && (
+                      <button className="button" onClick={confirm}>
+                        Bid Now
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -380,109 +391,3 @@ function LiveAuction() {
   );
 }
 export default LiveAuction;
-/* <div className="left">
-            <h5>{data.auction.details}</h5>
-          </div>
-          <div className="middle">
-            {" "}
-            <Image src={data.auction.image} alt="Image" preview />
-          </div>
-          <div className="right">
-            <div>
-              {" "}
-              <i
-                className="pi pi-user-plus"
-                style={{ color: color }}
-                onClick={addUserToFavorite}
-              >
-                {" "}
-                favorite user{" "}
-              </i>
-              <label></label>
-              <h5> item owner</h5>{" "}
-            </div>
-            <div>
-              <h5> {data.auction["user_name"]}</h5>{" "}
-            </div>
-            <div>
-              <h5>starter bid value </h5>
-            </div>
-            <div>
-              <h5>{data.auction.starter_bid} </h5>
-            </div>
-
-            <div>
-              <h5>auction start date</h5>{" "}
-            </div>
-            <div>
-              <h5>
-                {moment(data.auction.start_date)
-                  .utcOffset(0, false)
-                  .format("YYYY-MM-DD HH:mm a")}
-              </h5>{" "}
-            </div>
-            <div>
-              <h5>auction end date</h5>{" "}
-            </div>
-            <div>
-              <h5>
-                {moment(data.auction.end_date)
-                  .utcOffset(0, false)
-                  .format("YYYY-MM-DD HH:mm a")}
-              </h5>{" "}
-            </div>
-            <div>
-              <h5>price till now </h5>
-            </div>
-            <div>
-              <h5>{lastBid} $</h5>
-            </div>
-            <div>
-              <h5>from Bidder</h5>
-            </div>
-            <div>
-              <h5>{lastBidder}</h5>{" "}
-            </div>
-          </div>
-          <div className="footer">
-            <div>
-              <div className="input-container">
-                <div className="button-glow">
-                  <button className="glow" onClick={decrease}>
-                    -
-                  </button>
-                </div>
-                <input
-                  type="number"
-                  id="bidValue"
-                  className="bidValue"
-                  required
-                  style={{ fontSize: "35px" }}
-                  defaultValue={lastBid + bidJump}
-                  value={myBid}
-                  className="font-weight-bold"
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setMyBid(parseInt(e.target.value));
-                  }}
-                />{" "}
-                <div className="button-glow">
-                  <button className="glow" onClick={increase}>
-                    +
-                  </button>
-                </div>
-              </div>
-            </div>
-            <h5 style={{ fontSize: "20px" }} className="font-weight-bold">
-              {bidJump}$ ber jumb as minimum
-            </h5>
-            <div></div>
-
-            <button
-              className="bidNow"
-              className="glow bwidth"
-              onClick={confirm}
-            >
-              Bid Now
-            </button>
-          </div> */

@@ -16,7 +16,6 @@ import { Admin } from "./component/admin/Admin";
 import Calendar from "./component/calendar";
 import { MyItem } from "./component/myItem/MyItem";
 import Home from "./component/home/Home";
-import ghazal from "./component/ghazal/ghazal";
 import ContactUs from "./component/contactUs/ContactUs";
 import orgchart from "./component/organization chart/orgchart";
 import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions";
@@ -26,11 +25,11 @@ function App() {
   return (
     <div>
       <NavBar />
-      {/* <StripeContainer/> */}
       <div className="Perent">
         <SideBar />
 
         <Switch>
+          <Route exact path="/payment" component={StripeContainer} />
           <Route exact path="/Admin" component={Admin} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/SignUp" component={SignUp} />
@@ -45,7 +44,6 @@ function App() {
           <Route path="/calender" component={Calendar} />
           <Route path="/Home" component={Home} />
           <Route path="/MyProfile" component={Profile} />
-          <Route path="/g" component={ghazal} />
           <Route path="/ContactUs" component={ContactUs} />
           <Route path="/OrgChart" component={orgchart} />
           <Route path="*" component={Component404NotFound} />

@@ -3,18 +3,25 @@ import "./style.css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
+import setAmount from "../../../actions/stripeAction";
 
 moment.locale("jo");
-let isTimerEnd = false; //by defult auction not start and not end
+// let isTimerEnd = false; //by defult auction not start and not end
 
-function CountDown() {
+function CountDown(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [days, setDays] = useState("");
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
   const [startAgain, setStartAgain] = useState("");
+  const [isTimerEnd, setIsTimerEnd] = useState(false);
+  const [userID, setUserID] = useState("");
+
   let timeinterval;
   const { data } = useSelector((state) => {
     return {
@@ -32,6 +39,8 @@ function CountDown() {
           .utcOffset(0, false)
           .format("YYYY-MM-DD HH:mm:ss"),
       };
+      props.btnDisableHandler(new Date(auction.start_date) < new Date());
+
       let date;
 
       if (new Date(auction.start_date) > new Date()) {
@@ -43,7 +52,27 @@ function CountDown() {
           date = Date.parse(auction.end_date);
         } else {
           //the auction is end
-          isTimerEnd = true;
+          // isTimerEnd = true;
+          setIsTimerEnd(true);
+
+          //check whether the logged in  user is the auction closed on user
+          axios
+            .post(
+              "http://localhost:5000/auctions/payment",
+              { auction_id: props.auctionId },
+              {
+                headers: {
+                  Authorization: `Bearer ${props.token}`,
+                },
+              }
+            )
+            .then((result) => {
+              dispatch(setAmount(result.data.result[0].bid_value));
+              setUserID(result.data.result[0].user_id);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       }
       if (!isTimerEnd) {
@@ -99,7 +128,6 @@ function CountDown() {
     updateClock();
     timeinterval = setInterval(updateClock, 0);
   }
-
   return (
     <>
       <div
@@ -114,6 +142,15 @@ function CountDown() {
         >
           back to home
         </button>
+        {jwtDecode(props.token).userId === userID && (
+          <button
+            onClick={() => {
+              history.push(`/payment`);
+            }}
+          >
+            Payment
+          </button>
+        )}
       </div>
       <div id="clockdiv">
         <div>
