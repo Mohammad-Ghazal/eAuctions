@@ -2,11 +2,22 @@
   margin-right: 0.5rem;
 }
 
-.google > .p-button-label {
-  font-weight: bold;
-  background-color: violet !important;
+form > .submit_btn {
+  background-color: #ffa949 !important;
+  color: rgb(59, 58, 58) !important;
+  font-weight: bolder;
+  margin-top: 25px !important;
+  border: none !important;
 }
 
+.google_icon {
+  background-color: rgba(255, 30, 0, 0.877) !important;
+  color: white;
+  border-radius: 50%;
+}
+.google_icon:hover {
+  cursor: pointer;
+}
 .button-demo .p-buttonset .p-button {
   margin-right: 0;
 }
