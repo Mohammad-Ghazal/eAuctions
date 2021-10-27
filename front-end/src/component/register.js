@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-// import GoogleBtn from "./googleBtn";
+import GoogleBtn from "./googleAuth";
+
 import axios from "axios";
 import { Form, Field } from "react-final-form";
 import { InputText } from "primereact/inputtext";
@@ -42,7 +43,7 @@ const SignUp = () => {
     if (!data.accept) {
       errors.accept = "You need to agree to the terms and conditions.";
     }
-    if (errors) {
+    if (!errors) {
       setDisable(false);
     }
     return errors;
@@ -111,7 +112,7 @@ const SignUp = () => {
         style={{
           width: "50%",
         }}
-        src="https://www.fedpipeline.com/Content/Landing/images/log01.jpg"
+        src="./images/bid_login2.png"
       ></img>
 
       <Divider layout="vertical">
@@ -141,18 +142,19 @@ const SignUp = () => {
 
           <div className="p-d-flex p-jc-center">
             <div className="card">
-              <h5 className="p-text-center">Sign-Up </h5>
-              <Avatar
-                icon="pi pi-user"
-                className="p-mr-2"
-                size="large"
-                style={{
-                  backgroundColor: "#b297ce",
-                  color: "#ffffff",
-                  marginLeft: "40%",
-                }}
-                shape="circle"
-              />
+              <div style={{ textAlign: "center" }}>
+                <h5 className="p-text-center">Sign-Up </h5>
+                <Avatar
+                  icon="pi pi-user"
+                  className="p-mr-2 avatar"
+                  size="large"
+                  style={{
+                    backgroundColor: "#ffa949",
+                    color: "#ffffff",
+                  }}
+                  shape="circle"
+                />
+              </div>
               <Form
                 onSubmit={onSubmit}
                 initialValues={{
@@ -297,7 +299,7 @@ const SignUp = () => {
                       disabled={disable}
                       type="submit"
                       label="Submit"
-                      className="p-mt-2"
+                      className="p-mt-2 submit_btn"
                     />
                     <div
                       style={{
@@ -308,15 +310,24 @@ const SignUp = () => {
                         textAlign: "center",
                         gap: "1%",
                       }}
+                    ></div>
+                    <div
+                      style={{
+                        fontSize: "10px",
+                        paddingTop: "10%",
+                        display: "flex",
+                        flexDirection: "row",
+                        textAlign: "center",
+                        gap: "1%",
+                      }}
                     >
-                      {/* <span>Sign up with</span> <GoogleBtn></GoogleBtn>{" "} */}
-                      <span>
-                        <span style={{ color: "rgb(227,64,51)" }}>o</span>
-                        <span style={{ color: "rgb(243,183,6)" }}>o</span>
-                        <span style={{ color: "rgb(64,129,236)" }}>g</span>
-                        <span style={{ color: "rgb(50,163,80)" }}>l</span>
-                        <span style={{ color: "rgb(227,64,51)" }}>e</span>
-                      </span>
+                      <GoogleBtn></GoogleBtn>
+
+                      <img
+                        style={{ width: "80px" }}
+                        src="https://www.pngall.com/wp-content/uploads/5/Google-Logo-PNG-Free-Image.png"
+                        alt=""
+                      ></img>
                     </div>
                   </form>
                 )}

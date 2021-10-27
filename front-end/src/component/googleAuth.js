@@ -6,6 +6,10 @@ import "./loginBtn.css";
 import { useDispatch } from "react-redux";
 import { setToken, setUserName } from "../actions/authAction";
 import { useHistory } from "react-router";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 // this client ID should put in .env file.
 //-----------------------------------------
 const clientId =
@@ -57,20 +61,22 @@ function GoogleBtn(props) {
         clientId={clientId}
         buttonText="Sign In"
         render={(renderProps) => (
-          <Button
+          <FontAwesomeIcon
             onClick={renderProps.onClick}
             disabled={renderProps.disabled}
+            className="google_icon"
             style={{
-              fontWeight: "bold",
-              width: "90%",
-              fontSize: "12px",
-              backgroundColor: "red",
-              borderRadius: "5px",
+              color: "#ffa949",
+              background: "linear-gradient(145deg, #b3a08e, #ffffff)",
+              borderRadius: "50%",
+              width: "3rem",
+              height: "3rem",
             }}
-            className="google p-p-0"
-          >
-            <i className="pi pi-google p-px-2"></i>
-          </Button>
+            icon={faGoogle}
+            size="3x"
+            border
+            spin
+          ></FontAwesomeIcon>
         )}
         onSuccess={onLoginSuccess}
         onFailure={onLoginFailure}

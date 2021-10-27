@@ -14,11 +14,12 @@ import { Captcha } from "primereact/captcha";
 import { useDispatch } from "react-redux";
 import { setToken, setUserName } from "../actions/authAction";
 import { useHistory } from "react-router";
+
 import "./loginForm.css";
 import "./loginBtn.css";
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
-  // const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
   const history = useHistory();
@@ -66,7 +67,7 @@ const Login = () => {
   };
 
   const onSubmit = (data, form) => {
-    // setFormData(data);
+    setFormData(data);
     setShowMessage(true);
     axios
       .post("http://localhost:5000/login", {
@@ -128,7 +129,7 @@ const Login = () => {
           style={{
             width: "100%",
           }}
-          src="https://www.mswipe.com/assets/images/signIn_marchant_mswipe_Illustrations.svg"
+          src="./images/bid_login.png"
         ></img>
       </div>
 
@@ -159,18 +160,19 @@ const Login = () => {
 
         <div className="p-d-flex p-jc-center">
           <div className="card">
-            <h5 className="p-text-center">Sign-In </h5>
-            <Avatar
-              icon="pi pi-user"
-              className="p-mr-2"
-              size="large"
-              style={{
-                backgroundColor: "#b297ce",
-                color: "#ffffff",
-                marginLeft: "40%",
-              }}
-              shape="circle"
-            />
+            <div style={{ textAlign: "center" }}>
+              <h5 className="p-text-center">Sign-In </h5>
+              <Avatar
+                icon="pi pi-user"
+                className="p-mr-2 avatar"
+                size="large"
+                style={{
+                  backgroundColor: "#FFA949",
+                  color: "#ffffff",
+                }}
+                shape="circle"
+              />
+            </div>
             <Form
               onSubmit={onSubmit}
               initialValues={{
@@ -266,7 +268,7 @@ const Login = () => {
                     disabled={disable}
                     type="submit"
                     label="Submit"
-                    className="p-mt-2"
+                    className="p-mt-2 submit_btn"
                   />
                   <div
                     style={{
@@ -278,10 +280,10 @@ const Login = () => {
                       gap: "1%",
                     }}
                   >
-                    <span className="Spans">Sign in with</span>{" "}
-                    <GoogleBtn></GoogleBtn>{" "}
+                    <GoogleBtn></GoogleBtn>
+
                     <img
-                      style={{ width: "100px" }}
+                      style={{ width: "80px" }}
                       src="https://www.pngall.com/wp-content/uploads/5/Google-Logo-PNG-Free-Image.png"
                       alt=""
                     ></img>
