@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GoogleBtn from "./googleAuth";
+import { useHistory } from "react-router-dom";
 
 import axios from "axios";
 import { Form, Field } from "react-final-form";
@@ -18,6 +19,7 @@ const SignUp = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
   const [disable, setDisable] = useState(true);
+  const history = useHistory();
 
   const validate = (data) => {
     let errors = {};
@@ -43,16 +45,18 @@ const SignUp = () => {
     if (!data.accept) {
       errors.accept = "You need to agree to the terms and conditions.";
     }
-    if (!errors) {
+    if (errors) {
       setDisable(false);
     }
     return errors;
   };
 
-  const onSubmit = async (data, form) => {
-    setFormData({ ...data });
-    console.log(data);
+  const onSubmit = (data, form) => {
+    setFormData(data);
+    setShowMessage(true);
 
+    console.log(formData);
+    console.log(data);
     axios
       .post("http://localhost:5000/users", {
         user_name: data.name,
@@ -61,8 +65,8 @@ const SignUp = () => {
         password: data.password,
       })
       .then((res) => {
-        if (res.data) {
-          setShowMessage(true);
+        if (res.data.success) {
+          history.push("/login");
         }
 
         console.log(res);
