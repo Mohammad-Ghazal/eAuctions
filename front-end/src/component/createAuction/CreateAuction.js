@@ -11,6 +11,7 @@ function CreateAuction() {
   const [bidJump, setBidJump] = useState();
   const [select, setSelect] = useState();
   const [item, setItem] = useState();
+  const [empty, setEmpty] = useState();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -63,6 +64,7 @@ function CreateAuction() {
         }
       )
       .then((res) => {
+        setEmpty("");
         swal("Good job!", "Auction Created Successfuly", "success");
       })
       .catch((err) => {
@@ -87,22 +89,26 @@ function CreateAuction() {
                   })}
               </select>
               <input
+                value={empty}
                 type="number"
                 placeholder="starter_bid"
                 onChange={starter_bid}
               />
               <input
+                value={empty}
                 type="datetime-local"
                 placeholder="start_date"
                 onChange={start_date}
               />{" "}
               <input
+                value={empty}
                 type="datetime-local"
                 placeholder="end_date"
                 required
                 onChange={end_date}
               />
               <input
+                value={empty}
                 type="number"
                 placeholder="bid_jump"
                 required

@@ -134,7 +134,7 @@ function CountDown(props) {
         className="close_div"
         style={{ visibility: isTimerEnd ? "visible" : "hidden" }}
       >
-        <h1>this auction has been closed</h1>
+        <h1 style={{color:"white"}}>this auction has been closed</h1>
         <button className="buttonpayment"
           onClick={() => {
             history.push(`/Home`);
