@@ -16,6 +16,7 @@ function Landing() {
             create excitement for your products with our fully hosted online
             auction software. Follow these steps to participate in the auction.
           </h4>
+
           <Link to="/CreateItem">
             <button className="button">Create Item</button>
           </Link>
@@ -23,6 +24,7 @@ function Landing() {
             <button className="button1">Create Auction</button>
           </Link>
         </div>
+        <div></div>
       </div>
     </>
   );

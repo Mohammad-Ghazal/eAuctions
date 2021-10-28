@@ -316,50 +316,61 @@ function LiveAuction() {
           </div>
 
           <section className="abouts" id="about">
+            <div className="dataAuction">
+              <h5>START Bid:{data.auction.starter_bid}$</h5>
+              <h5>
+                {" "}
+                Auction start:
+                {moment(data.auction.start_date)
+                  .utcOffset(0, false)
+                  .format("YYYY-MM-DD HH:mm a")}
+              </h5>
+              <h5>
+                {" "}
+                Auction end:{" "}
+                {moment(data.auction.end_date)
+                  .utcOffset(0, false)
+                  .format("YYYY-MM-DD HH:mm a")}
+              </h5>
+            </div>
+            <div className="PriceTill">
+              {" "}
+              {
+                <h5>
+                  Price Till Now: <span>{lastBid}$</span> By :{lastBidder}
+                </h5>
+              }
+            </div>
+
             <div className="content">
-              <div className="column col-left reveal">
-                <div className="img-card">
-                  <img src={data.auction.image} alt="" />
-                </div>
+              <div className="img-card">
+                <img src={data.auction.image} alt="" />
               </div>
+              <div className="column col-left reveal"></div>
 
               <div className="column col-right reveal">
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "",
                     padding: "20px",
-                    marginBottom: "10px",
                   }}
                 >
-                  <button className="button" onClick={addUserToFavorite}>
-                    <i className="pi pi-user-plus"> Favorite User </i>
-                  </button>
+                  <div>
+                    {" "}
+                    <h4 className="content-titles">
+                      OwnerAuction: {data.auction["user_name"]}
+                    </h4>
+                  </div>
+                  <div className="liveAuctions">
+                    {" "}
+                    <button className="btn1" onClick={addUserToFavorite}>
+                      <i className="pi pi-user-plus"> favorite </i>
+                    </button>
+                  </div>
                 </div>
 
-                <div className="Aucation">
-                  <h2 className="content-titles">
-                    {data.auction["user_name"]}
-                  </h2>
-                  <h5> START Bid:{data.auction.starter_bid}$</h5>
-                  <h5>
-                    Auction start:
-                    {moment(data.auction.start_date)
-                      .utcOffset(0, false)
-                      .format("YYYY-MM-DD HH:mm a")}
-                  </h5>
-                  <h5>
-                    Auction end:{" "}
-                    {moment(data.auction.end_date)
-                      .utcOffset(0, false)
-                      .format("YYYY-MM-DD HH:mm a")}
-                  </h5>
-                  <br />
-
-                  <h5> Price Till Now: {lastBid}$</h5>
-                  <h5>{lastBidder}</h5>
-                  <br />
-                </div>
+                <div className="Aucation"></div>
                 <div className="lastSection">
                   <h5>Bid jump:{bidJump}$ ber jumb as minimum</h5>
                   <div className="liveAuctions">
@@ -377,8 +388,6 @@ function LiveAuction() {
                       }}
                       className="liveAuction_input"
                       required
-
-                      // placeholder={lastBid + bidJumb}
                     />
                     <button className="btn1" onClick={increase}>
                       +

@@ -27,7 +27,6 @@ function CreateItem() {
       setImage(e.target.files[0].name);
     }
   };
-  console.log("photoName", image);
   const handelUpload = () => {
     const uploadTask = storage.ref(`/images/${images.name}`).put(images);
     uploadTask.on(
@@ -67,7 +66,6 @@ function CreateItem() {
       }
     );
   };
-  console.log("image", images);
   return (
     <>
       <div className="Body-FORM">
@@ -83,7 +81,7 @@ function CreateItem() {
                 required
                 onChange={Title}
               />
-              <input type="file" onChange={handleChange} />
+              <input value={title} type="file" onChange={handleChange} />
               <textarea
                 value={details}
                 onChange={Details}
