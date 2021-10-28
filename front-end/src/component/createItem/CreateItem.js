@@ -1,11 +1,28 @@
 import "./CreateItem.css";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../createItem/CreateItem.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { storage } from "../firebase";
 import swal from "sweetalert";
+import { Toast } from "primereact/toast";
 function CreateItem() {
+  const toast = useRef(null);
+  const showMsg = (msgNumber) => {
+    switch (msgNumber) {
+      case 6:
+        toast.current.show({
+          severity: "error",
+          summary: "Error Message",
+          detail: "you have to logIn first",
+          life: 5000,
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
   const state = useSelector((state) => {
     return {
       token: state.tokenReducer.token,
@@ -22,49 +39,62 @@ function CreateItem() {
     setDetails(d.target.value);
   };
   const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setImages(e.target.files[0]);
-      setImage(e.target.files[0].name);
+    if (state.token) {
+      if (e.target.files[0]) {
+        setImages(e.target.files[0]);
+        setImage(e.target.files[0].name);
+      }
+    } else {
+      showMsg(6);
     }
+  
   };
   const handelUpload = () => {
-    const uploadTask = storage.ref(`/images/${images.name}`).put(images);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(images.name)
-          .getDownloadURL()
-          .then((url) => {
-            console.log(url);
-            axios
-              .post(
-                "http://localhost:5000/items",
-                { title, details, image: url },
-                {
-                  headers: {
-                    Authorization: `Bearer ${state.token}`,
-                  },
-                }
-              )
 
-              .then((result) => {
-                swal("Good job!", "Item Created Successfuly", "success");
-                setTitle("");
-                setDetails("");
-              })
-              .catch((err) => {
-                swal("Try Again!");
-                console.log(err);
-              });
-          });
-      }
-    );
+    if (state.token) {
+      const uploadTask = storage.ref(`/images/${images.name}`).put(images);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(images.name)
+            .getDownloadURL()
+            .then((url) => {
+              console.log(url);
+              axios
+                .post(
+                  "http://localhost:5000/items",
+                  { title, details, image: url },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${state.token}`,
+                    },
+                  }
+                )
+  
+                .then((result) => {
+                  swal("Good job!", "Item Created Successfuly", "success");
+                  setTitle("");
+                  setDetails("");
+                })
+                .catch((err) => {
+                  swal("Try Again!");
+                  console.log(err);
+                });
+            });
+        }
+      );
+    } else {
+      showMsg(6);
+    }
+
+
+
   };
   return (
     <>
@@ -75,13 +105,13 @@ function CreateItem() {
             <h1>Create Item</h1>
             <div class="container-form">
               <input
-                value={title}
+                defultvalue={title}
                 type="text"
                 placeholder="Title"
                 required
                 onChange={Title}
               />
-              <input value={title} type="file" onChange={handleChange} />
+              <input value={image} type="file" onChange={handleChange} />
               <textarea
                 value={details}
                 onChange={Details}
@@ -104,6 +134,7 @@ function CreateItem() {
             </div>
           </div>
         </div>
+        <Toast ref={toast} />
       </div>
     </>
   );
