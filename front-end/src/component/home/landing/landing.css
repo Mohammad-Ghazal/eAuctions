@@ -1,22 +1,34 @@
 .landing {
-  background-color: #574b8a;
+  background-image: url("https://www.econlib.org/wp-content/uploads/2018/02/auction.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: calc(80vh);
+  height: calc(150vh);
   margin: 0;
   position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  /* background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+.landing img {
+  margin-right: 10px;
 }
 .landing .landText {
   width: 55%;
   position: absolute;
-  left: 30%;
-  top: 50%;
-  font-size: 32px;
-  line-height: 1.1;
+  left: 33%;
+  top: 45%;
+  font-size: 20px;
+  line-height: 1.5;
   transform: translate(-50%, -50%);
   width: 520px;
   max-width: 100%;
-  color: white;
+  color: #333333;
+  background-color: rgba(255, 255, 255, 0.466);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: justify;
 }
 .landText h3 {
   font-weight: 800;
