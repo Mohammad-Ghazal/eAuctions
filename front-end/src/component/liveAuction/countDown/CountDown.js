@@ -6,14 +6,11 @@ import { useHistory } from "react-router";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import setAmount from "../../../actions/stripeAction";
-
 moment.locale("jo");
-// let isTimerEnd = false; //by defult auction not start and not end
 
 function CountDown(props) {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const [days, setDays] = useState("");
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -120,8 +117,6 @@ function CountDown(props) {
 
         if (!isTimerEnd) {
           setStartAgain(true);
-          // clearInterval(timeinterval);   slove the problem here
-          // timeinterval = setInterval(updateClock, 0);
         }
       }
     }

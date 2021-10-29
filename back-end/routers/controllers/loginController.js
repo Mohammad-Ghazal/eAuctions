@@ -21,10 +21,7 @@ app.use(
 const login = async (req, res) => {
   // 1 - login by google part
   //---------------------------------------------------------
-console.log("headers",req.headers);
-
   if (req.headers.authorization) {
-    console.log(req.headers.authorization);
     const tokenId = req.headers.authorization.split(" ").pop();
 
     const ticket = await client.verifyIdToken({
@@ -41,17 +38,12 @@ console.log("headers",req.headers);
       last_name: payload.family_name,
     };
 
-    console.log(user);
     const query = `INSERT INTO users (user_name,email,role_id) SELECT * FROM (SELECT '${user.first_name} ${user.last_name}' AS user_name, '${user.email}' AS email,'6' AS role_id) AS temp WHERE NOT EXISTS ( SELECT email FROM users WHERE email = '${user.email}' ) LIMIT 1; SELECT * FROM users WHERE email= '${user.email}' `;
     connection.query(query, (err, result) => {
       if (err) {
         console.log(err);
       }
 
-      console.log({    success: true,
-        message: `You Signed In Successfully`,
-        tokenId: tokenId,
-        user_name: `${user.first_name} ${user.last_name}`,});
 
       res.status(200).json({
         success: true,
@@ -117,17 +109,7 @@ const CaptchaAuth = (req, res) => {
     //the body is the data that contains success message
     body = JSON.parse(body);
     res.send({ success: "pass", response: response });
-    // res.send(response);
 
-    // check if the validation failed
-    // if (body.success !== undefined && !data.success) {
-    //   res.send({ success: false, message: "recaptcha failed" });
-    //   return console.log("failed");
-    // }
-
-    // if passed response success message to client
-    //   res.send({ success: true, message: "recaptcha passed" });
-    // });
   });
 };
 

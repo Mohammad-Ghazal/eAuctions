@@ -12,14 +12,13 @@ import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
 import { Captcha } from "primereact/captcha";
 import { useDispatch } from "react-redux";
-import { setToken, setUserName } from "../actions/authAction";
+import { setToken, setUserName } from "../../actions/authAction";
 import { useHistory } from "react-router";
-
 import "./loginForm.css";
 import "./loginBtn.css";
+
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
-  const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
   const history = useHistory();
@@ -36,7 +35,6 @@ const Login = () => {
         }
       )
       .then((result) => {
-        console.log(result.data);
         if (result.data.success === "pass") {
           setDisable(false);
         }
@@ -67,7 +65,6 @@ const Login = () => {
   };
 
   const onSubmit = (data, form) => {
-    setFormData(data);
     setShowMessage(true);
     axios
       .post("http://localhost:5000/login", {
@@ -86,8 +83,6 @@ const Login = () => {
 
     form.restart();
   };
-
-  // tokenReducer;
 
   const isFormFieldValid = (meta) => !!(meta.touched && meta.error);
   const getFormErrorMessage = (meta) => {
@@ -244,15 +239,15 @@ const Login = () => {
                         <Checkbox
                           inputId="accept"
                           {...input}
-                          className={classNames({
-                            "p-invalid": isFormFieldValid(meta),
-                          })}
+                          // className={classNames({
+                          //   "p-invalid": isFormFieldValid(meta),
+                          // })}
                         />
                         <label
                           htmlFor="accept"
-                          className={classNames({
-                            "p-error": isFormFieldValid(meta),
-                          })}
+                          // className={classNames({
+                          //   "p-error": isFormFieldValid(meta),
+                          // })}
                         >
                           I agree to the terms and conditions*
                         </label>

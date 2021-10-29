@@ -26,7 +26,6 @@ const createAuction = (req, res) => {
         message: `Server Error`,
       });
     }
-    console.log(result);
     res.status(201).json({
       success: true,
       message: `new auction created`,
@@ -38,7 +37,6 @@ const createAuction = (req, res) => {
 const getAllAuctions = (req, res) => {
   const query = `SELECT items.title,items.details,items.image ,auctions.auction_id,auctions.user_id,auctions.item_id,auctions.starter_bid,auctions.start_date,auctions.end_date,auctions.bid_jump,auctions.closed_on,auctions.is_deleted FROM items JOIN auctions  ON items.item_id=auctions.item_id WHERE auctions.is_deleted = 0`;
   connection.query(query, (err, result, fields) => {
-    console.log(result);
     if (err) {
       return res.status(500).json({
         success: false,
@@ -153,7 +151,6 @@ const getAuctionsByUserId = (req, res) => {
 //----------------------------------------------------
 
 const getClosedOnUser = (req, res) => {
-  console.log(req);
   const user_id = req.token.userId;
   const { auction_id } = req.body;
 

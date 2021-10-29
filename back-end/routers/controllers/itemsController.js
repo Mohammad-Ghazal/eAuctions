@@ -78,7 +78,6 @@ const deleteItemById = (req, res) => {
   const { itemId } = req.params;
   const query = `UPDATE items left join auctions ON items.item_id=auctions.item_id SET items.is_deleted =1 WHERE auctions.auction_id is NULL and items.item_id=${itemId}`;
   connection.query(query, (err, result, fields) => {
-    console.log(result);
     console.log(err);
     if (!result.affectedRows) {
       return res.status(200).json({

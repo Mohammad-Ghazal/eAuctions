@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../createAuction/CreateAuction.css";
 import moment from "moment";
 import "../createItem/CreateItem.css";
 import swal from "sweetalert";
+import { Toast } from "primereact/toast";
 function CreateAuction() {
   const [starterBid, setStarterBid] = useState();
   const [startDate, setStartDate] = useState();
@@ -13,22 +14,52 @@ function CreateAuction() {
   const [item, setItem] = useState();
   const [empty, setEmpty] = useState();
   const token = localStorage.getItem("token");
-
+  const toast = useRef(null);
+  const showMsg = (msgNumber) => {
+    switch (msgNumber) {
+      case 6:
+        toast.current.show({
+          severity: "error",
+          summary: "Error Message",
+          detail: "you have to logIn first",
+          life: 5000,
+        });
+        break;
+        case 8:
+          toast.current.show({
+            severity: "info",
+            summary: "info Message",
+            detail: "there is no items added yet to open auction",
+            life: 5000,
+          });
+          break;
+     
+        default:
+        break;
+    }
+  };
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/items`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data.items);
-        setItem(res.data.items);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (token) {
+      axios
+        .get(`http://localhost:5000/items`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          if (res.data.items.length) {
+            setItem(res.data.items);
+          } else {
+            showMsg(8)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      showMsg(6);
+    }
+  }, [token]);
   const starter_bid = (s) => {
     setStarterBid(s.target.value);
   };
@@ -49,7 +80,7 @@ function CreateAuction() {
     console.log("muath", moment(startDate).format("YYYY-MM-DD HH:mm:ss"));
     axios
       .post(
-        `http://localhost:5000/auctions`, //date: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+        `http://localhost:5000/auctions`,
         {
           starter_bid: starterBid,
           start_date: moment(startDate).format("YYYY-MM-DD HH:mm:ss"),
@@ -74,11 +105,11 @@ function CreateAuction() {
   return (
     <>
       <div className="Body-FORM">
-        <div class="container">
-          <div class="form">
+        <div className="container">
+          <div className="form">
             <img src="./images/a-1.png" alt="#" />
             <h1>Create Auction</h1>
-            <div class="container-form">
+            <div className="container-form">
               <select onChange={handleChange}>
                 <option>Please Select Item</option>
                 {item &&
@@ -114,14 +145,15 @@ function CreateAuction() {
                 required
                 onChange={bid_jump}
               />
-              <div class="clearfix">
-                <button type="submit" class="signupbtn" onClick={click}>
+              <div className="clearfix">
+                <button type="submit" className="signupbtn" onClick={click}>
                   Submit
                 </button>
               </div>
             </div>
           </div>
         </div>
+        <Toast ref={toast} />
       </div>
     </>
   );

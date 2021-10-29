@@ -2,8 +2,6 @@ const connection = require("../../db/db");
 const bcrypt = require("bcrypt");
 //Add Users
 const addUser = async (req, res) => {
-  console.log(process.env.SALT);
-
   const { user_name, phone, email, password, payment_ref } = req.body;
   const hashPassword = await bcrypt.hash(
     password,
@@ -18,7 +16,6 @@ const addUser = async (req, res) => {
       console.log(err);
       res.status(404).json({ massage: err });
     } else if (result[0].affectedRows === 1) {
-      console.log(result);
       res.status(201).json({
         success: true,
         massage: "SUCSESS ADD NEW USER",

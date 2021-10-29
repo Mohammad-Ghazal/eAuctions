@@ -19,7 +19,6 @@ function AllAuction() {
   };
   useEffect(() => {
     axios.get(`http://localhost:5000/auctions`).then((res) => {
-      console.log(res.data.result)
       setAllAuctions(res.data.result);
       setAllAuctions2(res.data.result);
     });
@@ -38,7 +37,7 @@ function AllAuction() {
         {allAuctions &&
           allAuctions.map((element, index) => {
             return (
-              <div>
+              <div key={index}>
                 <div className="cards">
                   <img src={`${element.image}`} alt="" className="img" />
                   <div className="content">

@@ -94,7 +94,7 @@ export const MyItem = () => {
           </h2>
         </div>
       </div>
-      <div class="container_item">
+      <div className="container_item">
         {item &&
           item.map((element, index) => {
             return (

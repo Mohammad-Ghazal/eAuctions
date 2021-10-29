@@ -1,33 +1,25 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import axios from "axios";
-import { Button } from "primereact/button";
 import "./loginBtn.css";
 import { useDispatch } from "react-redux";
-import { setToken, setUserName } from "../actions/authAction";
+import { setToken, setUserName } from "../../actions/authAction";
 import { useHistory } from "react-router";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-
 // this client ID should put in .env file.
 //-----------------------------------------
 const clientId =
   "787313334015-8ikgfipkm1vi5t5fq9iapgls6urtarns.apps.googleusercontent.com";
-
 //the following google auth component will be used in login & register components.
 //-------------------------------------------------------------------
-
 function GoogleBtn(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [token, setReqToken] = useState("");
-  const [image, setImage] = useState("");
-  const [icon, setIcon] = useState("pi pi-user");
   const onLoginSuccess = (res) => {
-    setIcon("");
     setReqToken(res.tokenId);
-    setImage(res.profileObj.imageUrl);
+    // for img : res.profileObj.imageUrl
     axios
       .post(
         "http://localhost:5000/login",
@@ -48,10 +40,6 @@ function GoogleBtn(props) {
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  const onLoginFailure = (res) => {
-    console.log("Login Failed:", res);
   };
 
   return (
@@ -79,7 +67,6 @@ function GoogleBtn(props) {
           ></FontAwesomeIcon>
         )}
         onSuccess={onLoginSuccess}
-        onFailure={onLoginFailure}
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />

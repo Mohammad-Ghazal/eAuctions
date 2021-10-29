@@ -14,11 +14,11 @@ function OurTeam() {
           </h2>
         </div>
       </div>
-      <div class="containerq">
-        <section class="about" id="about">
-          <div class="content">
-            <div class="column col-left ">
-              <h3 class="content-title">
+      <div className="containerq">
+        <section className="about" id="about">
+          <div className="content">
+            <div className="column col-left ">
+              <h3 className="content-title">
                 We Create Intuitive Online
                 <br /> Auction Websites for Less
               </h3>
@@ -27,7 +27,7 @@ function OurTeam() {
                 <button className="button">Contact Us</button>
               </Link>
             </div>
-            <div class="column col-right">
+            <div className="column col-right">
               <p>
                 Online Auction has been recognized as the go-to online auction
                 marketplace for new, overstock, closeout and recertified
@@ -44,17 +44,17 @@ function OurTeam() {
         </section>
       </div>
 
-      <div class="containerc" style={{ marginTop: "70px" }}>
-        <div class="cont">
-          <div class="title ">
+      <div className="containerc" style={{ marginTop: "70px" }}>
+        <div className="cont">
+          <div className="title ">
             <img
               src="https://uploads-ssl.webflow.com/5e62759ab81ddc4f5815a3b6/5e62759b04473656d2dafba5_question-mark.svg"
               alt=""
             />
 
-            <h1 class="section-title">Frequently Asked Questions</h1>
+            <h1 className="section-title">Frequently Asked Questions</h1>
           </div>
-          <div class="q">
+          <div className="q">
             <h3
               style={{
                 marginTop: "70px",
@@ -107,19 +107,19 @@ function OurTeam() {
           </div>
         </div>
       </div>
-      <div class="site-section pt-0">
-        <div class="containerdd">
-          <div class="row">
-            <div class="title">
-              <h2 class="section-title">
+      <div className="site-section pt-0">
+        <div className="containerdd">
+          <div className="row">
+            <div className="title">
+              <h2 className="section-title">
                 How <strong>It Works</strong>
               </h2>
             </div>
           </div>
-          <div class="rows">
-            <div class="col-lg-3">
-              <div class="step">
-                <span class="wrap-icon icon-user">01</span>
+          <div className="rows">
+            <div className="col-lg-3">
+              <div className="step">
+                <span className="wrap-icon icon-user">01</span>
                 <h3>Register</h3>
                 <p>
                   To start using our auction, you’ll need to register. It’s
@@ -127,9 +127,9 @@ function OurTeam() {
                 </p>
               </div>
             </div>
-            <div class="col-lg-3">
-              <div class="step">
-                <span class="wrap-icon icon-money">02</span>
+            <div className="col-lg-3">
+              <div className="step">
+                <span className="wrap-icon icon-money">02</span>
                 <h3>Buy or Bid</h3>
                 <p>
                   You can instantly buy or place a bid on a desired product
@@ -137,9 +137,9 @@ function OurTeam() {
                 </p>
               </div>
             </div>
-            <div class="col-lg-3">
-              <div class="step">
-                <span class="wrap-icon icon-glass">03</span>
+            <div className="col-lg-3">
+              <div className="step">
+                <span className="wrap-icon icon-glass">03</span>
                 <h3>Submit a bid</h3>
                 <p>
                   Submitting a bid is fast and easy. The process takes
@@ -147,9 +147,9 @@ function OurTeam() {
                 </p>
               </div>
             </div>
-            <div class="col-lg-3">
-              <div class="step last">
-                <span class="wrap-icon icon-trophy">04</span>
+            <div className="col-lg-3">
+              <div className="step last">
+                <span className="wrap-icon icon-trophy">04</span>
                 <h3>Win</h3>
                 <p>
                   Easily win at our auction and enjoy owning the product you

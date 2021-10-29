@@ -6,7 +6,6 @@ function Business() {
   const [limtAuction, setlimtAuction] = useState();
   useEffect(() => {
     axios.get(`http://localhost:5000/auctions/limit`).then((res) => {
-      console.log(res.data.result);
       setlimtAuction(res.data.result);
     });
   }, []);
