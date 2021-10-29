@@ -8,7 +8,6 @@ const createBid = (req, res) => {
   const query = `INSERT INTO bids (auction_id, date, user_id,bid_value) values (?,?,?,?) `;
 
   connection.query(query, newBid, (err, result, fields) => {
-    console.log(result);
     if (err) {
       console.log(err.message);
       return res.status(500).json({

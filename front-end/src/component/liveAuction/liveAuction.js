@@ -3,14 +3,12 @@ import moment from "moment";
 import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
 import CountDown from "./countDown/CountDown";
 import "./style.css";
-import { Image } from "primereact/image";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setBid, setAuction } from "../../actions/auctionAction";
 import { Toast } from "primereact/toast";
 import io from "socket.io-client";
 import "../home/about/about.css";
-
 moment.localeData();
 function LiveAuction() {
   const { data } = useSelector((state) => {
@@ -32,11 +30,9 @@ function LiveAuction() {
   const [bidJump, setBidJump] = useState(0);
   const [lastBid, setLastBid] = useState("");
   const [lastBidder, setLastBidder] = useState("");
-  const [color, setColor] = useState("black");
   const axios = require("axios");
   const [renderedDiv, setRenderedDiv] = useState([data]);
   const [disableBtn, setDisableBtn] = useState(true);
-
   const dispatch = useDispatch();
   const toast = useRef(null);
   const socketRef = useRef();
@@ -252,12 +248,11 @@ function LiveAuction() {
       .get(`http://localhost:5000/favUsers`, config)
       .then((res) => {
         if (
-          res.data.users.filter((fav) => {
-            return fav.fav_user_id == data.auction.user_id;
+          res.data.users.filter((fav) => {            
+            return fav.fav_user_id === data.auction.user_id;
           }).length
         ) {
           showMsg(8);
-          setColor("blue");
         } else {
           axios
             .post(
@@ -268,7 +263,6 @@ function LiveAuction() {
             .then((res) => {
               if (res.data.success) {
                 showMsg(7);
-                setColor("blue");
               }
             })
             .catch((error) => {

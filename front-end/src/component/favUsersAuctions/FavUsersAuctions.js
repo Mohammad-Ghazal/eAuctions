@@ -9,20 +9,21 @@ import { Toast } from "primereact/toast";
 function FavUsersAuctions() {
   const [allAuctions, setAllAuctions] = useState([]);
   const [allAuctions2, setAllAuctions2] = useState([]);
-  const [favorietesIds, setFavorietesIds] = useState([]);
+  const [favorietesIds] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
   const toast = useRef(null);
-
+  let config = "";
   const tokenHolder = useSelector((state) => {
     return {
       token: state.tokenReducer.token,
       userName: state.tokenReducer.userName,
     };
   });
-  const config = {
-    headers: { Authorization: `Bearer ${tokenHolder.token}` },
-  };
+  if (tokenHolder.token)
+    config = {
+      headers: { Authorization: `Bearer ${tokenHolder.token}` },
+    };
   const search = (e) => {
     e.preventDefault();
     setAllAuctions(
@@ -33,10 +34,9 @@ function FavUsersAuctions() {
   };
   const filter = (e) => {
     e.preventDefault();
-
     setAllAuctions(
       allAuctions2.filter((item) => {
-        return item.user_id == e.target.value;
+        return item.user_id === Number.parseInt(e.target.value);
       })
     );
   };
@@ -72,34 +72,42 @@ function FavUsersAuctions() {
     }
   };
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/favUsers`, config)
-      .then((res) => {
-        for (let index in res.data.users) {
-          favorietesIds.push(res.data.users[index]["fav_user_id"]);
-        }
+    if (tokenHolder.token) {
+      axios
+        .get(`http://localhost:5000/favUsers`, config)
+        .then((res) => {
+          for (let index in res.data.users) {
+            favorietesIds.push(res.data.users[index]["fav_user_id"]);
+          }
 
-        axios.get(`http://localhost:5000/auctions`, {}, config).then((res) => {
-          setAllAuctions2(
-            res.data.result.filter((auction) => {
-              return favorietesIds.includes(auction.user_id);
-            })
-          );
+          axios
+            .get(`http://localhost:5000/auctions`, {}, config)
+            .then((res) => {
+              setAllAuctions2(
+                res.data.result.filter((auction) => {
+                  return favorietesIds.includes(auction.user_id);
+                })
+              );
 
-          setAllAuctions(
-            res.data.result.filter((auction) => {
-              return favorietesIds.includes(auction.user_id);
-            })
-          );
+              setAllAuctions(
+                res.data.result.filter((auction) => {
+                  return favorietesIds.includes(auction.user_id);
+                })
+              );
+            });
+        })
+        .catch((error) => {
+          if (error.message === "Request failed with status code 403");
+          showMsg(6);
+          console.log(error);
         });
-      })
+    } else {
+      showMsg(6);
+    }
 
-      .catch((error) => {
-        if (error.message == "Request failed with status code 403");
-        showMsg(6);
-        console.log(error);
-      });
-  }, []);
+
+
+  },[]);
   return (
     <>
       <div className="word">
@@ -121,7 +129,9 @@ function FavUsersAuctions() {
                     onChange={filter}
                     name="fav"
                   ></input>{" "}
-                  <label for="choice">{element}</label>
+                  <label key={index} htmlFor="choice">
+                    {element}
+                  </label>
                 </>
               );
             })}
@@ -131,7 +141,7 @@ function FavUsersAuctions() {
         {allAuctions &&
           allAuctions.map((element, index) => {
             return (
-              <div>
+              <div key={index}>
                 <div className="cards">
                   <img src={`${element.image}`} alt="" className="img" />
                   <div className="content">

@@ -14,7 +14,6 @@ function Calendar() {
       .get("http://localhost:5000/auctions")
       .then((result) => {
         setEvent(result.data.result);
-        console.log(result.data.result);
       })
       .catch((err) => {});
   }, []);

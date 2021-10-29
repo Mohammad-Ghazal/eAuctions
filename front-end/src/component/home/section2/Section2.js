@@ -3,8 +3,8 @@ import "../section2/section2.css";
 function Section2() {
   return (
     <>
-      <div class="word">
-        <div class="sec">
+      <div className="word">
+        <div className="sec">
           <img
             src="https://uploads-ssl.webflow.com/5e62759ab81ddc4f5815a3b6/5e62759b0447368014dafb9c_trophy.svg"
             alt=""

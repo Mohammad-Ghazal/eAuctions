@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import "../createItem/CreateItem.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { storage } from "../firebase";
+import { storage } from "./firebase";
 import swal from "sweetalert";
 import { Toast } from "primereact/toast";
 function CreateItem() {
@@ -99,11 +99,11 @@ function CreateItem() {
   return (
     <>
       <div className="Body-FORM">
-        <div class="container">
-          <div class="form">
+        <div className="container">
+          <div className="form">
             <img src="./images/a-1.png" alt="" />
             <h1>Create Item</h1>
-            <div class="container-form">
+            <div className="container-form">
               <input
                 defultvalue={title}
                 type="text"
@@ -115,14 +115,14 @@ function CreateItem() {
               <textarea
                 value={details}
                 onChange={Details}
-                class="textarea"
+                className="textarea"
                 name=""
                 id=""
                 cols="30"
                 rows="5"
                 placeholder="description"
               ></textarea>
-              <div class="clearfix">
+              <div className="clearfix">
                 <button
                   type="submit"
                   className="signupbtn"

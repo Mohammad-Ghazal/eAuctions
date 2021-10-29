@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 function About() {
   return (
     <>
-      <section class="about" id="about">
-        <div class="title ">
-          <h2 class="section-title">About</h2>
+      <section className="about" id="about">
+        <div className="title ">
+          <h2 className="section-title">About</h2>
         </div>
-        <div class="content">
-          <div class="column col-left ">
-            <div class="img-card">
-              <img src="./images/home.png" alt="image" />
+        <div className="content">
+          <div className="column col-left ">
+            <div className="img-card">
+              <img src="./images/home.png" alt="home" />
             </div>
           </div>
-          <div class="column col-right">
-            <h3 class="content-title">
+          <div className="column col-right">
+            <h3 className="content-title">
               {" "}
               Increase demand and create excitement for your products using our
               fully hosted online auction software.

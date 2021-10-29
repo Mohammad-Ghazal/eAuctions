@@ -66,7 +66,7 @@ function Contact() {
               rows="10"
               placeholder="MESSAGE"
             ></textarea>
-            <div class="clear">
+            <div className="clear">
               <button type="submit" className="btn-contact" onClick={submit}>
                 Submit MESSAGE
               </button>

@@ -1,34 +1,35 @@
 import React from "react"
-import { Link } from "react-router-dom";
 import "./footer.css";
 import { GrFacebookOption,GrTwitter,GrLinkedin } from 'react-icons/gr'
 import { FaInstagram } from 'react-icons/fa'
 
 export const Footer = () => {
   return (
-    <div>
+    <div>    <img src="./images/eAction logo.png" alt="logo" style={{marginLeft:"100px"}} height="70px" />
+
     <div className="footer">
+
     <div className="cont">
       <div className="row-footer">
         <div className="col-footer">
           <h4>Company</h4>
           <ul>
-            <li><a href="">About us</a></li>
-            <li><a href="">our services</a></li>
-            <li><a href="">privacy policy</a></li>
-            <li><a href="">affiliate program</a></li>
+            <li><a href="https://www.a.com">About us</a></li>
+            <li><a href="https://www.a.com">our services</a></li>
+            <li><a href="https://www.a.com">privacy policy</a></li>
+            <li><a href="https://www.a.com">affiliate program</a></li>
           </ul>
         </div>
         <div className="col-footer">
           <h4>get help</h4>
           <ul>
-            <li><a href="">FAQ</a></li>
-            <li><a href="">shipping</a></li>
-            <li><a href="">Returns</a></li>
-            <li><a href="">Payment options</a></li>
+            <li><a href="https://www.a.com">FAQ</a></li>
+            <li><a href="https://www.a.com">shipping</a></li>
+            <li><a href="https://www.a.com">Returns</a></li>
+            <li><a href="https://www.a.com">Payment options</a></li>
           </ul>
         </div>
-        <div class="col-footer">
+        <div className="col-footer">
           <h4>online shop</h4>
           <ul>
             <li><a href="https://www.amazon.com">Amazon</a></li>
@@ -50,5 +51,6 @@ export const Footer = () => {
     </div>
   </div>
   </div>
+  
   );
 };

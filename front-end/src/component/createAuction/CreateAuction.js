@@ -4,9 +4,7 @@ import "../createAuction/CreateAuction.css";
 import moment from "moment";
 import "../createItem/CreateItem.css";
 import swal from "sweetalert";
-import { useSelector } from "react-redux";
 import { Toast } from "primereact/toast";
-
 function CreateAuction() {
   const [starterBid, setStarterBid] = useState();
   const [startDate, setStartDate] = useState();
@@ -17,12 +15,6 @@ function CreateAuction() {
   const [empty, setEmpty] = useState();
   const token = localStorage.getItem("token");
   const toast = useRef(null);
-
-  const tokenHolder = useSelector((state) => {
-    return {
-      token: state.tokenReducer.token,
-    };
-  });
   const showMsg = (msgNumber) => {
     switch (msgNumber) {
       case 6:
@@ -47,7 +39,7 @@ function CreateAuction() {
     }
   };
   useEffect(() => {
-    if (tokenHolder.token) {
+    if (token) {
       axios
         .get(`http://localhost:5000/items`, {
           headers: {
@@ -113,11 +105,11 @@ function CreateAuction() {
   return (
     <>
       <div className="Body-FORM">
-        <div class="container">
-          <div class="form">
+        <div className="container">
+          <div className="form">
             <img src="./images/a-1.png" alt="#" />
             <h1>Create Auction</h1>
-            <div class="container-form">
+            <div className="container-form">
               <select onChange={handleChange}>
                 <option>Please Select Item</option>
                 {item &&
@@ -153,8 +145,8 @@ function CreateAuction() {
                 required
                 onChange={bid_jump}
               />
-              <div class="clearfix">
-                <button type="submit" class="signupbtn" onClick={click}>
+              <div className="clearfix">
+                <button type="submit" className="signupbtn" onClick={click}>
                   Submit
                 </button>
               </div>

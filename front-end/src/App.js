@@ -4,7 +4,7 @@ import SideBar from "./component/sideBar/SideBar";
 import { Footer } from "./component/footer/footer";
 import NavBar from "./component/navBar/NavBar";
 import AllAuctions from "./component/allAuctions/AllAuctions";
-import Login from "./component/login";
+import Login from "./component/login/login";
 import StripeContainer from "./component/stripe/StripeContainer";
 import CreateAuction from "./component/createAuction/CreateAuction";
 import { MyAuction } from "./component/myAuctions/MyAuction";
@@ -12,14 +12,14 @@ import CreateItem from "./component/createItem/CreateItem";
 import LiveAuction from "./component/liveAuction/liveAuction";
 import { Component404NotFound } from "./component/component404NotFound/Component404NotFound";
 import { Admin } from "./component/admin/Admin";
-import Calendar from "./component/calendar";
+import Calendar from "./component/calender/calendar";
 import { MyItem } from "./component/myItem/MyItem";
 import Home from "./component/home/Home";
 import ContactUs from "./component/contactUs/ContactUs";
 import orgchart from "./component/organization chart/orgchart";
 import FavUsersAuctions from "./component/favUsersAuctions/FavUsersAuctions";
 import Profile from "./component/profile/Profile";
-import SignUp from "./component/register";
+import SignUp from "./component/login/register";
 import OurTeam from "./component/ourTeam/OurTeam";
 
 function App() {

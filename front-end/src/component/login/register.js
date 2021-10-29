@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import GoogleBtn from "./googleAuth";
 import { useHistory } from "react-router-dom";
-
 import axios from "axios";
 import { Form, Field } from "react-final-form";
 import { InputText } from "primereact/inputtext";
@@ -116,6 +115,7 @@ const SignUp = () => {
         style={{
           width: "50%",
         }}
+        alt="person"
         src="./images/bid_login2.png"
       ></img>
 

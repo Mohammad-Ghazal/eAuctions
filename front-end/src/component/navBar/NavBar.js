@@ -70,15 +70,17 @@ const NavBar = () => {
 
   return (
     <div className="headar">
-      <nav class="navbar navbar-expand-custom navbar-mainbg">
+      <nav className="navbar navbar-expand-custom navbar-mainbg">
+        <img src="./images/eAction logo.png" alt="logo" style={{marginLeft:"100px"}} height="50px" />
+
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <i class="fas fa-bars text-white"></i>
+          <i className="fas fa-bars text-white"></i>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
@@ -109,7 +111,7 @@ const NavBar = () => {
                 </Link>
               </li>
               {tokenHolder.token && (
-                <li class="nav-item">
+                <li className="nav-item">
                   <Link className="nav-link" to="/calender">
                     <i className="far fa-calendar-alt"></i>Auction Scheduler
                   </Link>
