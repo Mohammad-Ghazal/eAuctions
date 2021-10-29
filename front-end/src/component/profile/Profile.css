@@ -39,3 +39,56 @@
 .image {
   width: 500px;
 }
+
+/* ------------------------------------------ */
+
+donutchart-arcs-path,
+.donutchart-legend-item-rect,
+.donutchart-legend-item-label {
+  cursor: pointer;
+}
+
+.donutchart-innertext-label {
+  font-size: 18px;
+}
+
+.donutchart-innertext-value {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.donutchart-arcs-path,
+.donutchart-legend-item-rect {
+  fill-opacity: 0;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-iteration: 1;
+
+  animation-name: DrawLine, FillIn;
+
+  animation-delay: 0.5s, 2s;
+  animation-duration: 3s, 1s;
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+}
+
+@keyframes DrawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes FillIn {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
+  }
+}
+
+.selected.donutchart-legend-item-label,
+.toggled.donutchart-legend-item-label {
+  fill: #464242;
+  text-decoration: underline;
+}
