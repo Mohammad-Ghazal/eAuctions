@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Card from "react-bootstrap/Card";
+import DonutChart from "react-donut-chart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faAt, faUserTie } from "@fortawesome/free-solid-svg-icons";
+
+import CardGroup from "react-bootstrap/CardGroup";
+
 import "../profile/Profile.css";
 function Profile() {
   const token = localStorage.getItem("token");
 
   const [profile, setprofile] = useState();
   const [user, setUser] = useState();
+  const [auctions, setAuctions] = useState(0);
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/items`, {
@@ -16,6 +25,16 @@ function Profile() {
       })
       .then((res) => {
         setprofile(res.data.items);
+      });
+
+    axios
+      .get(`http://localhost:5000/auctions/user_auctions`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setAuctions(res.data.result.length);
       });
   }, []);
   useEffect(() => {
@@ -38,52 +57,79 @@ function Profile() {
           </h2>
         </div>
       </div>
+
       <div className="business" id="port">
         <div className="containerr">
           {user &&
             user.map((element, index) => {
               return (
-                <div className="mt-5 d-flex justify-content-center">
-                  <div className="card3">
-                    <div className="d-flex align-items-center">
-                      <div className="image">
-                        <img
-                          src="https://cdn.pixabay.com/photo/2012/04/01/18/22/user-23874_640.png"
-                          alt=""
-                          className="rounded"
-                        />
-                      </div>
-                      <div className="ml-3 w-100 ">
-                        <h4 className="mb-0 mt-0">{element.user_name}</h4>
-                        <br />
-                        <span>Email: {element.email}</span>
-                        <br />
-                        <br />
-                        <span>Phone: {element.phone}</span>
-                        <br />
-                        <br />
-                        <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                          <div className="d-flex flex-column">
-                            <span className="articles">Account</span>
-                            <span className="number1">
-                              {element.is_deleted === 0 ? "Avilable" : "Closed"}
-                            </span>
-                          </div>
-                          <div className="d-flex flex-column">
-                            <span className="followers">UserId</span>
-                            <span className="number2">{element.user_id}</span>
-                          </div>
-                          <div className="d-flex flex-column">
-                            <span className="rating">Role</span>
-                            <span className="number3">
-                              {element.role_id === 5 ? "User" : "Admin"}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <CardGroup>
+                  <Card style={{ backgroundColor: "#F3F1F1", padding: "10px" }}>
+                    <FontAwesomeIcon
+                      style={{
+                        margin: "auto",
+                        marginBottom: "10%",
+                        fontSize: "17rem",
+                        color: "#574B8A",
+                      }}
+                      icon={faUserTie}
+                    />
+                    <Card.Body style={{ margin: "auto" }}>
+                      <h1 className=" text-muted">{element.user_name}</h1>
+
+                      <Card.Text>
+                        <FontAwesomeIcon icon={faAt} size="1x" />:{" "}
+                        {element.email}
+                      </Card.Text>
+                      <Card.Text>
+                        <FontAwesomeIcon icon={faPhone} size="1x" />:{" "}
+                        {element.phone}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                  <Card>
+                    <Card.Body>
+                      <Card.Title className="text-center"></Card.Title>
+                      <DonutChart
+                        style={{ border: "none" }}
+                        width={620}
+                        innerRadius={0.7}
+                        legend={true}
+                        clickToggle={true}
+                        colors={["#FFA949", "#655b90"]}
+                        toggledOffset={0.2}
+                        className="donutchart"
+                        onMouseEnter={(item) => {
+                          return item;
+                        }}
+                        onClick={(item, toggled) => {
+                          if (toggled) {
+                            return item;
+                          } else {
+                            return null;
+                          }
+                        }}
+                        data={[
+                          {
+                            label: "Items",
+                            value: profile.length,
+                          },
+                          {
+                            label: "Auctions",
+                            value: auctions,
+                          },
+                        ]}
+                      />
+                    </Card.Body>
+                    <Card.Footer>
+                      <Card.Title style={{ textAlign: "center" }}>
+                        <h6 className=" text-muted">
+                          {element.user_name} Statistics
+                        </h6>
+                      </Card.Title>
+                    </Card.Footer>
+                  </Card>
+                </CardGroup>
               );
             })}
 
