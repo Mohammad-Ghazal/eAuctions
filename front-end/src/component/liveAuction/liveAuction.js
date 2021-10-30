@@ -190,7 +190,9 @@ function LiveAuction() {
 
   const confirm = (e) => {
     e.preventDefault();
+    
     if (tokenHolder.token.length) {
+    
       if (myBid > lastBid) {
         confirmDialog({
           message: `Are you sure you want to bid by ${myBid}$ ?`,
@@ -245,6 +247,7 @@ function LiveAuction() {
   };
   const addUserToFavorite = (e) => {
     e.preventDefault();
+    if (tokenHolder.token){
     axios
       .get(`http://localhost:5000/favUsers`, config)
       .then((res) => {
@@ -277,7 +280,10 @@ function LiveAuction() {
         if (error.message === "Request failed with status code 403");
         showMsg(6);
         console.log(error);
-      });
+      });}
+      else {
+        showMsg(4)
+      }
   };
   const decrease = (e) => {
     e.preventDefault();
