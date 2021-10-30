@@ -339,10 +339,7 @@ function LiveAuction() {
 
             <div className="content">
               <div className="img-card">
-                <img
-                  src="https://ibid.modeltheme.com/wp-content/uploads/2018/09/electronic-cat2.jpg"
-                  alt=""
-                />
+                <img src={data.auction.image} alt="" />
               </div>
 
               <div className="column col-right reveal">
