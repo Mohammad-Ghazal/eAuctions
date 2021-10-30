@@ -52,7 +52,7 @@ const SignUp = () => {
 
   const onSubmit = (data, form) => {
     setFormData(data);
-    setShowMessage(true);
+    setShowMessage(false);
 
     console.log(formData);
     console.log(data);

@@ -100,7 +100,7 @@ function CreateItem() {
             <h1>Create Item</h1>
             <div className="container-form">
               <input
-                defultvalue={title}
+                value={title}
                 type="text"
                 placeholder="Title"
                 required

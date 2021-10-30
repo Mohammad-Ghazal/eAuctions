@@ -65,7 +65,8 @@ const Login = () => {
   };
 
   const onSubmit = (data, form) => {
-    setShowMessage(true);
+    // setShowMessage(true);
+
     axios
       .post("http://localhost:5000/login", {
         email: data.email,
@@ -76,6 +77,7 @@ const Login = () => {
         localStorage.setItem("userName", res.data.user_name);
         dispatch(setToken(res.data.token));
         dispatch(setUserName(res.data.user_name));
+        history.push(`/Home`);
       })
       .catch((error) => {
         console.log(error);
@@ -97,7 +99,7 @@ const Login = () => {
         label="OK"
         className="p-button-text"
         autoFocus
-        onClick={() => setShowMessage(false, history.push(`/Home`))}
+        onClick={() => setShowMessage(false)}
       />
     </div>
   );

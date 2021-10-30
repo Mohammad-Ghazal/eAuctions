@@ -75,7 +75,7 @@ function Profile() {
                       style={{
                         margin: "auto",
                         marginBottom: "10%",
-                        fontSize: "17rem",
+                        fontSize: "15rem",
                         color: "#574B8A",
                       }}
                       icon={faUserTie}
@@ -94,39 +94,8 @@ function Profile() {
                     </Card.Body>
                   </Card>
                   <Card style={{ height: "75vh" }}>
-                    <Card.Body>
+                    <Card.Body style={{ margin: "auto" }}>
                       <Card.Title className="text-center"></Card.Title>
-                      <DonutChart
-                        style={{ border: "none" }}
-                        width={620}
-                        innerRadius={0.7}
-                        legend={true}
-                        clickToggle={true}
-                        colors={["#FFA949", "#655b90"]}
-                        toggledOffset={0.2}
-                        className="donutchart"
-                        onMouseEnter={(item) => {
-                          return item;
-                        }}
-                        onClick={(item, toggled) => {
-                          if (toggled) {
-                            return item;
-                          } else {
-                            return null;
-                          }
-                        }}
-                        data={[
-                          {
-                            label: "Items",
-                            value: profile.length,
-                          },
-                          {
-                            label: "Auctions",
-                            value: auctions,
-                          },
-                        ]}
-                      />
-
                       <Card.Title
                         style={{ textAlign: "center", margin: "10px" }}
                       >
@@ -134,7 +103,38 @@ function Profile() {
                           {element.user_name} Statistics
                         </h6>
                       </Card.Title>
-                      <br></br>
+                      <div style={{ padding: "30px", width: "100%" }}>
+                        <DonutChart
+                          style={{ border: "none", margin: "auto" }}
+                          width={500}
+                          innerRadius={0.8}
+                          legend={true}
+                          clickToggle={true}
+                          colors={["#FFA949", "#655b90"]}
+                          toggledOffset={0.1}
+                          className="donutchart"
+                          onMouseEnter={(item) => {
+                            return item;
+                          }}
+                          onClick={(item, toggled) => {
+                            if (toggled) {
+                              return item;
+                            } else {
+                              return null;
+                            }
+                          }}
+                          data={[
+                            {
+                              label: "Items",
+                              value: profile.length,
+                            },
+                            {
+                              label: "Auctions",
+                              value: auctions,
+                            },
+                          ]}
+                        />
+                      </div>
                     </Card.Body>
                   </Card>
                 </CardGroup>
@@ -158,10 +158,7 @@ function Profile() {
                   return (
                     <div className="cons">
                       <div className="divImages">
-                        <img
-                          src="https://ibid.modeltheme.com/wp-content/uploads/2018/09/electronic-cat2.jpg"
-                          alt=""
-                        />
+                        <img src={element.image} alt="" />
                       </div>
 
                       <h5 className="name">{element.title}</h5>
