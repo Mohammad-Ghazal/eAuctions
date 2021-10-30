@@ -1,4 +1,3 @@
-
 /* FormDemo.css */
 
 .login_div {
@@ -13,7 +12,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 5%;
+  gap: 1%;
 }
 
 .form-demo .card {

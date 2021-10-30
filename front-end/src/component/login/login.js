@@ -124,7 +124,7 @@ const Login = () => {
           style={{
             width: "100%",
           }}
-          src="./images/bid_login.png"
+          src="https://img.freepik.com/free-vector/online-registration-sign-up-with-man-sitting-near-smartphone_268404-95.jpg?size=626&ext=jpg"
         ></img>
       </div>
 
@@ -162,7 +162,7 @@ const Login = () => {
                 className="p-mr-2 avatar"
                 size="large"
                 style={{
-                  backgroundColor: "#FFA949",
+                  backgroundColor: "#574B8A",
                   color: "#ffffff",
                 }}
                 shape="circle"
@@ -203,6 +203,7 @@ const Login = () => {
                       </div>
                     )}
                   />
+                  <br />
                   <Field
                     name="password"
                     render={({ input, meta }) => (
@@ -236,19 +237,8 @@ const Login = () => {
                     type="checkbox"
                     render={({ input, meta }) => (
                       <div className="p-field-checkbox">
-                        <Checkbox
-                          inputId="accept"
-                          {...input}
-                          // className={classNames({
-                          //   "p-invalid": isFormFieldValid(meta),
-                          // })}
-                        />
-                        <label
-                          htmlFor="accept"
-                          // className={classNames({
-                          //   "p-error": isFormFieldValid(meta),
-                          // })}
-                        >
+                        <Checkbox inputId="accept" {...input} />
+                        <label htmlFor="accept">
                           I agree to the terms and conditions*
                         </label>
                       </div>

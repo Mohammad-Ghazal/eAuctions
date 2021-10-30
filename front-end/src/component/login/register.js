@@ -113,10 +113,10 @@ const SignUp = () => {
       <img
         className="register_image"
         style={{
-          width: "50%",
+          width: "55%",
         }}
         alt="person"
-        src="./images/bid_login2.png"
+        src="./images/preview.jpg"
       ></img>
 
       <Divider layout="vertical">
@@ -153,7 +153,7 @@ const SignUp = () => {
                   className="p-mr-2 avatar"
                   size="large"
                   style={{
-                    backgroundColor: "#ffa949",
+                    backgroundColor: "#574B8A",
                     color: "#ffffff",
                   }}
                   shape="circle"
@@ -318,11 +318,10 @@ const SignUp = () => {
                     <div
                       style={{
                         fontSize: "10px",
-                        paddingTop: "10%",
+                        paddingTop: "1%",
                         display: "flex",
                         flexDirection: "row",
                         textAlign: "center",
-                        gap: "1%",
                       }}
                     >
                       <GoogleBtn></GoogleBtn>

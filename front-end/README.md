@@ -1,70 +1,200 @@
-# Getting Started with Create React App
+<div id="top"></div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h3 align="center">e-Auction</h3>
+  <a href="https://github.com/github_username/repo_name">
+  </a>
 
-## Available Scripts
+  <p align="center">
+    Developed in 2021, e-Auction is an Online Auction. Its' mission is to In providing the appropriate environment to facilitate the process of buying and selling products. We live in an era where the world has become a small village. Online Auction is where everyone goes shopping, selling, and giving while discovering variety and affordability.
+    Note: we are students and we will NOT publish this website, it is simpley a project.
+  </p>
+</div>
 
-In the project directory, you can run:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-### `npm start`
+### Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [React.js](https://reactjs.org/)
+- [React-Bootstrap](https://react-bootstrap.github.io/)
+- [React-Redux](https://react-redux.js.org/)
+- [Microsoft Visual Studio Code](https://code.visualstudio.com/)
+- [NodeJS](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [MySQL](https://www.mysql.com/)
+- [Stripe](https://stripe.com/en-gb-us)
+- [Firebase](https://firebase.google.com/)
+- [Heroku](https://dashboard.heroku.com/)
+- [Socket-io](https://socket.io/)
+- [mdbreact](https://www.primefaces.org/primereact/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm test`
+### The problem and the Solution
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Most people do not have the opportunity to participate in an auction because of the vast distance between countries. The e-Auction allows participation in any auction from different countries of the world.
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can use this application to participate in an auction and display the products you want to sell.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The project was built using VS Code ver 1.60.1, ran and tested on Chrome Version 93.0.4577.82.
+The project was built on Windows 10 64bit.
+To get a local copy up and running follow these simple example steps.
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+There are no special prerequisites, I only need to note that you MAY need to manually install react-toastify package in the client/ path.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Executing program
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Open a terminal on the path ...\MERAKI_Academy_Project_5\
+Open a terminal on the path ...\MERAKI_Academy_Project_5\client
+Excecute the commands bellow and wait for the project to run...
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+npm run dev in the server folder.
+npm start in the client folder.
 
-## Learn More
+### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the repo
+   ```sh
+   git clone https://github.com/BERMUDA-Programmers/MERAKI_Academy_Project_5-eAuctions.git
+   ```
+2. Install NPM packages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Run NPM I in the terminal before you execute the run commands
+NPM i to install the required libraries in both the client and the server respected folders
 
-### Code Splitting
+  <p align="right">(<a href="#top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<!-- ROADMAP -->
 
-### Analyzing the Bundle Size
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Login] Feature 1
+  - [Login with Google]
+- [Signup] Feature 2
+- [Search] Feature 3
+- [notification] Feature 4
+- [Payment] Feature 5
+- [AddToFavorite] Feature 6
+- [CounterTime] Feature 7
+- [Calender] Feature 8
+- [Create item]
+  - [title ]
+  - [photo ]
+  - [detail ]
+- [View Your Items]
+  - [Manage Items]
+    - [Edit Title]
+    - [Delete the item under certain conditions]
+- [Create Auction]
+  - [start date of auction ]
+  - [end date of auction ]
+  - [starter bid ]
+  - [bid jump ]
+- [Participate in an auction] -[Entering the auction]  
+   -[click on button inrease bid]  
+   -[click on button bidNow]
+- [ContactUs]
+- [Logout]
 
-### Making a Progressive Web App
+<!-- CONTRIBUTING -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contributing
 
-### Advanced Configuration
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-### Deployment
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm run build` fails to minify
+<!-- LICENSE -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+
+Open Source.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+- Muath AL-Nahhas - [https://github.com/MuathNahhas](https://github.com/MuathNahhas)
+  - Email: muath.nahhas@yahoo.com
+- Ahmad Okasha - [https://github.com/ahmadrokasha](https://github.com/ahmadrokasha)
+  - Email: ahmad.r.okasha@gmail.com
+- Mohammad Ghazal - [https://github.com/Mohammad-Ghazal/](https://github.com/Mohammad-Ghazal/)
+  - Email: moh.g.ghazal@gmail.com
+
+Project Link: [https://github.com/BERMUDA-Programmers/client-e-Auction](https://github.com/BERMUDA-Programmers/client-e-Auction)
+Project Link: [https://github.com/BERMUDA-Programmers/e-Auction-server](https://github.com/BERMUDA-Programmers/e-Auction-server)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+- [Ayman M.Hariri](https://github.com/engaymanh)
+- [Batool Maali](https://github.com/batoolmaali)
+- [Mai Al-Shagarin](https://github.com/maialshagarin)
+- [Mohammed Farhan](https://github.com/Mohamad-Farhan)
+- [Mohammad Jouza](https://github.com/MohammadJouza)
+- [MERAKI_Academy](https://github.com/MERAKI-Academy)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-url]: https://github.com/github_username/repo_name/network/members
+[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-url]: https://github.com/github_username/repo_name/stargazers
+[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-url]: https://github.com/github_username/repo_name/issues
+[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/linkedin_username
+[product-screenshot]: images/screenshot.png

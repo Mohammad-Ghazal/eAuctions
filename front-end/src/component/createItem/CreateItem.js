@@ -47,10 +47,8 @@ function CreateItem() {
     } else {
       showMsg(6);
     }
-  
   };
   const handelUpload = () => {
-
     if (state.token) {
       const uploadTask = storage.ref(`/images/${images.name}`).put(images);
       uploadTask.on(
@@ -76,7 +74,7 @@ function CreateItem() {
                     },
                   }
                 )
-  
+
                 .then((result) => {
                   swal("Good job!", "Item Created Successfuly", "success");
                   setTitle("");
@@ -92,9 +90,6 @@ function CreateItem() {
     } else {
       showMsg(6);
     }
-
-
-
   };
   return (
     <>
@@ -111,7 +106,7 @@ function CreateItem() {
                 required
                 onChange={Title}
               />
-              <input value={image} type="file" onChange={handleChange} />
+              <input type="file" onChange={handleChange} />
               <textarea
                 value={details}
                 onChange={Details}
