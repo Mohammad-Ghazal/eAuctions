@@ -26,10 +26,7 @@ function Business() {
               limtAuction.map((element, index) => {
                 return (
                   <div key={index} className="card-b">
-                    <img
-                      src="https://ibid.modeltheme.com/wp-content/uploads/2018/09/electronic-cat2.jpg"
-                      alt=""
-                    />
+                    <img src={element.image} alt="" />
                     <div className="info">
                       <p>{element.title}</p>
                       <h5>Starter Bid: {element.starter_bid} $</h5>
