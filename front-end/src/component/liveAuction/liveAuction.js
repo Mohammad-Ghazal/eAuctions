@@ -9,6 +9,7 @@ import { setBid, setAuction } from "../../actions/auctionAction";
 import { Toast } from "primereact/toast";
 import io from "socket.io-client";
 import "../home/about/about.css";
+import { BsHeart } from "react-icons/bs";
 moment.localeData();
 function LiveAuction() {
   const { data } = useSelector((state) => {
@@ -248,7 +249,7 @@ function LiveAuction() {
       .get(`http://localhost:5000/favUsers`, config)
       .then((res) => {
         if (
-          res.data.users.filter((fav) => {            
+          res.data.users.filter((fav) => {
             return fav.fav_user_id === data.auction.user_id;
           }).length
         ) {
@@ -338,9 +339,11 @@ function LiveAuction() {
 
             <div className="content">
               <div className="img-card">
-                <img src={data.auction.image} alt="" />
+                <img
+                  src="https://ibid.modeltheme.com/wp-content/uploads/2018/09/electronic-cat2.jpg"
+                  alt=""
+                />
               </div>
-              <div className="column col-left reveal"></div>
 
               <div className="column col-right reveal">
                 <div
@@ -353,21 +356,35 @@ function LiveAuction() {
                   <div>
                     {" "}
                     <h4 className="content-titles">
-                      OwnerAuction: {data.auction["user_name"]}
+                      Owner: {data.auction["user_name"]}
                     </h4>
                   </div>
-                  <div className="liveAuctions">
+                  <div>
                     {" "}
-                    <button className="btn1" onClick={addUserToFavorite}>
-                      <i className="pi pi-user-plus"> favorite </i>
-                    </button>
+                    <BsHeart
+                      style={{
+                        cursor: "pointer",
+                        marginLeft: "20px",
+                        color: "red",
+                      }}
+                      size={30}
+                      onClick={addUserToFavorite}
+                    />
                   </div>
                 </div>
 
-                <div className="Aucation"></div>
                 <div className="lastSection">
-                  <h5>Bid jump:{bidJump}$ ber jumb as minimum</h5>
+                  <p>
+                    adOriginal canvas. Under UV exam, there does not appear to
+                    be inpaint. 2 inch scuff in the lower left corner. Small
+                    spots of surface soiling along the extreme bottom edges.
+                    Framed Dimensions 42.5 X 54.5 Inches *Heritage Auctions
+                    strives to provide as much information as possible but
+                    encourages in-person inspection by bidders
+                  </p>
+
                   <div className="liveAuctions">
+                    <h5>Bid jump:{bidJump}$ ber jumb as minimum</h5>
                     <button className="btn1" onClick={decrease}>
                       -
                     </button>
@@ -398,10 +415,10 @@ function LiveAuction() {
             </div>
           </section>
         </div>
-        <div className="containerlive">
+        {/* <div className="containerlive">
           <h3>Detail:</h3>
           <p>{data.auction.details}</p>
-        </div>
+        </div> */}
       </div>
       <Toast ref={toast} />
     </div>

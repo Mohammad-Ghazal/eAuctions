@@ -22,7 +22,7 @@
   border-width: 1px;
   border-color: #e3e3e3;
   border-radius: 20px;
-  /* padding:10px;*/
+  padding: 10px;
 }
 .cards .content {
   background: #fff;

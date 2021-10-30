@@ -64,7 +64,13 @@ function Profile() {
             user.map((element, index) => {
               return (
                 <CardGroup>
-                  <Card style={{ backgroundColor: "#F3F1F1", padding: "10px" }}>
+                  <Card
+                    style={{
+                      backgroundColor: "#F3F1F1",
+                      padding: "10px",
+                      height: "75vh",
+                    }}
+                  >
                     <FontAwesomeIcon
                       style={{
                         margin: "auto",
@@ -87,7 +93,7 @@ function Profile() {
                       </Card.Text>
                     </Card.Body>
                   </Card>
-                  <Card>
+                  <Card style={{ height: "75vh" }}>
                     <Card.Body>
                       <Card.Title className="text-center"></Card.Title>
                       <DonutChart
@@ -120,34 +126,54 @@ function Profile() {
                           },
                         ]}
                       />
-                    </Card.Body>
-                    <Card.Footer>
-                      <Card.Title style={{ textAlign: "center" }}>
-                        <h6 className=" text-muted">
+
+                      <Card.Title
+                        style={{ textAlign: "center", margin: "10px" }}
+                      >
+                        <h6 className="text-muted">
                           {element.user_name} Statistics
                         </h6>
                       </Card.Title>
-                    </Card.Footer>
+                      <br></br>
+                    </Card.Body>
                   </Card>
                 </CardGroup>
               );
             })}
 
-          <div className="business-content">
-            {profile &&
-              profile.map((element, index) => {
-                return (
-                  <div key={index} className="card-b">
-                    <img src={`${element.image}`} alt="" />
-                    <div className="info">
-                      <h5>Title: {element.title}</h5>
-                      <p>Details: {element.details}</p>
+          <div className="containersd">
+            <div style={{ backgroundColor: "#F3F1F1" }} className="word">
+              <div
+                style={{ backgroundColor: "#F3F1F1", color: "#484848" }}
+                className="sec title-page"
+              >
+                <h2>
+                  <span>My Items</span>
+                </h2>
+              </div>
+            </div>
+            <div className="containerrsd">
+              {profile &&
+                profile.map((element, index) => {
+                  return (
+                    <div className="cons">
+                      <div className="divImages">
+                        <img
+                          src="https://ibid.modeltheme.com/wp-content/uploads/2018/09/electronic-cat2.jpg"
+                          alt=""
+                        />
+                      </div>
+
+                      <h5 className="name">{element.title}</h5>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+            </div>
           </div>
-          <div className="business_button3">
+          <div
+            style={{ backgroundColor: "#F3F1F1", paddingBottom: "20px" }}
+            className="business_button3"
+          >
             <Link to="/MyItem">
               <button className="btn_button3">Update Items</button>
             </Link>

@@ -39,7 +39,11 @@ function AllAuction() {
             return (
               <div key={index}>
                 <div className="cards">
-                  <img src={`${element.image}`} alt="" className="img" />
+                  <img
+                    src="https://ibid.modeltheme.com/antiques-collectibles/wp-content/uploads/2018/09/watch-product-1.png"
+                    alt=""
+                    className="img"
+                  />
                   <div className="content">
                     <h6 className="name">{element.title}</h6>
                     <div className="des">
