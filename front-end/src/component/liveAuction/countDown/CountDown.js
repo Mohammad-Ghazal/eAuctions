@@ -18,7 +18,11 @@ function CountDown(props) {
   const [startAgain, setStartAgain] = useState("");
   const [isTimerEnd, setIsTimerEnd] = useState(false);
   const [userID, setUserID] = useState("");
-
+  const tokenHolder = useSelector((state) => {
+    return {
+      token: state.tokenReducer.token,
+    };
+  });
   let timeinterval;
   const { data } = useSelector((state) => {
     return {
@@ -53,13 +57,14 @@ function CountDown(props) {
           setIsTimerEnd(true);
 
           //check whether the logged in  user is the auction closed on user
+          if(tokenHolder.token)
           axios
             .post(
               "http://localhost:5000/auctions/payment",
               { auction_id: props.auctionId },
               {
                 headers: {
-                  Authorization: `Bearer ${props.token}`,
+                  Authorization: `Bearer ${tokenHolder.token}`,
                 },
               }
             )
@@ -137,7 +142,7 @@ function CountDown(props) {
         >
           back to home
         </button>
-        {jwtDecode(props.token).userId === userID && (
+        {tokenHolder.token&&jwtDecode(tokenHolder.token).userId === userID && (
           <button className="buttonpayment"
             onClick={() => {
               history.push(`/payment`);
