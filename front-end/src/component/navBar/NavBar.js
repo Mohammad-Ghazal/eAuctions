@@ -71,7 +71,7 @@ const NavBar = () => {
   return (
     <div className="headar">
       <nav className="navbar navbar-expand-custom navbar-mainbg">
-        <img src="./images/eAction logo.png" alt="logo" style={{marginLeft:"100px"}} height="50px" />
+        <img src="./images/eActions logo.png" alt="logo" style={{marginLeft:"100px"}} height="50px" />
 
         <button
           className="navbar-toggler"

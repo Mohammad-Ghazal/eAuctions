@@ -181,7 +181,7 @@ function LiveAuction() {
 
   const received = (data) => {
     if (data.auctionId === auctionId)
-      if (data.bidId !== myLastBidId) {
+      if (data.user_name !== tokenHolder.userName) {
         showWarn(data);
       }
     setLastBidder(data.user_name);
@@ -190,9 +190,8 @@ function LiveAuction() {
 
   const confirm = (e) => {
     e.preventDefault();
-    
+
     if (tokenHolder.token.length) {
-    
       if (myBid > lastBid) {
         confirmDialog({
           message: `Are you sure you want to bid by ${myBid}$ ?`,
@@ -233,7 +232,7 @@ function LiveAuction() {
         const data = {
           user_name: tokenHolder.userName,
           bid_value: myBid,
-          bidId: myLastBidId,
+
           auctionId,
         };
         socketRef.current.emit("bid", data);
@@ -247,43 +246,43 @@ function LiveAuction() {
   };
   const addUserToFavorite = (e) => {
     e.preventDefault();
-    if (tokenHolder.token){
-    axios
-      .get(`http://localhost:5000/favUsers`, config)
-      .then((res) => {
-        if (
-          res.data.users.filter((fav) => {
-            return fav.fav_user_id === data.auction.user_id;
-          }).length
-        ) {
-          showMsg(8);
-        } else {
-          axios
-            .post(
-              `http://localhost:5000/favUsers/${data.auction.user_id}`,
-              {},
-              config
-            )
-            .then((res) => {
-              if (res.data.success) {
-                showMsg(7);
-              }
-            })
-            .catch((error) => {
-              console.log(error);
-              if (error.message === "Request failed with status code 403");
-              showMsg(6);
-            });
-        }
-      })
-      .catch((error) => {
-        if (error.message === "Request failed with status code 403");
-        showMsg(6);
-        console.log(error);
-      });}
-      else {
-        showMsg(4)
-      }
+    if (tokenHolder.token) {
+      axios
+        .get(`http://localhost:5000/favUsers`, config)
+        .then((res) => {
+          if (
+            res.data.users.filter((fav) => {
+              return fav.fav_user_id === data.auction.user_id;
+            }).length
+          ) {
+            showMsg(8);
+          } else {
+            axios
+              .post(
+                `http://localhost:5000/favUsers/${data.auction.user_id}`,
+                {},
+                config
+              )
+              .then((res) => {
+                if (res.data.success) {
+                  showMsg(7);
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+                if (error.message === "Request failed with status code 403");
+                showMsg(6);
+              });
+          }
+        })
+        .catch((error) => {
+          if (error.message === "Request failed with status code 403");
+          showMsg(6);
+          console.log(error);
+        });
+    } else {
+      showMsg(4);
+    }
   };
   const decrease = (e) => {
     e.preventDefault();
